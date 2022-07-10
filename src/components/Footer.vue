@@ -1,0 +1,134 @@
+<template>
+
+    <div
+        ref="footer"
+        :style="`height:${footerDomSize.height.value}px`"
+    ></div>
+    <div
+        ref="footerDom"
+        class="fixed left-0 w-screen bg-emerald-500"
+        :style="footerIsNeedFixedBottom ? `bottom:0` : `top:${footerBounding.top.value}px`"
+    >
+        <img
+            class="hidden sm:!block w-full h-auto max-h-[825px]"
+            src="@/assets/footer-bg.svg"
+            alt=""
+        >
+        <img
+            class="sm:hidden w-full h-auto "
+            src="@/assets/footer-bg-phone.svg"
+            alt=""
+        >
+        <!-- 四球 -->
+            <img src="@/assets/footer-bg-4balls.svg" class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[1%] sm:-top-[50%] -z-10" />
+<!-- 2球 -->
+            <!-- <img src="@/assets/footer-bg-2balls.svg" class="absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] top-[2%] sm:-top-[15%] -z-10" /> -->
+        <div class="absolute top-1/3 sm:top-[28%] md:top-1/3   left-1/2 -translate-x-1/2 ml-5">
+            <!-- logo -->
+            <div>
+                <a href="">
+                    <img
+                        class="mx-auto w-[30.4vw] min-w-[114px] sm:w-[16.77vw] max-w-[322px]"
+                        src="@/assets/logo-letter.png"
+                        alt=""
+                    >
+
+                </a>
+            </div>
+            <!-- 連結區 -->
+            <div
+                class=" w-[65.6vw] min-w-[246px] sm:w-[70vw] md:w-[57.3vw] max-w-[960px] sm:ml-[5%] lg:mt-[5%] flex flex-col flex-nowrap items-center sm:flex-row sm:items-start sm:justify-around ">
+                <!-- 關於我們 -->
+                <ul
+                    class="order-1 mt-4 flex flex-nowrap text-xs whitespace-nowrap text-white sm:flex-col sm:text-base sm:mt-8">
+                    <li class="sm:pb-2 sm:border-[#DB5F1D] sm:border-b-2">關於我們</li>
+                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">合作夥伴</li>
+                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">服務與退訂條款</li>
+                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">隱私權政策</li>
+                </ul>
+                <!-- 客戶服務 -->
+                <ul
+                    class="order-3 sm:order-2 pl-1 text-white whitespace-nowrap mt-7 border-t-2 border-[#DC492A] sm:border-0  w-44 text-xs sm:mt-8  sm:text-base sm:w-56">
+                    <li class="hidden sm:!block sm:pb-2 sm:border-[#DB5F1D] sm:border-b-2">客戶服務</li>
+                    <li class="mt-4 sm:mt-3">客服時間:9:00-24:00(UTC+8)</li>
+                    <li class="mt-4 sm:mt-3">電話:+886-4-2452-2370</li>
+                    <li class="mt-4 sm:mt-3">信箱:service@tourbobo.com</li>
+                </ul>
+                <!-- 多媒體區 -->
+                <ul class="order-2 sm:order-3 sm:self-end">
+                    <li>
+                        <ul class="mt-4 flex gap-6 justify-center flex-nowrap">
+                            <li>
+                                <a href="fb">
+                                    <img
+                                        class="w-6 h-6 sm:w-9 sm:h-9"
+                                        src="@/assets/icon-facebook-white.svg"
+                                    >
+                                </a>
+                            </li>
+                            <li>
+                                <a href="line">
+                                    <img
+                                        class="w-6 h-6 sm:w-9 sm:h-9"
+                                        src="@/assets/icon-line-white.svg"
+                                    >
+                                </a>
+                            </li>
+                            <li>
+                                <a href="ig">
+
+                                    <img
+                                        class="w-6 h-6 sm:w-9 sm:h-9"
+                                        src="@/assets/icon-instagram-white.svg"
+                                    >
+
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul class=" mt-4 flex gap-1 justify-center flex-nowrap">
+                            <li>
+                                <a href="appstore">
+                                    <img
+                                        class="w-14 h-5 sm:w-24 sm:h-8"
+                                        src="@/assets/icon-appstore-white.svg"
+                                    >
+
+                                </a>
+                            </li>
+                            <li>
+                                <a href="googleplay">
+                                    <img
+                                        class="w-14 h-5 sm:w-24 sm:h-8"
+                                        src="@/assets/icon-googleplay-white.svg"
+                                    >
+
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- Copyright -->
+            <div class=" mt-8 text-xs font-light text-white scale-50 sm:scale-100 sm:text-lg text-center">
+                Copyright 2021 tourbobo Co., Ltd. All Rights Reserved.
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup lang="ts">
+import { useElementBounding, useElementSize, useWindowSize } from '@vueuse/core'
+import { computed, ref } from 'vue';
+const windowSize = useWindowSize()
+
+const footer = ref(null)
+const footerBounding = useElementBounding(footer)
+const footerDom = ref(null)
+const footerDomSize = useElementSize(footerDom)
+const footerIsNeedFixedBottom = computed(() => footerBounding.top.value <= windowSize.height.value - footerDomSize.height.value)
+</script>
+
+<style scoped>
+</style>

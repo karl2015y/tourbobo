@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: `/home`,
     name: 'home',
-    component: () => import('../views/the-home.vue')
+    component: () => import('@/views/Home.vue')
   },
 
   {

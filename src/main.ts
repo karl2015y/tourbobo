@@ -17,6 +17,8 @@ import App from './App.vue'
 import './style/animate.sass'
 
 import './index.css'
+// 動畫
+import 'animate.css';
 
 
 createApp(App)

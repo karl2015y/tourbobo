@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { quasar, transformAssetUrls } from '@quasar/vite-plugin';
 import loadVersion from 'vite-plugin-package-version';
+import { fileURLToPath, URL } from "url";
 
 
 
@@ -17,5 +18,10 @@ export default defineConfig({
     }),
 
     loadVersion(),
-  ]
+  ],
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  }
 })
