@@ -64,7 +64,7 @@
     position="left"
     :maximized="true"
   >
-    <q-card class="!w-screen min-h-screen min-w-[375px] flex flex-col flex-nowrap">
+    <q-card class="!w-screen h-screen min-w-[375px] flex flex-col flex-nowrap">
 
       <div>
         <div class="py-7 px-3.5 w-full bg-[#00586E] relative">
@@ -81,7 +81,7 @@
             >
           </a>
         </div>
-        <div class="my-20 select-none	">
+        <div class="select-none	">
           <ul>
             <template v-for="(link, index) in props.menuLinks">
               <li class="mt-8 text-center font-bold">
@@ -129,7 +129,7 @@
         </div>
       </div>
 
-      <div class="font-bold mt-auto">
+      <div class="font-bold mt-auto ">
         <div class="flex justify-center items-center">
           <q-icon
             name="person_outline"
@@ -304,6 +304,8 @@ const clickPhoneSubMenu = (_clickPhoneSubMenu: string) => {
     focusPhoneSubMenu.value = _clickPhoneSubMenu
   }
 }
+
+
 </script>
 
 
