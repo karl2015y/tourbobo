@@ -54,6 +54,7 @@
   <div
     v-if="headerSize"
     :style="`height:${headerSize.height.value}px;width:100px `"
+    id="top"
   >
   </div>
   <!-- 手機板 -->

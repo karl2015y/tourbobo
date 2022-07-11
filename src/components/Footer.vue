@@ -55,7 +55,7 @@
             class="absolute right-[1.5%] w-[13.33vw] min-w-[50px] sm:w-[10vw] max-w-[180px] -top-[20%] sm:-top-[15%] -z-10"
         />
 
-        <div class="absolute top-1/3 sm:top-[28%] md:top-1/3   left-1/2 -translate-x-1/2 ml-5">
+        <div class="absolute top-[20%] sm:top-[28%] md:top-1/3  left-1/2 -translate-x-1/2 ml-[3%]">
             <!-- logo -->
             <div>
                 <a href="">
@@ -143,31 +143,110 @@
                 </ul>
             </div>
             <!-- Copyright -->
-            <div class=" mt-8 text-xs font-light text-white scale-50 sm:scale-100 sm:text-lg text-center">
+            <div
+                class=" mt-8 sm:mt-[8%] text-xs font-light text-white scale-50 sm:scale-100 sm:text-lg text-center whitespace-nowrap">
                 Copyright 2021 tourbobo Co., Ltd. All Rights Reserved.
             </div>
         </div>
     </div>
+
+    <q-layout class="!min-h-[0]">
+
+        <q-page-sticky
+            position="bottom-right"
+            :offset="$q.screen.lt.sm ? [18, 18] : [26, 26]"
+        >
+
+
+            <div class="relative w-16 h-16 sm:w-20 sm:h-20">
+
+                <div class="bg-[#DA492A] w-full h-full octagon">
+                    <img
+                        class="absolute w-1/2 h-1/2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                        src="@/assets/FAB.svg"
+                        alt=""
+                    >
+                </div>
+
+                <q-fab
+                    class="absolute w-full h-full top-0 left-0"
+                    hide-icon
+                    direction="up"
+                    flat
+                    unelevated
+                >
+
+                    <q-fab-action
+                        @click="gotoLink('https://www.facebook.com/msg/103521468250543')"
+                        text-color="white"
+                        :icon="laFacebookMessenger"
+                        flat
+                        class="bg-[#1E88E4] w-16 h-16 octagon text-4xl"
+                    />
+                    <q-fab-action
+                        @click="gotoLink('https://line.me/ti/p/@643ibjqd')"
+                        text-color="white"
+                        icon="img:src/assets/icon-line.svg"
+                        flat
+                        class="bg-[#00D000] w-16 h-16 octagon pr-2.5 pt-2.5 text-4xl "
+                    />
+                    <q-fab-action
+                        @click="gotoLink('tel:0424512081')"
+                        text-color="white"
+                        icon="phone"
+                        flat
+                        class="bg-[#F6AC00] w-16 h-16 octagon text-4xl"
+                    />
+                    <q-fab-action
+                        to="#top"
+                        icon="expand_less"
+                        flat
+                        class="bg-[#F9EDD5] text-[#DB5F1D] w-16 h-16 octagon text-5xl"
+                    />
+                </q-fab>
+
+
+            </div>
+
+
+
+        </q-page-sticky>
+
+    </q-layout>
 </template>
 
 <script setup lang="ts">
 import { useElementBounding, useElementSize, useWindowSize } from '@vueuse/core'
+import { useQuasar } from 'quasar';
 import { computed, ref } from 'vue';
+import { laFacebookMessenger, laLine } from '@quasar/extras/line-awesome'
 
 interface Props {
     styleType?: string; // 1→白底2球；2→白底4球；3→米底2球；
 }
 const props = withDefaults(defineProps<Props>(), {
-    styleType: '3',
+    styleType: '2',
 });
 
+const $q = useQuasar()
 const windowSize = useWindowSize()
 const footer = ref(null)
 const footerBounding = useElementBounding(footer)
 const footerDom = ref(null)
 const footerDomSize = useElementSize(footerDom)
 const footerIsNeedFixedBottom = computed(() => footerBounding.top.value <= windowSize.height.value - footerDomSize.height.value)
+
+const gotoLink = (link: string) => {
+    window.location.href = link
+}
 </script>
 
 <style scoped>
+.octagon {
+    clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+}
+
+:deep() .octagon .q-icon {
+    font-size: inherit !important;
+}
 </style>

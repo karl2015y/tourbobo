@@ -26,7 +26,26 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    const move2hash: { [key: string]: Boolean } = {
+      home: true,
+    }
+    if (move2hash[to.name as string] && to.hash) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve({
+            el: to.hash,
+            top: to.meta.fixHeader ? 100 : 0,
+            behavior: 'smooth',
+
+          })
+
+        }, 300)
+      })
+    }
+    return { top: 0, behavior: 'smooth', }
+  },
 })
 
 export default router
