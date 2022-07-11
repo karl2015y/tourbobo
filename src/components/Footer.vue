@@ -38,7 +38,7 @@
         <template v-if="props.styleType == '2'">
             <img
                 src="@/assets/footer-bg-4balls.svg"
-                class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[1%] sm:-top-[50%] -z-10"
+                class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[50%] -z-10"
             />
         </template>
 
@@ -158,7 +158,7 @@ interface Props {
     styleType?: string; // 1→白底2球；2→白底4球；3→米底2球；
 }
 const props = withDefaults(defineProps<Props>(), {
-    styleType: '2',
+    styleType: '3',
 });
 
 const windowSize = useWindowSize()
