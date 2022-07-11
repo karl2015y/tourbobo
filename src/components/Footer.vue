@@ -6,9 +6,15 @@
     ></div>
     <div
         ref="footerDom"
-        class="fixed left-0 w-screen bg-emerald-500"
+        class="fixed left-0 w-screen"
+        :class="{
+            'bg-white': (props.styleType == '1') || (props.styleType == '2'),
+            'bg-[#F7EBD3]': (props.styleType == '3'),
+        
+        }"
         :style="footerIsNeedFixedBottom ? `bottom:0` : `top:${footerBounding.top.value}px`"
     >
+        <!-- 底圖 -->
         <img
             class="hidden sm:!block w-full h-auto max-h-[825px]"
             src="@/assets/footer-bg.svg"
@@ -19,10 +25,36 @@
             src="@/assets/footer-bg-phone.svg"
             alt=""
         >
-        <!-- 四球 -->
-            <img src="@/assets/footer-bg-4balls.svg" class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[1%] sm:-top-[50%] -z-10" />
-<!-- 2球 -->
-            <!-- <img src="@/assets/footer-bg-2balls.svg" class="absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] top-[2%] sm:-top-[15%] -z-10" /> -->
+
+
+        <!-- 2球 -->
+        <template v-if="props.styleType == '1'">
+            <img
+                src="@/assets/footer-bg-2balls.png"
+                class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%]  -z-10"
+            />
+        </template>
+        <!-- 4球 -->
+        <template v-if="props.styleType == '2'">
+            <img
+                src="@/assets/footer-bg-4balls.svg"
+                class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[1%] sm:-top-[50%] -z-10"
+            />
+        </template>
+
+        <!-- 2白球 -->
+        <template v-if="props.styleType == '3'">
+            <img
+                src="@/assets/footer-bg-2balls-white.png"
+                class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%]  -z-10"
+            />
+        </template>
+        <!-- 右邊4球 -->
+        <img
+            src="@/assets/footer-bg-right-4balls.svg"
+            class="absolute right-[1.5%] w-[13.33vw] min-w-[50px] sm:w-[10vw] max-w-[180px] -top-[20%] sm:-top-[15%] -z-10"
+        />
+
         <div class="absolute top-1/3 sm:top-[28%] md:top-1/3   left-1/2 -translate-x-1/2 ml-5">
             <!-- logo -->
             <div>
@@ -121,8 +153,15 @@
 <script setup lang="ts">
 import { useElementBounding, useElementSize, useWindowSize } from '@vueuse/core'
 import { computed, ref } from 'vue';
-const windowSize = useWindowSize()
 
+interface Props {
+    styleType?: string; // 1→白底2球；2→白底4球；3→米底2球；
+}
+const props = withDefaults(defineProps<Props>(), {
+    styleType: '2',
+});
+
+const windowSize = useWindowSize()
 const footer = ref(null)
 const footerBounding = useElementBounding(footer)
 const footerDom = ref(null)
