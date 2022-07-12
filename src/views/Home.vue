@@ -1,12 +1,14 @@
 <template>
-    <div class="">
-        <div class="max-w-[1920px] mx-auto ">
+    <div class="min-w-[375px]">
+        <div class="max-w-[1920px] min-w-[375px] mx-auto ">
             <user-header />
         </div>
-        <div class="h-[150vh] bg-emerald-500">
+        <!-- <div class="h-[150vh] bg-emerald-500">
             home
 
-        </div>
+        </div> -->
+        <banner-swiper />
+        <searching-bar />
         <user-footer />
 
     </div>
@@ -17,6 +19,12 @@
 <script setup lang="ts">
 import UserHeader from '@/components/Header.vue';
 import UserFooter from '@/components/Footer.vue';
+import BannerSwiper from '@/components/Home/BannerSwiper.vue';
+import SearchingBar from '@/components/Home/SearchingBar.vue';
+import { setCssVar } from 'quasar';
+
+setCssVar('primary', '#F6AC00')
+
 </script>
 
 <style scoped>

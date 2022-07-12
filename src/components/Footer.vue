@@ -6,7 +6,7 @@
     ></div>
     <div
         ref="footerDom"
-        class="fixed left-0 w-screen"
+        class="fixed left-0 w-screen min-w-[375px]"
         :class="{
             'bg-white': (props.styleType == '1') || (props.styleType == '2'),
             'bg-[#F7EBD3]': (props.styleType == '3'),
