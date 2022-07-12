@@ -150,7 +150,7 @@
         </div>
     </div>
 
-    <q-layout class="!min-h-[0]">
+    <q-layout class="z-10 !min-h-[0]">
 
         <q-page-sticky
             position="bottom-right"

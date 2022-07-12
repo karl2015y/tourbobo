@@ -2,7 +2,7 @@
 
   <section
     ref="header"
-    class="header fixed z-10 bg-white w-full top-0 left-0 "
+    class="header fixed z-20 bg-white w-full top-0 left-0 "
   >
     <div class="max-w-[1920px] mx-auto px-4 py-4 sm:px-14 flex flex-nowrap justify-between items-center gap-8">
       <img
