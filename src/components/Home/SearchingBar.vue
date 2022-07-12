@@ -90,8 +90,8 @@
                     >
                         <template v-if="dateRangeElementIsHovered">
                             <div
-                                class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
-                                        sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 w-full ">
+                                class=" w-[95%] mx-auto sm:mx-0   fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
+                                        sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 ">
                                 <q-date
                                     subtitle="選擇入住與退房日期"
                                     class="w-full"
@@ -154,7 +154,7 @@
                                 class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
                                         sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 w-full ">
                                 <div
-                                    class="bg-white w-full lg:w-2/3 rounded-md  px-6 py-8 shadow-md flex flex-col gap-6">
+                                    class="bg-white w-[95%] mx-auto sm:mx-0 border lg:w-2/3 rounded-md  px-6 py-8 shadow-md flex flex-col gap-6">
                                     <!-- 大人 -->
                                     <div class="flex justify-around items-center flex-nowrap">
                                         <q-btn
@@ -219,9 +219,10 @@
                                         }}</span> 間客房
                                         </div>
                                         <q-btn
+                                        disabled
                                             @click="roomModel.roomCount += 1"
                                             size="lg"
-                                            class="text-[#F6AC00]"
+                                            class="text-gray-400"
                                             icon="add_circle_outline"
                                             round
                                             flat
