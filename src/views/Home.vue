@@ -11,6 +11,7 @@
         <searching-bar />
         <activity-swiper/>
         <cities/>
+        <hotel-swiper/>
         <user-footer />
 
     </div>
@@ -25,10 +26,12 @@ import BannerSwiper from '@/components/Home/BannerSwiper.vue';
 import SearchingBar from '@/components/Home/SearchingBar.vue';
 import ActivitySwiper from '@/components/Home/ActivitySwiper.vue';
 import Cities from '@/components/Home/Cities.vue';
+import HotelSwiper from '../components/Home/HotelSwiper.vue';
 
 import { setCssVar } from 'quasar';
 
 setCssVar('primary', '#F6AC00')
+setCssVar('secondary', '#00586E')
 
 </script>
 
