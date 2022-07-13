@@ -10,6 +10,7 @@
         <banner-swiper />
         <searching-bar />
         <activity-swiper/>
+        <cities/>
         <user-footer />
 
     </div>
@@ -22,7 +23,8 @@ import UserHeader from '@/components/Header.vue';
 import UserFooter from '@/components/Footer.vue';
 import BannerSwiper from '@/components/Home/BannerSwiper.vue';
 import SearchingBar from '@/components/Home/SearchingBar.vue';
-import ActivitySwiper from '../components/Home/ActivitySwiper.vue';
+import ActivitySwiper from '@/components/Home/ActivitySwiper.vue';
+import Cities from '@/components/Home/Cities.vue';
 
 import { setCssVar } from 'quasar';
 
