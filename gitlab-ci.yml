@@ -8,7 +8,6 @@ cache:
 # 佈署
 發佈正式機:
   stage: deploy
-  when: manual
   only:
   - master
 
