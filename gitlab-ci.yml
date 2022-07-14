@@ -1,13 +1,9 @@
-stages:
-- deploy
-
 cache:
   paths:
   - node_modules
 
 # 佈署
 發佈正式機:
-  stage: deploy
   only:
   - master
 
