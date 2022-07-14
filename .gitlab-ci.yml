@@ -14,6 +14,6 @@ cache:
   script:
   - npm i
   - npm run build
-  ln -s -f "`pwd`/dist" /home/tommer_rd/www/traveltourbobo
+  - ln -s -f "`pwd`/dist" /home/tommer_rd/www/traveltourbobo
   - cd ~/servers/
   - ansible-playbook sync/traveltourbobo.yaml
