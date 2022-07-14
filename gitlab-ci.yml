@@ -1,0 +1,20 @@
+stages:
+- deploy
+
+cache:
+  paths:
+  - node_modules
+
+# 佈署
+發佈正式機:
+  stage: deploy
+  when: manual
+  only:
+  - master
+
+  script:
+  - npm i
+  - npm run build
+  - ln -s ./dist /home/tommer_rd/www/traveltourbobo
+  - cd ~/servers/
+  - ansible-playbook sync/traveltourbobo.yaml
