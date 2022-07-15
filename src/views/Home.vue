@@ -1,12 +1,7 @@
 <template>
     <div class="min-w-[375px]">
-        <div class="max-w-[1920px] min-w-[375px] mx-auto ">
-            <user-header />
-        </div>
-        <!-- <div class="h-[150vh] bg-emerald-500">
-            home
 
-        </div> -->
+        <user-header />
         <banner-swiper />
         <searching-bar />
         <activity-swiper />
@@ -16,6 +11,7 @@
         <activity-image-info />
         <about />
         <user-footer />
+
 
     </div>
 

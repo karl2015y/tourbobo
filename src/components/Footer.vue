@@ -1,44 +1,34 @@
 <template>
-
-    <div
+    <!-- footer -->
+    <!-- <div
         ref="footer"
         :style="`height:${footerDomSize.height.value}px`"
-    ></div>
+    ></div> -->
     <div
         ref="footerDom"
-        class="fixed left-0 w-screen min-w-[375px]"
+        class="block left-0 min-w-[375px] relative z-10"
         :class="{
             'bg-white': (props.styleType == '1') || (props.styleType == '2'),
             'bg-[#F7EBD3]': (props.styleType == '3'),
         
+        
         }"
-        :style="footerIsNeedFixedBottom ? `bottom:0` : `top:${footerBounding.top.value}px`"
     >
-        <!-- 底圖 -->
-        <img
-            class="hidden sm:!block w-full h-auto max-h-[825px]"
-            src="@/assets/footer-bg.svg"
-            alt=""
-        >
-        <img
-            class="sm:hidden w-full h-auto "
-            src="@/assets/footer-bg-phone.svg"
-            alt=""
-        >
+
 
 
         <!-- 2球 -->
         <template v-if="props.styleType == '1'">
             <img
                 src="@/assets/footer-bg-2balls.png"
-                class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%]  -z-10"
+                class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%] "
             />
         </template>
         <!-- 4球 -->
         <template v-if="props.styleType == '2'">
             <img
                 src="@/assets/footer-bg-4balls.svg"
-                class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[50%] -z-10"
+                class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[50%]"
             />
         </template>
 
@@ -46,14 +36,25 @@
         <template v-if="props.styleType == '3'">
             <img
                 src="@/assets/footer-bg-2balls-white.png"
-                class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%]  -z-10"
+                class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%] "
             />
         </template>
         <!-- 右邊4球 -->
         <img
             src="@/assets/footer-bg-right-4balls.svg"
-            class="absolute right-[1.5%] w-[13.33vw] min-w-[50px] sm:w-[10vw] max-w-[180px] -top-[20%] sm:-top-[15%] -z-10"
+            class="absolute right-[1.5%] w-[13.33vw] min-w-[50px] sm:w-[10vw] max-w-[180px] -top-[20%] sm:-top-[15%]"
         />
+        <!-- 底圖 -->
+        <img
+            class="hidden sm:!block w-full h-auto max-h-[825px] relative"
+            src="@/assets/footer-bg.svg"
+            alt=""
+        >
+        <img
+            class="sm:hidden w-full h-auto relative"
+            src="@/assets/footer-bg-phone.svg"
+            alt=""
+        >
 
         <div class="absolute top-[20%] sm:top-[28%] md:top-1/3  left-1/2 -translate-x-1/2 ml-[3%]">
             <!-- logo -->
