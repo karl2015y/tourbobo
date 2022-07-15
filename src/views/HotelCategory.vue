@@ -9,7 +9,7 @@
     <category-item styleType="3" />
     <category-item styleType="4" />
 
-    <category-item styleType="5" />
+    <category-item styleType="5" isLast />
 
     <user-footer styleType="3" />
 

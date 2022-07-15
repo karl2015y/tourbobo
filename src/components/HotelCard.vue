@@ -103,7 +103,7 @@
                 href=""
                 class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-1/2 "
             >
-                <div class="text-xl font-medium  bg-[#00586E] text-white border-2 border-white rounded-3xl py-2">
+                <div class="text-center text-xl font-medium  bg-[#00586E] text-white border-2 border-white rounded-3xl py-2">
                     立即下單
                 </div>
             </a>
