@@ -294,12 +294,24 @@ const props = withDefaults(defineProps<Props>(), {
       link: "/hotel-category",
       childrenMenuLinks: [
         {
-          text: '寵物友善',
-          link: '/hotel-category?category=1'
+          text: '悠遊國旅',
+          link: '/hotel-category?category=悠遊國旅'
         },
         {
-          text: '露營專區',
-          link: '/hotel-category?category=2'
+          text: '品牌連鎖',
+          link: '/hotel-category?category=品牌連鎖'
+        },
+        {
+          text: '人氣民宿',
+          link: '/hotel-category?category=人氣民宿'
+        },
+        {
+          text: '寵物友善',
+          link: '/hotel-category?category=寵物友善'
+        },
+        {
+          text: '熱銷首選',
+          link: '/hotel-category?category=熱銷首選'
         },
       ]
     },

@@ -19,8 +19,8 @@
                     <template v-for="area in areaArray">
                         <q-tab
                             class="relative !text-2xl"
-                            :name="area"
-                            :label="area"
+                            :name="area.name"
+                            :label="area.name"
                         >
                             <Transition
                                 enter-active-class="animate__animated animate__fadeIn animate__faster"
@@ -28,7 +28,7 @@
                             >
 
                                 <div
-                                    v-if="areaTab == area"
+                                    v-if="areaTab == area.name"
                                     class="absolute bottom-0 z-20 triangle w-3 h-3 bg-[#00586E]"
                                 ></div>
                             </Transition>
@@ -38,47 +38,57 @@
 
 
                 </q-tabs>
+                <template v-if="currentHotelList?.length > 0">
+                    <div class="relative mt-3 hidden sm:!block">
+                        <q-btn
+                        v-if="currentHotelList.length>4"
+                            class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white  hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                            flat
+                            round
+                            icon="chevron_left"
+                            @click="swiperPrev('hotelSwiper')"
+                        />
+                        <swiper
+                            id="hotelSwiper"
+                            navigation
+                            :modules="[Navigation]"
+                            :slides-per-view="$q.screen.lt.md ? 3 : 4"
+                            :space-between="30"
+                            :loop="currentHotelList.length>4"
+                            
 
-                <div class="relative mt-3 hidden sm:!block">
-                    <q-btn
-                        class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white  hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
-                        flat
-                        round
-                        icon="chevron_left"
-                        @click="swiperPrev('hotelSwiper')"
-                    />
-                    <swiper
-                        id="hotelSwiper"
-                        navigation
-                        :modules="[Navigation]"
-                        :slides-per-view="$q.screen.lt.md ? 3 : 4"
-                        :space-between="30"
-                        loop
-                    >
-                        <template v-for="item in 6">
-                            <swiper-slide class="pb-4">
-                                <hotel-card />
-                            </swiper-slide>
+                        >
+                            <template v-for="hotel in currentHotelList">
+                                <swiper-slide class="pb-4">
+                                    <hotel-card :hotel="hotel" />
+                                </swiper-slide>
+                            </template>
+                        </swiper>
+                        <q-btn
+                        v-if="currentHotelList.length>4"
+                            class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                            flat
+                            round
+                            icon="navigate_next"
+                            @click="swiperNext('hotelSwiper')"
+                        />
+                    </div>
+
+                    <div class="mt-3 sm:hidden">
+                        <template v-for="hotel in currentHotelList">
+                            <div class="pb-7">
+                                <hotel-card :hotel="hotel" />
+                            </div>
                         </template>
-                    </swiper>
-                    <q-btn
-                        class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
-                        flat
-                        round
-                        icon="navigate_next"
-                        @click="swiperNext('hotelSwiper')"
-                    />
-                </div>
 
-                <div class="mt-3 sm:hidden">
-                    <template v-for="item in 6">
-                        <div class="pb-7">
-                            <hotel-card />
-                        </div>
-                    </template>
-
-                </div>
-
+                    </div>
+                </template>
+                <template v-else-if="loading">
+                    <div class="mt-3 text-xl text-gray-400">載入中...</div>
+                </template>
+                <template v-else>
+                    <div class="mt-3 text-xl text-gray-400">暫無資料</div>
+                </template>
 
             </div>
         </div>
@@ -112,6 +122,8 @@ import { Navigation, FreeMode } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/free-mode';
+import { computedAsync } from '@vueuse/core';
+import { find } from 'lodash';
 
 const swiperNext = (id: string) => {
     (document.querySelector(`#${id} .swiper-button-next`) as HTMLElement)?.click()
@@ -125,7 +137,7 @@ const swiperPrev = (id: string) => {
 const addDays = function (date: Date, days: number) {
     return new Date(new Date().setDate(date.getDate() + days));
 }
-const hotelLink = (hotel_id: string) => {
+const hotelsLink = (hotel_ids: Array<string>) => {
     const todayDate = new Date()
     console.log('todayDate', todayDate.toLocaleString());
     const after30day = addDays(todayDate, 30);
@@ -137,14 +149,61 @@ const hotelLink = (hotel_id: string) => {
     const after38dayString = after38day.toISOString().split('T')[0]
     // console.log('after30dayString',after30dayString);
     // console.log('after38dayString',after38dayString);
-    return `https://www.tourbobo.com/hotel/${hotel_id}?check_in=${after30dayString}&check_out=${after38dayString}&adults=1&children=0&sorting=recommend&business_type=1`
+    let baseUrl = `https://ota-api.tourbobo.com/ota/hotels?per_page=${hotel_ids?.length}&adults=1&children=0&check_in=${after30dayString}&check_out=${after38dayString}&business_type=1`
+    hotel_ids.forEach(hotel_id => {
+        baseUrl += `&hotel_id[]=${hotel_id}`
+    })
+    return baseUrl
 }
 const gotoLink = (link: string) => {
     window.location.href = link
 }
 
-const areaArray = ref(['北部', '中部', '南部', '其他'])
-const areaTab = ref(areaArray.value[0])
+const areaArray = ref([
+    {
+        name: '北部',
+        hotes_id: ['426', '437', '448', '314'],
+    },
+    {
+        name: '中部',
+        hotes_id: ['474', '583', '483', '482'],
+    },
+    {
+        name: '南部',
+        hotes_id: ['465', '502', '505', '538'],
+    },
+    {
+        name: '東部',
+        hotes_id: ['556', '479', '558', '488'],
+    },
+
+])
+const areaTab = ref(areaArray.value[0].name)
+const loading = ref(false)
+const currentHotelList = computedAsync(
+    async () => {
+
+        return new Promise<Array<any>>((resolve, reject) => {
+            const myHeaders = new Headers();
+            myHeaders.append("Accept-Language", "zh_TW");
+            fetch(hotelsLink(find(areaArray.value, ['name', areaTab.value])?.hotes_id as Array<string>), {
+                method: 'GET',
+                headers: myHeaders,
+            })
+                .then(response => response.text())
+                .then(result => {
+                    resolve((JSON.parse(result) as any)['data'])
+                })
+                .catch(error => reject(error));
+        })
+
+
+
+
+    },
+    [],
+    loading,
+)
 
 </script>
 

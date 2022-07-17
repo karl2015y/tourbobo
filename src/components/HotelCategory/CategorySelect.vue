@@ -152,10 +152,11 @@ import 'swiper/css';
 const router = useRouter()
 const route = useRoute()
 const hotelCategoryArray = ref([
-    { name: '包棟民宿', image: 'https://upload.cc/i1/2022/07/14/ABMJS5.png', smallImage: 'https://upload.cc/i1/2022/07/14/tCWrj5.png' },
-    { name: '寵物友善', image: 'https://upload.cc/i1/2022/07/14/4FAoz8.png', smallImage: 'https://upload.cc/i1/2022/07/14/Ty8iOU.png' },
-    { name: '親子友善', image: 'https://upload.cc/i1/2022/07/14/ABMJS5.png', smallImage: 'https://upload.cc/i1/2022/07/14/tCWrj5.png' },
-    { name: '好吃好玩', image: 'https://upload.cc/i1/2022/07/14/ABMJS5.png', smallImage: 'https://upload.cc/i1/2022/07/14/tCWrj5.png' },
+    { name: '悠遊國旅', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344' },
+    { name: '品牌連鎖', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967' },
+    { name: '人氣民宿', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E4%BA%BA%E6%B0%A3.jpg?alt=media&token=0c18d4db-9e42-4948-af50-9fec9d41b023', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E4%BA%BA%E6%B0%A3.jpg?alt=media&token=0c18d4db-9e42-4948-af50-9fec9d41b023' },
+    { name: '寵物友善', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%AF%B5%E7%89%A9%E5%8F%8B%E5%96%84.jpg?alt=media&token=91a9a615-928d-4460-b787-f78c73cc804e', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%AF%B5%E7%89%A9%E5%8F%8B%E5%96%84.jpg?alt=media&token=91a9a615-928d-4460-b787-f78c73cc804e' },
+    { name: '熱銷首選', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef' },
 ])
 
 const hotelFocusCategory = ref(route.query['category'] ? route.query['category'] as string : hotelCategoryArray.value[0].name)

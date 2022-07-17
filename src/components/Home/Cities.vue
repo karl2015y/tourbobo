@@ -61,43 +61,45 @@ const props = withDefaults(defineProps<Props>(), {
             "city_id": 1,
             "city_name": "台北",
             "city_en_name": "taipei",
-            "image": "https://picsum.photos/340/340"
-        },
-        {
-            "city_id": 2,
-            "city_name": "新北",
-            "city_en_name": "new-taipei-city",
-            "image": "https://picsum.photos/340/340"
+            "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E5%8F%B0%E5%8C%97.jpg?alt=media&token=862a1c44-0bb4-4dd2-888c-185e71d9117f"
         },
         {
             "city_id": 3,
+            "city_name": "新北",
+            "city_en_name": "new-taipei-city",
+            "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E6%96%B0%E5%8C%97.jpg?alt=media&token=d3eb4b48-c809-4457-a231-aafa68191e23"
+        },
+          {
+            "city_id": 5,
+            "city_name": "桃園",
+            "city_en_name": "taoyuan",
+            "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E6%A1%83%E5%9C%92.jpg?alt=media&token=f53c6a18-4a37-41d4-a1f3-21720d467513"
+        },
+        {
+            "city_id": 6,
+            "city_name": "新竹",
+            "city_en_name": "hsinchu",
+            "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E6%96%B0%E7%AB%B9.jpg?alt=media&token=cf9c42a5-453c-4220-9155-403efc71ffb3"
+        },
+        {
+            "city_id": 9,
             "city_name": "台中",
             "city_en_name": "taichung",
-            "image": "https://picsum.photos/340/340"
+            "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E5%8F%B0%E4%B8%AD.jpg?alt=media&token=0b1ddfb7-af9b-411b-8858-fdbbbe3cb5ac"
         },
         {
-            "city_id": 4,
-            "city_name": "高雄",
-            "city_en_name": "kaohsiung",
-            "image": "https://picsum.photos/340/340"
+            "city_id": 15,
+            "city_name": "台南",
+            "city_en_name": "tainan",
+            "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E5%8F%B0%E5%8D%97.jpg?alt=media&token=4625df90-9806-4453-b24b-b33b536f4721"
         },
+        
+      
         {
-            "city_id": 4,
+            "city_id": 16,
             "city_name": "高雄",
             "city_en_name": "kaohsiung",
-            "image": "https://picsum.photos/340/340"
-        },
-        {
-            "city_id": 4,
-            "city_name": "高雄",
-            "city_en_name": "kaohsiung",
-            "image": "https://picsum.photos/340/340"
-        },
-        {
-            "city_id": 4,
-            "city_name": "高雄",
-            "city_en_name": "kaohsiung",
-            "image": "https://picsum.photos/340/340"
+            "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E9%AB%98%E9%9B%84.jpg?alt=media&token=c6d5860a-30df-4d5d-abc7-15d21dd8f50b"
         }
     ]
 

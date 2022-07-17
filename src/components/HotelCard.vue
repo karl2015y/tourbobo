@@ -57,7 +57,7 @@
 
 
         </div>
-        <div class="mt-2 px-4 sm:flex justify-between gap-3">
+        <div class="mt-2 px-4 sm:flex justify-between gap-4">
             <div>
                 <div class="text-xl font-bold mt-4 mb-2 text-left sm:text-base">
                     <a href="">
@@ -83,15 +83,23 @@
                     <div class="text-[#DC492A] text-2xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}</div>
                 </div>
             </div>
-            <div class="hidden sm:!flex items-center">
-                <ul class="flex flex-col gap-1.5">
+            <div class="hidden sm:!flex items-center  ">
+                <ul class="flex flex-col gap-1.5 ">
                     <template v-for=" tag in props.hotel.facility_tags">
-                        <li class="mr-auto whitespace-nowrap">
+                        <li class="text-left whitespace-nowrap sm:w-24 sm:truncate">
                             <q-icon
                                 name="check"
                                 class=" text-white bg-[#6DCD01] rounded-full p-0.5 font-black"
                             />
                             {{ tag.name }}
+                            <q-tooltip
+                                v-if="tag.name.length > 4"
+                                transition-show="flip-up"
+                                transition-hide="flip-down"
+                                anchor="center middle"
+                                self="center middle"
+                                class="bg-white text-black"
+                            >{{ tag.name }}</q-tooltip>
                         </li>
                     </template>
                 </ul>
@@ -102,7 +110,7 @@
         </div>
         <div class="mt-5 sm:mt-4 relative rounded-b-xl w-full bg-[#00586E] h-3 sm:h-4">
             <a
-                href=""
+                :href="hotelLink(`${props.hotel.hotel_id}`)"
                 class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-1/2 "
             >
                 <div
@@ -191,6 +199,18 @@ const props = withDefaults(defineProps<Props>(), {
 
 const priceFormat = (price: number) => {
     return `${price.toLocaleString()}`
+}
+
+const addDays = function (date: Date, days: number) {
+    return new Date(new Date().setDate(date.getDate() + days));
+}
+const hotelLink = (hotel_id: string) => {
+    const todayDate = new Date()
+    const after30day = addDays(todayDate, 30);
+    const after38day = addDays(todayDate, 38);
+    const after30dayString = after30day.toISOString().split('T')[0]
+    const after38dayString = after38day.toISOString().split('T')[0]
+    return `https://www.tourbobo.com/hotel/${hotel_id}?check_in=${after30dayString}&check_out=${after38dayString}&adults=1&children=0&sorting=recommend&business_type=1`
 }
 
 </script>

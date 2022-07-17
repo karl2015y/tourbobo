@@ -2,6 +2,9 @@ import { defineStore } from 'pinia'
 
 export const useMainStore = defineStore('main', {
   state: () => ({
-    data: 'codfish'
+    footer: {
+      zIndex:0,
+      styleType:"2"
+    }
   })
 })

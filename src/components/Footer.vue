@@ -6,11 +6,11 @@
     ></div> -->
     <div
         ref="footerDom"
-        class="block left-0 min-w-[375px] relative"
+        class="block left-0 min-w-[375px] relative "
+        :style="`z-index:${mainStore.footer.zIndex}`"
         :class="{
-            'bg-white': (props.styleType == '1') || (props.styleType == '2'),
-            'bg-[#F7EBD3]': (props.styleType == '3'),
-        
+            'bg-white': (mainStore.footer.styleType == '1') || (mainStore.footer.styleType == '2'),
+            'bg-[#F7EBD3]': (mainStore.footer.styleType == '3'),
         
         }"
     >
@@ -18,14 +18,14 @@
 
 
         <!-- 2球 -->
-        <template v-if="props.styleType == '1'">
+        <template v-if="mainStore.footer.styleType == '1'">
             <img
                 src="@/assets/footer-bg-2balls.png"
                 class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%] "
             />
         </template>
         <!-- 4球 -->
-        <template v-if="props.styleType == '2'">
+        <template v-if="mainStore.footer.styleType == '2'">
             <img
                 src="@/assets/footer-bg-4balls.svg"
                 class=" absolute left-0 w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[50%]"
@@ -33,7 +33,7 @@
         </template>
 
         <!-- 2白球 -->
-        <template v-if="props.styleType == '3'">
+        <template v-if="mainStore.footer.styleType == '3'">
             <img
                 src="@/assets/footer-bg-2balls-white.png"
                 class="absolute  w-[32.3vw] min-w-[123px] max-w-[619px] -top-[25%] sm:-top-[15%] -left-[8%] "
@@ -259,14 +259,16 @@
 import { useElementBounding, useElementSize, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar';
 import { computed, ref } from 'vue';
-import { laFacebookMessenger, laLine } from '@quasar/extras/line-awesome'
+import { useMainStore } from '../stores/main.store';
 
-interface Props {
-    styleType?: string; // 1→白底2球；2→白底4球；3→米底2球；
-}
-const props = withDefaults(defineProps<Props>(), {
-    styleType: '2',
-});
+// interface Props {
+//     styleType?: string; // 1→白底2球；2→白底4球；3→米底2球；
+// }
+// const props = withDefaults(defineProps<Props>(), {
+//     styleType: '2',
+// });
+
+const mainStore = useMainStore()
 
 const $q = useQuasar()
 const windowSize = useWindowSize()
