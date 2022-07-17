@@ -6,7 +6,7 @@
     ></div> -->
     <div
         ref="footerDom"
-        class="block left-0 min-w-[375px] relative z-10"
+        class="block left-0 min-w-[375px] relative"
         :class="{
             'bg-white': (props.styleType == '1') || (props.styleType == '2'),
             'bg-[#F7EBD3]': (props.styleType == '3'),
@@ -56,7 +56,7 @@
             alt=""
         >
 
-        <div class="absolute top-[20%] sm:top-[28%] md:top-1/3  left-1/2 -translate-x-1/2 ml-[3%]">
+        <div class="absolute top-[20%] sm:top-[28%] md:top-1/3  left-1/2 -translate-x-1/2 ">
             <!-- logo -->
             <div>
                 <a href="">
@@ -70,18 +70,26 @@
             </div>
             <!-- 連結區 -->
             <div
-                class=" w-[65.6vw] min-w-[246px] sm:w-[70vw] md:w-[57.3vw] max-w-[960px] sm:ml-[5%] lg:mt-[5%] flex flex-col flex-nowrap items-center sm:flex-row sm:items-start sm:justify-around ">
+                class="mx-auto w-[65.6vw] min-w-[246px] sm:w-[70vw] md:w-[57.3vw] max-w-[960px] sm:ml-[5%] lg:mt-[5%] flex flex-col flex-nowrap items-center sm:flex-row sm:items-start sm:justify-around ">
                 <!-- 關於我們 -->
                 <ul
                     class="order-1 mt-4 flex flex-nowrap text-xs whitespace-nowrap text-white sm:flex-col sm:text-base sm:mt-8">
-                    <li class="sm:pb-2 sm:border-[#DB5F1D] sm:border-b-2">關於我們</li>
-                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">合作夥伴</li>
-                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">服務與退訂條款</li>
-                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">隱私權政策</li>
+                    <li class="sm:pb-2 sm:border-[#DB5F1D] sm:border-b-2">
+                        <a href="">關於我們</a>
+                    </li>
+                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">
+                        <a href="">合作夥伴</a>
+                    </li>
+                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">
+                        <a href="">服務與退訂條款</a>
+                    </li>
+                    <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">
+                        <a href="">隱私權政策</a>
+                    </li>
                 </ul>
                 <!-- 客戶服務 -->
                 <ul
-                    class="order-3 sm:order-2 pl-1 text-white whitespace-nowrap mt-7 border-t-2 border-[#DC492A] sm:border-0  w-44 text-xs sm:mt-8  sm:text-base sm:w-56">
+                    class="order-3  ml-5 sm:ml-0 sm:order-2 pl-1 text-white whitespace-nowrap mt-7 border-t-2 border-[#DC492A] sm:border-0  w-44 text-xs sm:mt-8  sm:text-base sm:w-56">
                     <li class="hidden sm:!block sm:pb-2 sm:border-[#DB5F1D] sm:border-b-2">客戶服務</li>
                     <li class="mt-4 sm:mt-3">客服時間:9:00-24:00(UTC+8)</li>
                     <li class="mt-4 sm:mt-3">電話:+886-4-2452-2370</li>
@@ -90,11 +98,11 @@
                 <!-- 多媒體區 -->
                 <ul class="order-2 sm:order-3 sm:self-end">
                     <li>
-                        <ul class="mt-4 flex gap-6 justify-center flex-nowrap">
+                        <ul class="mt-4 flex justify-center flex-nowrap">
                             <li>
                                 <a href="fb">
                                     <img
-                                        class="w-6 h-6 sm:w-9 sm:h-9"
+                                        class="w-6 h-6 sm:w-9 sm:h-9 mr-6"
                                         src="@/assets/icon-facebook-white.svg"
                                     >
                                 </a>
@@ -102,7 +110,7 @@
                             <li>
                                 <a href="line">
                                     <img
-                                        class="w-6 h-6 sm:w-9 sm:h-9"
+                                        class="w-6 h-6 sm:w-9 sm:h-9 mr-6"
                                         src="@/assets/icon-line-white.svg"
                                     >
                                 </a>
@@ -145,7 +153,7 @@
             </div>
             <!-- Copyright -->
             <div
-                class=" mt-8 sm:mt-[8%] text-xs font-light text-white scale-50 sm:scale-100 sm:text-lg text-center whitespace-nowrap">
+                class=" mt-8 sm:mt-[8%] text-xs font-light text-white scale-50 sm:scale-100 sm:text-sm text-center whitespace-nowrap">
                 Copyright 2021 tourbobo Co., Ltd. All Rights Reserved.
             </div>
         </div>
@@ -170,7 +178,7 @@
                 </div>
 
                 <q-fab
-                    class="absolute w-full h-full top-0 left-0"
+                    class="absolute w-[93%] h-[93%] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
                     hide-icon
                     direction="up"
                     flat
@@ -180,30 +188,61 @@
                     <q-fab-action
                         @click="gotoLink('https://www.facebook.com/msg/103521468250543')"
                         text-color="white"
-                        :icon="laFacebookMessenger"
                         flat
-                        class="bg-[#1E88E4] w-16 h-16 octagon text-4xl"
-                    />
+                        padding="0"
+                    >
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 octagon bg-[#1E88E4] flex justify-center items-center">
+                            <img
+                                src="@/assets/icon-facebook-messenger.svg"
+                                class="w-1/2 h-1/2"
+                            >
+                        </div>
+                    </q-fab-action>
+
+
                     <q-fab-action
                         @click="gotoLink('https://line.me/ti/p/@643ibjqd')"
                         text-color="white"
-                        icon="img:src/assets/icon-line.svg"
                         flat
-                        class="bg-[#00D000] w-16 h-16 octagon pr-2.5 pt-2.5 text-4xl "
-                    />
+                        padding="0"
+                    >
+
+                        <div class="w-14 h-14 sm:w-16 sm:h-16 octagon bg-[#00D000] flex justify-center items-center">
+                            <img
+                                src="@/assets/icon-line.svg"
+                                class="w-[60%] h-[60%] mr-0.5 mt-0.5"
+                            >
+                        </div>
+
+                    </q-fab-action>
                     <q-fab-action
                         @click="gotoLink('tel:0424512081')"
                         text-color="white"
-                        icon="phone"
                         flat
-                        class="bg-[#F6AC00] w-16 h-16 octagon text-4xl"
-                    />
+                        padding="0"
+                    >
+                        <div
+                            class="text-4xl w-14 h-14 sm:w-16 sm:h-16 octagon bg-[#F6AC00] flex justify-center items-center">
+                            <q-icon name="phone" />
+                        </div>
+
+
+                    </q-fab-action>
+
                     <q-fab-action
                         to="#top"
-                        icon="expand_less"
                         flat
-                        class="bg-[#F9EDD5] text-[#DB5F1D] w-16 h-16 octagon text-5xl"
-                    />
+                        padding="0"
+                    >
+                        <div
+                            class="text-5xl w-14 h-14 sm:w-16 sm:h-16 octagon bg-[#F9EDD5] text-[#DB5F1D] flex justify-center items-center">
+                            <q-icon name="expand_less" />
+                        </div>
+
+
+                    </q-fab-action>
+
+
                 </q-fab>
 
 

@@ -6,7 +6,7 @@
                <span class="hidden sm:!inline">tourbobo</span> 
                <span class="sm:hidden">我們</span> 
                 </div>
-            <div class="mt-5 sm:text-xl">tourbobo
+            <div class="mt-5 sm:text-xl  tracking-widest">tourbobo
                 於防疫期間，致力於提供消費者最優質且最快速的居家檢疫防疫旅館選擇，在全台灣各地精挑細選各縣市防疫旅館，並且透過系統整合了預訂及付款功能，讓您能即時查詢空房，下訂防疫旅館及付款保留。另透過住客的回饋及數據的搜集，提供給消費者最好的選擇。
             </div>
         </div>

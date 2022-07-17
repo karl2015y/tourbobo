@@ -1,39 +1,80 @@
 <template>
     <div class="relative z-10 w-full sm:-translate-y-[9vw] 2xl:-translate-y-36">
         <div
-            class="relative pt-10 pb-14 px-12 bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px] shadow-2xl"
+            class="relative py-5 sm:pt-10 sm:pb-14 px-12 bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px] shadow-2xl"
             style="box-shadow: 2px 2px 8px rgba(45, 55, 64, 0.25);"
         >
             <!-- 城市選擇 -->
-            <q-select
-                @filter="cityFilterFn"
-                color="black"
-                :bg-color="$q.screen.gt.xs ? `white` : ''"
-                :filled="$q.screen.gt.xs"
-                v-model="cityModel"
-                use-input
-                input-debounce="0"
-                :options="cityOptions"
-                option-value="city_id"
-                option-label="city_name"
-                class="w-full rounded-lg text-lg sm:text-base"
-                :behavior="$q.platform.is.ios === true ? 'dialog' : 'menu'"
+            <div
+                ref="cityElement"
+                class="sm:hover:shadow-md relative w-full h-16 sm:bg-white rounded-md  flex justify-start items-center"
+                :class="{ 'z-10': cityElementIsHovered }"
+                @click="cityElementIsHovered = true"
             >
-                <template v-slot:prepend>
+                <div
+                    class=" flex gap-4 justify-start items-center  w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-b-0 pb-3 sm:pb-0">
                     <q-icon
-                        class="ml-5 text-[#F4AA00] sm:text-black"
+                        class="ml-5 sm:ml-5 text-[#F4AA00] sm:text-black"
                         name="search"
-                        @click.stop.prevent
+                        size="sm"
                     />
-                </template>
-                <template v-slot:no-option>
-                    <q-item>
-                        <q-item-section class="text-grey">
-                            無資料
-                        </q-item-section>
-                    </q-item>
-                </template>
-            </q-select>
+                    <div>
+                        {{ cityModel.city_name }}
+                    </div>
+
+                    <q-icon
+                        v-if="cityElementIsHovered"
+                        @click="closeCityElement()"
+                        class="ml-auto mr-5"
+                        name="arrow_drop_up"
+                        size="sm"
+                    />
+                    <q-icon
+                        v-else
+                        @click="cityElementIsHovered = true"
+                        class="ml-auto mr-5"
+                        name="arrow_drop_down"
+                        size="sm"
+                    />
+
+
+
+                </div>
+
+
+                <!-- 城市選擇 -->
+                <Transition enter-active-class="animate__animated animate__fadeIn animate__faster">
+                    <template v-if="cityElementIsHovered">
+                        <div class=" w-[95%] lg:w-2/3 absolute sm:left-0 sm:top-14 top-8">
+                            <div class="  mx-auto sm:mx-0  w-full ">
+                                <q-scroll-area class="h-60 bg-white  p-6 mt-4 rounded-md  shadow-md border">
+
+                                    <template v-for="city in OriginalCityOptions">
+                                        <div
+                                            @click="() => {
+                                                cityModel = city;
+                                                closeCityElement()
+                                            }"
+                                            class="my-0.5 w-full p-4 sm:hover:bg-[#F4AA00] sm:hover:text-white cursor-pointer rounded-lg "
+                                            :class="{
+                                                'border-2 border-[#F4AA00] font-bold shadow ': city.city_id == cityModel.city_id
+                                            }"
+                                        >
+                                            {{ city.city_name }}
+                                        </div>
+
+                                    </template>
+
+
+                                </q-scroll-area>
+
+
+                            </div>
+                        </div>
+                    </template>
+                </Transition>
+
+            </div>
             <div class="mt-4 flex gap-4 flex-nowrap flex-col sm:flex-row">
                 <!-- 日期選擇 -->
                 <div
@@ -84,15 +125,14 @@
                             選擇退房時間
                         </div>
                     </div>
-                    <Transition
-                        enter-active-class="animate__animated animate__fadeIn animate__faster"
-                        leave-active-class="animate__animated animate__fadeOut animate__faster"
-                    >
+                    <Transition enter-active-class="animate__animated animate__fadeIn animate__faster">
                         <template v-if="dateRangeElementIsHovered">
+
                             <div
-                                class=" w-[95%] mx-auto sm:mx-0   fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
+                                class=" w-[95%] mx-auto sm:mx-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0px_0px_15px_0px_rgba(0,0,0,0.6)] 
                                         sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 ">
                                 <q-date
+                                    today-btn
                                     subtitle="選擇入住與退房日期"
                                     class="w-full"
                                     :landscape="$q.screen.gt.sm"
@@ -106,7 +146,10 @@
                                     color="primary"
                                     class="sm:hidden -mt-0.5 w-full "
                                 />
+
+
                             </div>
+
                         </template>
 
                     </Transition>
@@ -145,10 +188,7 @@
 
 
                     <!-- 房間選擇 -->
-                    <Transition
-                        enter-active-class="animate__animated animate__fadeIn animate__faster"
-                        leave-active-class="animate__animated animate__fadeOut animate__faster"
-                    >
+                    <Transition enter-active-class="animate__animated animate__fadeIn animate__faster">
                         <template v-if="roomElementIsHovered">
                             <div
                                 class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
@@ -219,7 +259,7 @@
                                         }}</span> 間客房
                                         </div>
                                         <q-btn
-                                        disabled
+                                            disabled
                                             @click="roomModel.roomCount += 1"
                                             size="lg"
                                             class="text-gray-400"
@@ -245,12 +285,19 @@
             </div>
 
             <!-- 搜尋案紐 -->
+
             <q-btn
+                v-if="dateModel"
                 @click="gotoLink(searchLink)"
-                :disabled="!dateModel"
                 label="搜尋"
                 color="primary"
-                class="!bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-10 w-full sm:w-1/2 sm:absolute left-1/2 -bottom-0 -translate-x-1/2 translate-y-1/2"
+                class="tracking-[0.8em]	sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-10 w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
+            />
+            <q-btn
+                v-else
+                label="搜尋"
+                color="primary"
+                class="tracking-[0.8em]	sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-10 w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
             />
         </div>
     </div>
@@ -262,6 +309,8 @@ import { cloneDeep } from 'lodash'
 import { useQuasar } from 'quasar';
 import { computed, ref } from 'vue';
 const $q = useQuasar()
+const cityElement = ref()
+const cityElementIsHovered = useElementHover(cityElement)
 const dateRangeElement = ref()
 const dateRangeElementIsHovered = useElementHover(dateRangeElement)
 const roomElement = ref()
@@ -292,22 +341,31 @@ const OriginalCityOptions = [
     {
         "city_id": 4,
         "city_name": "高雄市",
-    }
-]
-const cityOptions = ref(cloneDeep(OriginalCityOptions))
-const cityFilterFn = (val: string, update: Function) => {
-    if (val === '') {
-        update(() => {
-            cityOptions.value = cloneDeep(OriginalCityOptions)
-        })
-        return
-    }
-    update(() => {
-        const needle = val.replaceAll('臺', '台')
-        cityOptions.value = OriginalCityOptions.filter(v => ((v.city_name.replaceAll('臺', '台')).indexOf(needle) > -1))
+    },
+    {
+        "city_id": 4,
+        "city_name": "高雄市",
+    },
+    {
+        "city_id": 4,
+        "city_name": "高雄市",
+    },
+    {
+        "city_id": 4,
+        "city_name": "高雄市",
+    },
+    {
+        "city_id": 4,
+        "city_name": "高雄市",
+    },
 
-    })
+]
+const closeCityElement = () => {
+    setTimeout(() => {
+        cityElementIsHovered.value = false
+    }, 100);
 }
+
 // 時間範圍
 const dateModel = ref<{ from: string, to: string }>()
 const closeDateRangeElement = () => {
@@ -328,7 +386,7 @@ const closeRoomElement = () => {
 }
 // 搜尋連結
 const searchLink = computed(() => {
-    return `https://www.tourbobo.com/hotels?check_in=${dateModel.value?.from.replaceAll('/','-')}&check_out=${dateModel.value?.to.replaceAll('/','-')}&city=${cityModel.value.city_id}&adults=${roomModel.value.aduitCount}&children=${roomModel.value.childCount}&sorting=recommend&business_type=1`
+    return `https://www.tourbobo.com/hotels?check_in=${dateModel.value?.from.replaceAll('/', '-')}&check_out=${dateModel.value?.to.replaceAll('/', '-')}&city=${cityModel.value.city_id}&adults=${roomModel.value.aduitCount}&children=${roomModel.value.childCount}&sorting=recommend&business_type=1`
 })
 const gotoLink = (link: string) => {
     window.location.href = link

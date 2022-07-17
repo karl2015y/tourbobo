@@ -1,5 +1,5 @@
 <template>
-    <div class=" border shadow-md  rounded-xl bg-white">
+    <div class=" border shadow-md  rounded-xl bg-white ">
         <div class="relative">
             <span
                 class=" flex items-center gap-2 bg-[#DC492A] rounded-3xl px-2 py-1 absolute left-3 top-3 z-10 text-sm text-[#F9EDD5]"
@@ -27,7 +27,7 @@
                 {{ props.hotel.area }}
             </span>
             <swiper
-                class="rounded-t-xl"
+                class="sm:hidden rounded-t-xl"
                 :modules="[Pagination]"
                 loop
                 pagination
@@ -48,16 +48,18 @@
                     </swiper-slide>
                 </template>
 
-
-
-
             </swiper>
+            <q-img
+                class="hidden sm:!block rounded-t-xl"
+                :src="props.hotel.image"
+                :ratio="2 / 1"
+            />
 
 
         </div>
-        <div class="px-4 sm:flex justify-between">
+        <div class="mt-2 px-4 sm:flex justify-between gap-3">
             <div>
-                <div class="text-xl font-bold mt-4 mb-2 text-left">
+                <div class="text-xl font-bold mt-4 mb-2 text-left sm:text-base">
                     <a href="">
                         {{ props.hotel.name }}
                     </a>
@@ -73,18 +75,18 @@
                         </li>
                     </template>
                 </ul>
-                <div class="sm:hidden line-through text-[#979797] text-right text-lg leading-6">TWD {{ props.hotel.original_price
-                }}
+                <div class="sm:hidden line-through text-[#979797] text-right text-lg leading-6">
+                    TWD {{ priceFormat(props.hotel.original_price) }}
                 </div>
-                <div class="mt-8 flex justify-between items-center gap-5">
-                    <div class="font-semibold text-lg leading-6">每晚最低</div>
-                    <div class="text-[#DC492A] text-2xl font-bold">TWD {{ props.hotel.lowest_price }}</div>
+                <div class=" flex justify-between items-center gap-3">
+                    <div class="font-semibold text-lg leading-6 sm:text-sm">每晚最低</div>
+                    <div class="text-[#DC492A] text-2xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}</div>
                 </div>
             </div>
             <div class="hidden sm:!flex items-center">
                 <ul class="flex flex-col gap-1.5">
                     <template v-for=" tag in props.hotel.facility_tags">
-                        <li class="mr-auto">
+                        <li class="mr-auto whitespace-nowrap">
                             <q-icon
                                 name="check"
                                 class=" text-white bg-[#6DCD01] rounded-full p-0.5 font-black"
@@ -103,7 +105,8 @@
                 href=""
                 class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-1/2 "
             >
-                <div class="text-center text-xl font-medium  bg-[#00586E] text-white border-2 border-white rounded-3xl py-2">
+                <div
+                    class="text-center sm:text-xl font-medium  bg-[#00586E] text-white border-2 border-white rounded-3xl py-1">
                     立即下單
                 </div>
             </a>
@@ -185,6 +188,11 @@ const props = withDefaults(defineProps<Props>(), {
         }
     ),
 });
+
+const priceFormat = (price: number) => {
+    return `${price.toLocaleString()}`
+}
+
 </script>
 
 <style scoped>

@@ -6,51 +6,56 @@
       ref="header"
       class="header fixed z-20 bg-white w-full top-0 left-0 "
     >
-      <div class="max-w-[1920px] mx-auto px-4 py-4 sm:px-14 flex flex-nowrap justify-between items-center gap-8">
-        <img
-          class="w-[152px] sm:w-auto"
-          src="@/assets/logo-big.svg"
-        />
-        <div>
-          <ul class="hidden sm:!flex ">
-            <template v-for="link in props.menuLinks">
-              <li class="sm:pl-3 md:pl-12 relative">
 
-                <a :href="link.link">
-                  {{ link.text }}
-                </a>
+      <q-responsive :ratio="$q.screen.lt.sm ? 375 / 60 : $q.screen.lt.md ? 1920 / 150 : 1920 / 80">
+        <div class="max-w-[1920px] mx-auto px-4 h-full sm:px-14 flex flex-nowrap justify-between items-center gap-8">
+          <q-img
+            class="min-w-[152px] w-[40.5vw] sm:w-[12vw] max-w-[230px]"
+            src="@/assets/logo-big.png"
+            :ratio="230 / 47"
+          />
+          <div>
+            <ul class="hidden sm:!flex ">
+              <template v-for="link in props.menuLinks">
+                <li class="sm:pl-3 md:pl-12 relative">
 
-                <template v-if="link.childrenMenuLinks">
-                  <ul class="subMenuArea absolute left-6 min-w-[220px] bg-white">
-                    <template v-for="subLink, index in link.childrenMenuLinks">
-                      <li
-                        :class="{ 'border-t': index == 0, 'border-b': index == link.childrenMenuLinks.length - 1 }"
-                        class="bg-gray-50  hover:bg-[#F4AA00] border-x"
-                      >
-                        <a
-                          class="p-4 block"
-                          :href="subLink.link"
-                        > {{ subLink.text }}</a>
-                      </li>
-                    </template>
-                  </ul>
-                </template>
+                  <a :href="link.link">
+                    {{ link.text }}
+                  </a>
 
-              </li>
-            </template>
+                  <template v-if="link.childrenMenuLinks">
+                    <ul class="subMenuArea absolute left-6 min-w-[220px] bg-white">
+                      <template v-for="subLink, index in link.childrenMenuLinks">
+                        <li
+                          :class="{ 'border-t': index == 0, 'border-b': index == link.childrenMenuLinks.length - 1 }"
+                          class="bg-gray-50  hover:bg-[#F4AA00] border-x"
+                        >
+                          <a
+                            class="p-4 block"
+                            :href="subLink.link"
+                          > {{ subLink.text }}</a>
+                        </li>
+                      </template>
+                    </ul>
+                  </template>
 
-          </ul>
-          <button
-            @click="showPhoneMenu = true"
-            class="sm:hidden"
-          >
-            <img
-              src="@/assets/HeaderPhoneMenuBtn.svg"
-              alt=""
+                </li>
+              </template>
+
+            </ul>
+            <button
+              @click="showPhoneMenu = true"
+              class="sm:hidden"
             >
-          </button>
+              <img
+                src="@/assets/HeaderPhoneMenuBtn.svg"
+                alt=""
+              >
+            </button>
+          </div>
         </div>
-      </div>
+      </q-responsive>
+
 
     </section>
     <div
@@ -63,30 +68,33 @@
     <q-dialog
       v-if="$q.screen.lt.sm"
       v-model="showPhoneMenu"
-      position="left"
+      position="right"
       :maximized="true"
     >
       <q-card class="!w-screen h-screen min-w-[375px] flex flex-col flex-nowrap">
 
         <div>
-          <div class="py-7 px-3.5 w-full bg-[#00586E] relative">
-            <button @click="showPhoneMenu = false">
-              <img src="@/assets/arrow-left.svg">
-            </button>
-            <a
-              href="/"
-              class="absolute left-1/2 -translate-x-1/2"
-            >
-              <img
-                class="h-[35px] w-[129px]"
-                src="@/assets/logo-letter.png"
+          <q-responsive :ratio="375 / 75">
+            <div class="px-3.5 w-full h-full bg-[#00586E] relative flex items-center">
+              <button @click="showPhoneMenu = false">
+                <img src="@/assets/arrow-left.svg">
+              </button>
+              <a
+                href="/"
+                class="absolute left-1/2 -translate-x-1/2"
               >
-            </a>
-          </div>
+                <img
+                  class="h-[35px] w-[129px]"
+                  src="@/assets/logo-letter.png"
+                >
+              </a>
+            </div>
+          </q-responsive>
+
           <div class="select-none	">
             <ul>
               <template v-for="(link, index) in props.menuLinks">
-                <li class="mt-8 text-center font-bold">
+                <li class="mt-8 text-center">
 
                   <template v-if="link.childrenMenuLinks">
                     <div
@@ -138,9 +146,9 @@
               size="1.5rem"
               class="-mt-1 mr-2"
             />
-            <a href="">登入</a>
+            <a href="" class="text-lg">登入</a>
             <span class="block mx-1">/</span>
-            <a href="">註冊</a>
+            <a href="" class="text-lg">註冊</a>
           </div>
 
           <div class="mt-4 bg-[#F6AC00] hover:bg-[#f9b10b]  rounded-3xl w-[318px] mx-auto text-white text-center">
@@ -152,8 +160,8 @@
             </a>
           </div>
 
-          <div class="mt-4 mb-8 mx-auto flex gap-6 justify-center items-center">
-            <a href="fb">
+          <div class="mt-4 mb-8 mx-auto flex  justify-center items-center">
+            <a href="fb" class="mr-6">
               <svg
                 width="22"
                 height="22"
@@ -168,7 +176,7 @@
               </svg>
 
             </a>
-            <a href="line">
+            <a href="line" class="mr-6">
               <svg
                 width="23"
                 height="23"
@@ -253,15 +261,15 @@ const props = withDefaults(defineProps<Props>(), {
       link: "/"
     },
     {
-      text: "最新消息",
+      text: "最新資訊",
       link: "/news",
       childrenMenuLinks: [
         {
-          text: '快篩實名制，2022完整懶人包',
+          text: '最新消息',
           link: 'https://events.tourbobo.com/news/%e5%bf%ab%e7%af%a9%e5%af%a6%e5%90%8d%e5%88%b6%ef%bc%8c2022%e5%ae%8c%e6%95%b4%e6%87%b6%e4%ba%ba%e5%8c%85/'
         },
         {
-          text: '高雄市防疫旅館 即日起僅接受高雄市民、屏東、台東及3個離島民眾入住(2022/02/21最新消息)',
+          text: '優惠資訊',
           link: 'https://events.tourbobo.com/news/%e5%bf%ab%e7%af%a9%e5%af%a6%e5%90%8d%e5%88%b6%ef%bc%8c2022%e5%ae%8c%e6%95%b4%e6%87%b6%e4%ba%ba%e5%8c%85/'
         }
       ]

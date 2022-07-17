@@ -8,13 +8,13 @@
             <q-img
                 class="hidden sm:!block"
                 :src="hotelFocusCategoryObj.image"
-                :ratio="1920 / 558"
+                :ratio="1920 / 550"
             />
             <!-- 手機版 -->
             <q-img
                 class="sm:hidden"
                 :src="hotelFocusCategoryObj.smallImage"
-                :ratio="375 / 231"
+                :ratio="375 / 196"
             />
         </div>
 
@@ -27,7 +27,8 @@
             navigation
             :modules="[Navigation]"
             :slides-per-view="3"
-            class="sm:hidden w-full flex -mt-10 tracking-[0.19em] select-none"
+            class="sm:hidden w-full flex -mt-12 tracking-[0.19em] select-none"
+            :speed="1000"
             @slide-change="slideJustChange = true"
         >
             <template v-for="(category, index) in hotelCategoryArray">
@@ -41,11 +42,10 @@
                     >
                         <div class="relative">
                             <div
-                                style="clip-path:polygon(5% 0, 97% 80%, 100% 100%, 0 100%, 0 0)"
-                                class="bg-[#F6EAD4] rounded-t-lg rounded-r-lg absolute -top-6 h-5 w-full"
+                                style="clip-path:polygon(5% 0, 96% 80%, 100% 100%, 0 100%, 0 0)"
+                                class="bg-[#F6EAD4] rounded-t-lg rounded-r-lg absolute -top-[0.4rem] h-2 w-full"
                             > </div>
-                            <div class="bg-[#F6EAD4] h-2 w-full absolute -top-[0.4rem] rounded-tr-md"></div>
-                            <div class=" text-2xl font-black whitespace-nowrap bg-[#F6EAD4] pb-2">
+                            <div class="text-base font-black whitespace-nowrap bg-[#F6EAD4]  py-1 rounded-tr-md">
                                 {{ category.name }}
                             </div>
                         </div>
@@ -54,10 +54,10 @@
 
                     <div
                         v-else
-                        class=" text-center  font-bold !h-16 flex flex-col justify-end"
+                        class=" text-center  font-bold !h-16 flex flex-col justify-end text-xs"
                     >
                         <div
-                            class="bg-[#F4A900]  pt-2 pb-1"
+                            class="bg-[#F4A900] py-1"
                             :class="index == 1 ? 'rounded-tl-sm rounded-tr-lg' : 'rounded-t-lg'"
                         >
 
@@ -207,7 +207,7 @@ const clickHotelFocusCategoryTag = (id: string, index: number,) => {
     const swiperElement = document.querySelector(`#${id}`) as any
     if (swiperElement) {
         const swiper = swiperElement.swiper
-        swiper.slideToLoop(index, 300)
+        swiper.slideToLoop(index, 1000)
     }
 
 

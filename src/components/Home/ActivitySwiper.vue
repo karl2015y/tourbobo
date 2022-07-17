@@ -2,7 +2,7 @@
     <div class=" w-full mt-20 sm:mt-10">
         <div class="relative text-center">
             <div class="relative flex justify-center items-center">
-                <div class="text-2xl sm:text-3xl 2xl:text-4xl font-bold text-[#2B4162]">優惠活動資訊</div>
+                <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">優惠活動資訊</div>
                 <img
                     class="-z-10
                     absolute top-1/2 left-1/2 -translate-x-[45%] -translate-y-1/3
@@ -13,7 +13,7 @@
             <div class="mt-4 sm:mt-10 mx-5 sm:mx-28 select-none	">
                 <div class="relative ">
                     <q-btn
-                        class="hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                        class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white  hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                         flat
                         round
                         icon="chevron_left"
@@ -26,7 +26,7 @@
                         :freeMode="$q.screen.lt.sm"
                         :modules="[Navigation, FreeMode]"
                         :slides-per-view="$q.screen.lt.sm ? 1.2 : 3"
-                        :space-between="$q.screen.lt.sm?13:30"
+                        :space-between="$q.screen.lt.sm ? 13 : 30"
                     >
                         <template v-for="item in 6">
                             <swiper-slide>
@@ -42,7 +42,7 @@
 
                     </swiper>
                     <q-btn
-                        class="hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                        class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white  hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                         flat
                         round
                         icon="navigate_next"

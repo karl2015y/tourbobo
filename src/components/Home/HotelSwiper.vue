@@ -5,7 +5,7 @@
                 src="@/assets/bg-hotelSwiper.svg"
                 class="absolute -top-12 left-0 -z-10"
             >
-            <div class="text-2xl sm:text-3xl 2xl:text-4xl font-bold text-[#2B4162]">精選推薦飯店</div>
+            <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] ">精選推薦飯店</div>
 
             <div class=" sm:mt-5 mx-5 sm:mx-28 select-none	">
 
@@ -18,7 +18,7 @@
                 >
                     <template v-for="area in areaArray">
                         <q-tab
-                            class="relative"
+                            class="relative !text-2xl"
                             :name="area"
                             :label="area"
                         >
@@ -26,6 +26,7 @@
                                 enter-active-class="animate__animated animate__fadeIn animate__faster"
                                 leave-active-class="animate__animated animate__fadeOut animate__faster"
                             >
+
                                 <div
                                     v-if="areaTab == area"
                                     class="absolute bottom-0 z-20 triangle w-3 h-3 bg-[#00586E]"
@@ -38,9 +39,9 @@
 
                 </q-tabs>
 
-                <div class="relative mt-3">
+                <div class="relative mt-3 hidden sm:!block">
                     <q-btn
-                        class="hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                        class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white  hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                         flat
                         round
                         icon="chevron_left"
@@ -49,29 +50,32 @@
                     <swiper
                         id="hotelSwiper"
                         navigation
-                        :direction="$q.screen.lt.sm ? 'vertical' : 'horizontal'"
                         :modules="[Navigation]"
-                        :slides-per-view="$q.screen.lt.sm ? 6 : $q.screen.lt.md ? 2 : 3"
-                        :space-between="$q.screen.lt.sm ? 50 : 30"
-                        :loop="$q.screen.gt.sm"
+                        :slides-per-view="$q.screen.lt.md ? 3 : 4"
+                        :space-between="30"
+                        loop
                     >
                         <template v-for="item in 6">
-                            <swiper-slide class="hotel-card-size pb-4">
+                            <swiper-slide class="pb-4">
                                 <hotel-card />
                             </swiper-slide>
-
-
                         </template>
-
-
                     </swiper>
                     <q-btn
-                        class="hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                        class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                         flat
                         round
                         icon="navigate_next"
                         @click="swiperNext('hotelSwiper')"
                     />
+                </div>
+
+                <div class="mt-3 sm:hidden">
+                    <template v-for="item in 6">
+                        <div class="pb-7">
+                            <hotel-card />
+                        </div>
+                    </template>
 
                 </div>
 
@@ -142,22 +146,9 @@ const gotoLink = (link: string) => {
 const areaArray = ref(['北部', '中部', '南部', '其他'])
 const areaTab = ref(areaArray.value[0])
 
-const hotelCardSize = ref({
-    height: 308,
-    width: 298
-})
 </script>
 
 <style scoped >
-@media (max-width: 639px) {
-    :deep().hotel-card-size {
-        height: v-bind('hotelCardSize.height')px !important;
-        width: v-bind('hotelCardSize.width')px !important;
-    }
-
-}
-
-
 .octagon {
     clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
 }
@@ -166,13 +157,21 @@ const hotelCardSize = ref({
     clip-path: polygon(100% 0, 0 0, 50% 70%);
 }
 
+:deep().q-tab--inactive .q-tab__indicator {
+    opacity: 1;
+    background-color: #BCBBBB;
+}
+
 :deep().absolute-bottom.q-tab__indicator.text-secondary {
     margin-top: 10px;
     margin-bottom: 10px;
+    height: 4px;
 
 }
 
 :deep().q-tab__label {
     margin-bottom: 10px;
+    font-size: 26px;
+    font-weight: 600;
 }
 </style>
