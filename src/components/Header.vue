@@ -9,11 +9,14 @@
 
       <q-responsive :ratio="$q.screen.lt.sm ? 375 / 60 : $q.screen.lt.md ? 1920 / 150 : 1920 / 80">
         <div class="max-w-[1920px] mx-auto px-4 h-full sm:px-14 flex flex-nowrap justify-between items-center gap-8">
-          <q-img
-            class="min-w-[152px] w-[40.5vw] sm:w-[12vw] max-w-[230px]"
-            src="@/assets/logo-big.png"
-            :ratio="230 / 47"
-          />
+          <a href="/home">
+            <q-img
+              class="min-w-[152px] w-[40.5vw] sm:w-[12vw] max-w-[230px]"
+              src="@/assets/logo-big.png"
+              :ratio="230 / 47"
+            />
+          </a>
+
           <div>
             <ul class="hidden sm:!flex ">
               <template v-for="link in props.menuLinks">
@@ -146,9 +149,15 @@
               size="1.5rem"
               class="-mt-1 mr-2"
             />
-            <a href="" class="text-lg">登入</a>
+            <a
+              href=""
+              class="text-lg"
+            >登入</a>
             <span class="block mx-1">/</span>
-            <a href="" class="text-lg">註冊</a>
+            <a
+              href=""
+              class="text-lg"
+            >註冊</a>
           </div>
 
           <div class="mt-4 bg-[#F6AC00] hover:bg-[#f9b10b]  rounded-3xl w-[318px] mx-auto text-white text-center">
@@ -161,7 +170,10 @@
           </div>
 
           <div class="mt-4 mb-8 mx-auto flex  justify-center items-center">
-            <a href="fb" class="mr-6">
+            <a
+              href="fb"
+              class="mr-6"
+            >
               <svg
                 width="22"
                 height="22"
@@ -176,7 +188,10 @@
               </svg>
 
             </a>
-            <a href="line" class="mr-6">
+            <a
+              href="line"
+              class="mr-6"
+            >
               <svg
                 width="23"
                 height="23"
@@ -280,11 +295,11 @@ const props = withDefaults(defineProps<Props>(), {
       childrenMenuLinks: [
         {
           text: '寵物友善',
-          link: '/hotelCategory?category=1'
+          link: '/hotel-category?category=1'
         },
         {
           text: '露營專區',
-          link: '/hotelCategory?category=2'
+          link: '/hotel-category?category=2'
         },
       ]
     },

@@ -21,21 +21,29 @@
                     <div>
                         {{ cityModel.city_name }}
                     </div>
+                    <Transition
+                        mode="out-in"
+                        enter-active-class="animate__animated animate__rotateIn [--animate-duration:300ms]"
+                        leave-active-class="animate__animated animate__fadeOut [--animate-duration:100ms]"
+                    >
+                        <q-icon
+                            v-if="cityElementIsHovered"
+                            @click="closeCityElement()"
+                            class="ml-auto mr-5 "
+                            name="arrow_drop_up"
+                            size="sm"
+                        />
+                        <q-icon
+                            v-else
+                            @click="cityElementIsHovered = true"
+                            class="ml-auto mr-5 "
+                            name="arrow_drop_down"
+                            size="sm"
+                        />
 
-                    <q-icon
-                        v-if="cityElementIsHovered"
-                        @click="closeCityElement()"
-                        class="ml-auto mr-5"
-                        name="arrow_drop_up"
-                        size="sm"
-                    />
-                    <q-icon
-                        v-else
-                        @click="cityElementIsHovered = true"
-                        class="ml-auto mr-5"
-                        name="arrow_drop_down"
-                        size="sm"
-                    />
+                    </Transition>
+
+
 
 
 
@@ -43,9 +51,9 @@
 
 
                 <!-- 城市選擇 -->
-                <Transition enter-active-class="animate__animated animate__fadeIn animate__faster">
+                <Transition enter-active-class="animate__animated animate__fadeIn">
                     <template v-if="cityElementIsHovered">
-                        <div class=" w-[95%] lg:w-2/3 absolute sm:left-0 sm:top-14 top-8">
+                        <div class="[--animate-duration:300ms] w-[95%] lg:w-2/3 absolute sm:left-0 sm:top-14 top-8">
                             <div class="  mx-auto sm:mx-0  w-full ">
                                 <q-scroll-area class="h-60 bg-white  p-6 mt-4 rounded-md  shadow-md border">
 
@@ -60,7 +68,7 @@
                                                 'border-2 border-[#F4AA00] font-bold shadow ': city.city_id == cityModel.city_id
                                             }"
                                         >
-                                            {{ city.city_name }}
+                                            <q-icon name="place" /> {{ city.city_name }}
                                         </div>
 
                                     </template>
@@ -125,11 +133,11 @@
                             選擇退房時間
                         </div>
                     </div>
-                    <Transition enter-active-class="animate__animated animate__fadeIn animate__faster">
+                    <Transition enter-active-class="animate__animated animate__fadeIn">
                         <template v-if="dateRangeElementIsHovered">
 
                             <div
-                                class=" w-[95%] mx-auto sm:mx-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0px_0px_15px_0px_rgba(0,0,0,0.6)] 
+                                class="[--animate-duration:300ms] w-[95%] mx-auto sm:mx-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0px_0px_15px_0px_rgba(0,0,0,0.6)] 
                                         sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 ">
                                 <q-date
                                     today-btn
@@ -188,10 +196,10 @@
 
 
                     <!-- 房間選擇 -->
-                    <Transition enter-active-class="animate__animated animate__fadeIn animate__faster">
+                    <Transition enter-active-class="animate__animated animate__fadeIn">
                         <template v-if="roomElementIsHovered">
                             <div
-                                class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
+                                class="[--animate-duration:300ms] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
                                         sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 w-full ">
                                 <div
                                     class="bg-white w-[95%] mx-auto sm:mx-0 border lg:w-2/3 rounded-md  px-6 py-8 shadow-md flex flex-col gap-6">
@@ -304,10 +312,12 @@
 </template>
 
 <script setup lang="ts">
+
 import { useElementHover } from '@vueuse/core';
 import { cloneDeep } from 'lodash'
 import { useQuasar } from 'quasar';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
+import { useMainStore } from '../../stores/main.store';
 const $q = useQuasar()
 const cityElement = ref()
 const cityElementIsHovered = useElementHover(cityElement)
@@ -321,45 +331,10 @@ const cityModel = ref({
     city_id: 0,
     city_name: "全部縣市"
 })
-const OriginalCityOptions = [
-    {
-        "city_id": 0,
-        "city_name": "全部縣市",
-    },
-    {
-        "city_id": 1,
-        "city_name": "台北市",
-    },
-    {
-        "city_id": 2,
-        "city_name": "新北市",
-    },
-    {
-        "city_id": 3,
-        "city_name": "台中市",
-    },
-    {
-        "city_id": 4,
-        "city_name": "高雄市",
-    },
-    {
-        "city_id": 4,
-        "city_name": "高雄市",
-    },
-    {
-        "city_id": 4,
-        "city_name": "高雄市",
-    },
-    {
-        "city_id": 4,
-        "city_name": "高雄市",
-    },
-    {
-        "city_id": 4,
-        "city_name": "高雄市",
-    },
-
-]
+const OriginalCityOptions = ref<Array<{
+    "city_id": number
+    "city_name": string
+}>>([])
 const closeCityElement = () => {
     setTimeout(() => {
         cityElementIsHovered.value = false
@@ -391,6 +366,40 @@ const searchLink = computed(() => {
 const gotoLink = (link: string) => {
     window.location.href = link
 }
+
+
+// 取得縣市資料
+const getApiCities = () => {
+    console.log('getApiCities');
+    return new Promise<
+        Array<{
+            city_en_name: string
+            city_id: number
+            city_name: string
+            image: string
+        }>
+    >((resolve, reject) => {
+        const myHeaders = new Headers();
+        myHeaders.append("Accept-Language", "zh_TW");
+        fetch("https://ota-api.tourbobo.com/ota/new_cities", {
+            method: 'GET',
+            headers: myHeaders,
+        })
+            .then(response => response.text())
+            .then(result => {
+                resolve((JSON.parse(result) as any)['cities'])
+            })
+            .catch(error => reject(error));
+    })
+}
+
+onMounted(async () => {
+    const cities = await getApiCities()
+    if (cities) {
+        OriginalCityOptions.value = cities
+    }
+})
+
 </script>
 
 <style scoped>
