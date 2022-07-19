@@ -281,11 +281,11 @@ const props = withDefaults(defineProps<Props>(), {
       childrenMenuLinks: [
         {
           text: '最新消息',
-          link: 'https://events.tourbobo.com/news/%e5%bf%ab%e7%af%a9%e5%af%a6%e5%90%8d%e5%88%b6%ef%bc%8c2022%e5%ae%8c%e6%95%b4%e6%87%b6%e4%ba%ba%e5%8c%85/'
+          link: '/post?category=最新消息'
         },
         {
           text: '優惠資訊',
-          link: 'https://events.tourbobo.com/news/%e5%bf%ab%e7%af%a9%e5%af%a6%e5%90%8d%e5%88%b6%ef%bc%8c2022%e5%ae%8c%e6%95%b4%e6%87%b6%e4%ba%ba%e5%8c%85/'
+          link: '/post?category=優惠資訊'
         }
       ]
     },

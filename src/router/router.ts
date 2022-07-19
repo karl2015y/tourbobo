@@ -23,6 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('@/views/HotelCategory.vue')
   },
   {
+    path: `/post`,
+    name: 'post',
+    component: () => import('@/views/Post.vue')
+  },
+  {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   },

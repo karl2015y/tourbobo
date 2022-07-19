@@ -230,7 +230,7 @@
                     </q-fab-action>
 
                     <q-fab-action
-                        to="#top"
+                        :to="route"
                         flat
                         padding="0"
                     >
@@ -259,7 +259,10 @@
 import { useElementBounding, useElementSize, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar';
 import { computed, ref } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { useMainStore } from '../stores/main.store';
+
+const route = useRoute()
 
 // interface Props {
 //     styleType?: string; // 1→白底2球；2→白底4球；3→米底2球；
@@ -269,11 +272,11 @@ import { useMainStore } from '../stores/main.store';
 // });
 
 const link = ref({
-    line:'https://lin.ee/iof46Tp',
-    facebook:' https://www.facebook.com/Tourbobo.tw/',
-    message:'https://www.facebook.com/messages/t/104130671957209',
-    instagram:' https://www.instagram.com/tourbobo.official/',
-    phone:'tel:0424522370'
+    line: 'https://lin.ee/iof46Tp',
+    facebook: ' https://www.facebook.com/Tourbobo.tw/',
+    message: 'https://www.facebook.com/messages/t/104130671957209',
+    instagram: ' https://www.instagram.com/tourbobo.official/',
+    phone: 'tel:0424522370'
 })
 
 const mainStore = useMainStore()
@@ -289,6 +292,7 @@ const footerIsNeedFixedBottom = computed(() => footerBounding.top.value <= windo
 const gotoLink = (link: string) => {
     window.location.href = link
 }
+
 </script>
 
 <style scoped>
