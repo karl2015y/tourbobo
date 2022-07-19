@@ -42,10 +42,10 @@
                     >
                         <div class="relative">
                             <div
-                                style="clip-path:polygon(5% 0, 96% 80%, 100% 100%, 0 100%, 0 0)"
+                                style="clip-path:polygon(5% 0, 94% 80%, 100% 100%, 0 100%, 0 0)"
                                 class="bg-[#F6EAD4] rounded-t-lg rounded-r-lg absolute -top-[0.4rem] h-2 w-full"
                             > </div>
-                            <div class="text-base font-black whitespace-nowrap bg-[#F6EAD4]  py-1 rounded-tr-md">
+                            <div class="text-base font-black whitespace-nowrap bg-[#F6EAD4]  py-1 rounded-tr-md ">
                                 {{ category.name }}
                             </div>
                         </div>
@@ -56,10 +56,7 @@
                         v-else
                         class=" text-center  font-bold !h-16 flex flex-col justify-end text-xs"
                     >
-                        <div
-                            class="bg-[#F4A900] py-1"
-                            :class="index == 1 ? 'rounded-tl-sm rounded-tr-lg' : 'rounded-t-lg'"
-                        >
+                        <div class="bg-[#F4A900] py-1 pr-0.5 -ml-0.5 rounded-t-lg">
 
                             {{ category.name }}
                         </div>
@@ -142,15 +139,19 @@
 <script setup lang="ts">
 import { refDebounced, useSwipe } from '@vueuse/core';
 import { cloneDeep, findIndex } from 'lodash';
-import { computed, nextTick, ref, watch, watchEffect } from 'vue';
+import { computed, nextTick, onMounted, ref, watch, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 
 import { Navigation, } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-
-const router = useRouter()
 const route = useRoute()
+const router = useRouter()
+const clickQueryLink = (queryKey: string, queryValue: string) => {
+    router.push({ ...route, query: { ...route.query, [queryKey]: queryValue } })
+}
+
+
 const hotelCategoryArray = ref([
     { name: '悠遊國旅', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344' },
     { name: '品牌連鎖', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967' },
@@ -159,7 +160,8 @@ const hotelCategoryArray = ref([
     { name: '熱銷首選', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef' },
 ])
 
-const hotelFocusCategory = ref(route.query['category'] ? route.query['category'] as string : hotelCategoryArray.value[0].name)
+const hotelFocusCategory = computed(() => route.query['category'] as string ?? hotelCategoryArray.value[0].name)
+
 const hotelFocusCategoryIndex = computed(() => findIndex(hotelCategoryArray.value, (o) => (o.name == hotelFocusCategory.value)))
 const hotelFocusCategoryObj = computed(() => hotelCategoryArray.value[hotelFocusCategoryIndex.value])
 const slideJustChange = ref(true)
@@ -179,11 +181,11 @@ watch(() => selectElSwipe.direction.value, (direction) => {
 
 })
 
-watch(() => hotelFocusCategory.value, (hotelFocusCategory) => {
-    router.push({ ...route, query: { category: hotelFocusCategory } })
-})
+// watch(() => hotelFocusCategory.value, (hotelFocusCategory) => {
+//     router.push({ ...route, query: { category: hotelFocusCategory } })
+// })
 watch(() => route.fullPath, (url) => {
-    const index = findIndex(hotelCategoryArray.value, (o) => (o.name == route.query['category'] as string))
+    const index = findIndex(hotelCategoryArray.value, (o) => (o.name == hotelFocusCategory.value))
     clickHotelFocusCategoryTag('CategorySelectSwiper', index)
 })
 
@@ -197,8 +199,10 @@ const swiperPrev = (id: string) => {
 }
 
 const slideChange = (_hotelFocusCategory: string) => {
+    console.log('slideChange', _hotelFocusCategory, slideJustChange.value, hotelFocusCategory.value);
+
     if (slideJustChange.value) {
-        hotelFocusCategory.value = _hotelFocusCategory
+        clickQueryLink('category', _hotelFocusCategory)
         slideJustChange.value = false
     }
     return true
@@ -213,8 +217,17 @@ const clickHotelFocusCategoryTag = (id: string, index: number,) => {
 
 
 }
+onMounted(() => {
+    console.log('onMounted', hotelFocusCategory.value as string);
+
+    const index = findIndex(hotelCategoryArray.value, (o) => (o.name == hotelFocusCategory.value))
+    clickHotelFocusCategoryTag('CategorySelectSwiper', index)
+})
 
 </script>
 
 <style lang="scss" scoped>
+:deep().swiper-slide-active {
+    z-index: 10;
+}
 </style>

@@ -11,12 +11,12 @@
 
         </div>
     </q-responsive>
-    <template v-else-if="currentHotelDetailList && currentHotelDetailList.length > 0">
+    <template v-else-if="showHotelDetailList && showHotelDetailList.length > 0">
 
-        <template v-for="item, index in currentHotelDetailList">
+        <template v-for="item, index in showHotelDetailList">
             <category-item
-                :styleType="`${getStyleType(index, currentHotelDetailList.length)}`"
-                :isLast="index == currentHotelDetailList.length - 1"
+                :styleType="`${getStyleType(index, showHotelDetailList.length)}`"
+                :isLast="index == showHotelDetailList.length - 1"
                 :hotelSubCategoryData="item"
             />
         </template>
@@ -76,7 +76,7 @@ const hotelCategoryData = ref([
                 name: '摩登城市',
                 description: '喜歡都市的繁華嗎？我們提供你最摩登的選擇，如果你是標準都市人，入住這些準沒錯。',
                 discountDescription: '優惠100分啦',
-                hotel_ids: ['160', '533', '507', '426', '94','545', '344', '520', '540', '512', '567', '485']
+                hotel_ids: ['160', '533', '507', '426', '94', '545', '344', '520', '540', '512', '567', '485']
             },
             {
                 order: '2',
@@ -90,7 +90,7 @@ const hotelCategoryData = ref([
                 name: '度假風情',
                 description: '出國不了很鬱卒嗎？台灣本島也是可以好好渡假的！提供比出國更享受的體驗。',
                 discountDescription: '',
-                hotel_ids: ['65', '536', '552','183']
+                hotel_ids: ['65', '536', '552', '183']
             },
             {
                 order: '4',
@@ -102,7 +102,7 @@ const hotelCategoryData = ref([
             {
                 order: '5',
                 name: '部落風情',
-                description: '一起來體驗看看原民風的生活吧！娜路彎系列絕對是你的好選擇，喜歡原民文化的你千萬別錯過',
+                description: '一起來體驗看看原民風的生活吧！娜路彎系列絕對是你的好選擇，喜歡原民文化的你千萬別錯過。',
                 discountDescription: '',
                 hotel_ids: ['479', '478', '476', '477', '475']
             },
@@ -263,54 +263,46 @@ const hotelsLink = (hotel_ids: Array<string>) => {
 }
 const loading = ref(false)
 const currentHotelList = computed(() => find(hotelCategoryData.value, ['name', currentHotelCategory.value]))
-const currentHotelDetailList = computedAsync(
-    async () => {
-        return new Promise<Array<any>>(async (resolve, reject) => {
+const currentHotelDetailList = ref<{ [key: string]: any }>({})
+const showHotelDetailList = computed(() => values(currentHotelDetailList.value))
+const getCurrentHotelDetail = () => {
+    loading.value = true
+    currentHotelDetailList.value = {}
+    currentHotelList.value?.subCategoryData.forEach(async item => {
+        const myHeaders = new Headers();
+        myHeaders.append("Accept-Language", "zh_TW");
+        const response = await fetch(hotelsLink(item.hotel_ids as Array<string>), {
+            method: 'GET',
+            headers: myHeaders,
+        });
+        const result = await response.text()
+        currentHotelDetailList.value[item.order] = {
+            name: item.name,
+            description: item.description,
+            discountDescription: item.discountDescription,
+            hotels: (JSON.parse(result) as any)['data']
+        }
+        loading.value = false
+    });
+    // const array = currentHotelList.value?.subCategoryData ?? []
+    // for (let index = 0; index < array.length; index++) {
+    //     const item = array[index];
 
 
-            const hotelData = <{ [key: string]: any }>{}
-            // currentHotelList.value?.subCategoryData.forEach(async item => {
+    // }
+}
 
 
-            // });
-            const array = currentHotelList.value?.subCategoryData ?? []
-            for (let index = 0; index < array.length; index++) {
-                const item = array[index];
-                const myHeaders = new Headers();
-                myHeaders.append("Accept-Language", "zh_TW");
-                const response = await fetch(hotelsLink(item.hotel_ids as Array<string>), {
-                    method: 'GET',
-                    headers: myHeaders,
-                });
-                const result = await response.text()
-                hotelData[item.order] = {
-                    name: item.name,
-                    description: item.description,
-                    discountDescription: item.discountDescription,
-                    hotels: (JSON.parse(result) as any)['data']
-                }
-                console.log(hotelData);
+onMounted(() => {
+    getCurrentHotelDetail()
+})
 
-            }
+watch(() => route.fullPath, () => {
+    getCurrentHotelDetail()
+
+})
 
 
-            console.log('done');
-
-            console.log(values(hotelData));
-
-
-
-            resolve(values(hotelData))
-
-        })
-
-
-
-
-    },
-    [],
-    loading
-)
 watch(() => loading.value, () => {
     if (loading.value === false && currentHotelDetailList.value.length > 0) {
         mainStore.footer.styleType = (currentHotelDetailList.value.length + 1) % 2 == 1 ? '1' : '3'
@@ -343,7 +335,6 @@ const getStyleType = (index: number, length: number) => {
 //     },
 //     null, // initial state
 // )
-
 
 
 

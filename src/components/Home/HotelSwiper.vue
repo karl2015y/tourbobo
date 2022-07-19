@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full mt-20 sm:mt-24">
+    <div class="max-w-[1920px] mx-auto w-full mt-20 sm:mt-24">
         <div class="relative text-center z-10">
             <img
                 src="@/assets/bg-hotelSwiper.svg"

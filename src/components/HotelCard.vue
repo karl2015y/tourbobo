@@ -60,7 +60,7 @@
         <div class="mt-2 px-4 sm:flex justify-between gap-4">
             <div>
                 <div class="text-xl font-bold mt-4 mb-2 text-left sm:text-base">
-                    <a href="">
+                    <a :href="hotelLink(`${props.hotel.hotel_id}`)">
                         {{ props.hotel.name }}
                     </a>
                 </div>
@@ -115,7 +115,7 @@
             >
                 <div
                     class="text-center sm:text-xl font-medium  bg-[#00586E] text-white border-2 border-white rounded-3xl py-1">
-                    立即下單
+                    立即下訂
                 </div>
             </a>
         </div>

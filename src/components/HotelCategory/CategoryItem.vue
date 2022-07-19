@@ -20,7 +20,7 @@
                 src="@/assets/hotelCategory/icon-bg-right.svg"
             />
 
-            <div class="mt-8 sm:mt-16 px-6 sm:px-20   md:flex justify-between">
+            <div class="pt-8 sm:pt-16 px-6 sm:px-20   md:flex justify-between">
 
                 <div class="md:w-1/4">
                     <div class="mb-3">
@@ -30,16 +30,17 @@
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-lg text-xs">{{ props.hotelSubCategoryData.description }}</div>
+                    <div class="mt-7 md:text-[#727171] md:text-lg text-xs">{{ props.hotelSubCategoryData.description }}
+                    </div>
                     <div class="mt-3 text-[#FF5F00] md:text-base">{{ props.hotelSubCategoryData.discountDescription }}
                     </div>
                 </div>
                 <div class="md:w-2/3">
                     <q-scroll-area class="h-12 md:h-14 w-full">
-                        <div class="mt-3 flex  flex-nowrap">
+                        <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="text-sm mr-4 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
@@ -51,25 +52,25 @@
                         <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
-                                class="my-8"
+                                class="mt-8"
                             />
                         </template>
 
                         <template v-if="props.hotelSubCategoryData.hotels.length > 4">
                             <div
                                 v-if="!showMoreHotel"
-                                class="w-full text-center"
+                                class="w-full text-center mt-12"
                                 @click="showMoreHotel = true"
                             >
                                 <button
-                                    class="text-lg font-bold shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
+                                    class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
                             <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
-                                    class="my-8"
+                                    class="mt-8"
                                 />
                             </template>
 
@@ -90,7 +91,10 @@
                         >
                             <template v-for="hotel in props.hotelSubCategoryData.hotels">
                                 <swiper-slide>
-                                    <hotel-card class="my-4" :hotel="hotel" />
+                                    <hotel-card
+                                        class="my-4"
+                                        :hotel="hotel"
+                                    />
                                 </swiper-slide>
 
 
@@ -163,10 +167,10 @@
                 </div>
                 <div class="md:w-2/3">
                     <q-scroll-area class="h-12 md:h-14 w-full">
-                        <div class="mt-3 flex gap-3 flex-nowrap">
+                        <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
@@ -178,24 +182,24 @@
                         <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
-                                class="my-8"
+                                class="mt-8"
                             />
                         </template>
                         <template v-if="props.hotelSubCategoryData.hotels.length > 4">
                             <div
                                 v-if="!showMoreHotel"
-                                class="w-full text-center"
+                                class="w-full text-center mt-12"
                                 @click="showMoreHotel = true"
                             >
                                 <button
-                                    class="text-lg font-bold shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
+                                    class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
                             <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
-                                    class="my-8"
+                                    class="mt-8"
                                 />
                             </template>
 
@@ -215,7 +219,10 @@
                         >
                             <template v-for="hotel in props.hotelSubCategoryData.hotels">
                                 <swiper-slide>
-                                    <hotel-card class="my-4" :hotel="hotel"/>
+                                    <hotel-card
+                                        class="my-4"
+                                        :hotel="hotel"
+                                    />
                                 </swiper-slide>
 
 
@@ -242,7 +249,7 @@
     <!-- type3 -->
     <template v-if="props.styleType == '3' || props.styleType == '5'">
         <q-responsive
-            :ratio="390 / 53"
+            :ratio="375 / 68"
             class=" sm:hidden w-full"
         >
             <img src="@/assets/hotelCategory/Background3-phone-top.png" />
@@ -253,9 +260,9 @@
         >
             <img src="@/assets/hotelCategory/Background3-top.png" />
         </q-responsive>
-        <div class="relative z-10 bg-[#F7EBD3] w-full">
+        <div class="relative z-10 !bg-[#F7EBD3] w-full">
             <!-- 底圖 -->
-            <div class="mt-8 sm:mt-16 px-6 sm:px-20  md:flex justify-between">
+            <div class="pt-8 sm:pt-16 px-6 sm:px-20  md:flex justify-between">
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
@@ -270,10 +277,10 @@
                 </div>
                 <div class="md:w-2/3">
                     <q-scroll-area class="h-12 md:h-14 w-full">
-                        <div class="mt-3 flex gap-3 flex-nowrap">
+                        <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
@@ -285,24 +292,24 @@
                         <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
-                                class="my-8"
+                                class="mt-8"
                             />
                         </template>
                         <template v-if="props.hotelSubCategoryData.hotels.length > 4">
                             <div
                                 v-if="!showMoreHotel"
-                                class="w-full text-center"
+                                class="w-full text-center mt-12"
                                 @click="showMoreHotel = true"
                             >
                                 <button
-                                    class="text-lg font-bold shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
+                                    class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
                             <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
-                                    class="my-8"
+                                    class="mt-8"
                                 />
                             </template>
 
@@ -322,7 +329,10 @@
                         >
                             <template v-for="hotel in props.hotelSubCategoryData.hotels">
                                 <swiper-slide>
-                                    <hotel-card class="my-4" :hotel="hotel"/>
+                                    <hotel-card
+                                        class="my-4"
+                                        :hotel="hotel"
+                                    />
                                 </swiper-slide>
 
 
@@ -390,10 +400,10 @@
                 </div>
                 <div class="md:w-2/3">
                     <q-scroll-area class="h-12 md:h-14 w-full">
-                        <div class="mt-3 flex gap-3 flex-nowrap">
+                        <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
@@ -405,24 +415,24 @@
                         <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
-                                class="my-8"
+                                class="mt-8"
                             />
                         </template>
                         <template v-if="props.hotelSubCategoryData.hotels.length > 4">
                             <div
                                 v-if="!showMoreHotel"
-                                class="w-full text-center"
+                                class="w-full text-center mt-12"
                                 @click="showMoreHotel = true"
                             >
                                 <button
-                                    class="text-lg font-bold shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
+                                    class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
                             <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
-                                    class="my-8"
+                                    class="mt-8"
                                 />
                             </template>
 
@@ -442,7 +452,10 @@
                         >
                             <template v-for="hotel in props.hotelSubCategoryData.hotels">
                                 <swiper-slide>
-                                    <hotel-card class="my-4" :hotel="hotel"/>
+                                    <hotel-card
+                                        class="my-4"
+                                        :hotel="hotel"
+                                    />
                                 </swiper-slide>
 
 
@@ -469,12 +482,21 @@
         </div>
 
     </template>
-    <q-responsive
-        v-if="props.isLast"
-        :ratio="1920 / 55"
-        :class="{ 'bg-[#F7EBD3]': props.styleType == '5' }"
-    >
-    </q-responsive>
+    <template v-if="props.isLast">
+
+        <q-responsive
+            :ratio="1920 / 110"
+            class="hidden md:!block"
+            :class="{ 'bg-[#F7EBD3]': props.styleType == '5' }"
+        >
+        </q-responsive>
+        <q-responsive
+            :ratio="showMoreHotel ? 375 / 110 : 375 / 40"
+            class=" md:hidden"
+            :class="{ 'bg-[#F7EBD3]': props.styleType == '5' }"
+        >
+        </q-responsive>
+    </template>
 
 </template>
 
@@ -564,7 +586,7 @@ const props = withDefaults(defineProps<Props>(), {
                 ],
 
             },
-         
+
         ]
     }),
     isLast: false

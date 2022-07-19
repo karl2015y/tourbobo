@@ -9,22 +9,23 @@
 
       <q-responsive :ratio="$q.screen.lt.sm ? 375 / 60 : $q.screen.lt.md ? 1920 / 150 : 1920 / 80">
         <div class="max-w-[1920px] mx-auto px-4 h-full sm:px-14 flex flex-nowrap justify-between items-center gap-8">
-          <a href="/home">
+          <q-router-link to="/home">
             <q-img
               class="min-w-[152px] w-[40.5vw] sm:w-[12vw] max-w-[230px]"
               src="@/assets/logo-big.png"
               :ratio="230 / 47"
             />
-          </a>
+          </q-router-link>
 
           <div>
             <ul class="hidden sm:!flex ">
               <template v-for="link in props.menuLinks">
                 <li class="sm:pl-3 md:pl-12 relative">
 
-                  <a :href="link.link">
+                  <q-router-link :to="link.link">
                     {{ link.text }}
-                  </a>
+                  </q-router-link>
+
 
                   <template v-if="link.childrenMenuLinks">
                     <ul class="subMenuArea absolute left-6 min-w-[220px] bg-white">
@@ -33,10 +34,14 @@
                           :class="{ 'border-t': index == 0, 'border-b': index == link.childrenMenuLinks.length - 1 }"
                           class="bg-gray-50  hover:bg-[#F4AA00] border-x"
                         >
-                          <a
+                          <q-router-link
+                            :to="subLink.link"
                             class="p-4 block"
-                            :href="subLink.link"
-                          > {{ subLink.text }}</a>
+                          >
+                            {{ subLink.text }}
+                          </q-router-link>
+
+
                         </li>
                       </template>
                     </ul>
@@ -82,22 +87,22 @@
               <button @click="showPhoneMenu = false">
                 <img src="@/assets/arrow-left.svg">
               </button>
-              <a
-                href="/"
+              <q-router-link
+                to="/"
                 class="absolute left-1/2 -translate-x-1/2"
               >
                 <img
                   class="h-[35px] w-[129px]"
                   src="@/assets/logo-letter.png"
                 >
-              </a>
+              </q-router-link>
             </div>
           </q-responsive>
 
           <div class="select-none	">
             <ul>
               <template v-for="(link, index) in props.menuLinks">
-                <li class="mt-8 text-center">
+                <li class="mt-8 mb-8 text-center">
 
                   <template v-if="link.childrenMenuLinks">
                     <div
@@ -108,7 +113,8 @@
                         {{ link.text }}
                       </span>
                     </div>
-                    <Transition>
+
+                    <q-slide-transition>
                       <ul
                         v-show="focusPhoneSubMenu == `${link.text}${index}`"
                         class="phone-sub-menu-area mt-2 bg-white"
@@ -118,23 +124,27 @@
                             :class="{ 'border-t': index == 0, 'border-b': index == link.childrenMenuLinks.length - 1 }"
                             class="bg-gray-50 border-t"
                           >
-                            <a
-                              class="p-4 block text-left"
-                              :href="subLink.link"
-                            > {{ subLink.text }}</a>
+                            <q-router-link
+                              :to="subLink.link"
+                              class="p-4 block text-center"
+                            >
+                              {{ subLink.text }}
+                            </q-router-link>
+
                           </li>
                         </template>
                       </ul>
-                    </Transition>
+                    </q-slide-transition>
+
 
                   </template>
                   <template v-else>
-                    <a
-                      :href="link.link"
+                    <q-router-link
+                      :to="link.link"
                       class="border-b border-black pb-1 text-lg"
                     >
                       {{ link.text }}
-                    </a>
+                    </q-router-link>
                   </template>
                 </li>
               </template>
@@ -171,7 +181,7 @@
 
           <div class="mt-4 mb-8 mx-auto flex  justify-center items-center">
             <a
-              href="fb"
+              :href="link.facebook"
               class="mr-6"
             >
               <svg
@@ -189,7 +199,7 @@
 
             </a>
             <a
-              href="line"
+              :href="link.line"
               class="mr-6"
             >
               <svg
@@ -222,7 +232,7 @@
               </svg>
 
             </a>
-            <a href="ig">
+            <a :href="link.instagram">
               <svg
                 width="23"
                 height="23"
@@ -254,9 +264,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useElementSize } from '@vueuse/core'
 import { useQuasar } from 'quasar';
+import { useRoute } from 'vue-router';
+const route = useRoute()
 const $q = useQuasar()
 
 
@@ -277,7 +289,7 @@ const props = withDefaults(defineProps<Props>(), {
     },
     {
       text: "最新資訊",
-      link: "/news",
+      link: "/post",
       childrenMenuLinks: [
         {
           text: '最新消息',
@@ -315,10 +327,7 @@ const props = withDefaults(defineProps<Props>(), {
         },
       ]
     },
-    {
-      text: "常見問題",
-      link: "/Q&A"
-    },
+
     {
       text: "加盟合作",
       link: "https://docs.google.com/forms/d/e/1FAIpQLSfcGzKlc8o7SE4ZLS9oSYQz2ylQeAYgD4xJ3a3r3bCCLqlhSw/viewform"
@@ -343,6 +352,17 @@ const clickPhoneSubMenu = (_clickPhoneSubMenu: string) => {
   }
 }
 
+const link = ref({
+  line: 'https://lin.ee/iof46Tp',
+  facebook: ' https://www.facebook.com/Tourbobo.tw/',
+  message: 'https://www.facebook.com/messages/t/104130671957209',
+  instagram: ' https://www.instagram.com/tourbobo.official/',
+  phone: 'tel:0424522370'
+})
+
+watch(() => route.fullPath, () => {
+  showPhoneMenu.value = false
+})
 
 </script>
 

@@ -1,8 +1,8 @@
 <template>
-    <div class="w-full mt-20 sm:mt-24">
+    <div class="max-w-[1920px] mx-auto w-full mt-20 sm:mt-24">
         <div class="relative text-center z-10">
             <div class="relative flex justify-center items-center">
-                <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">熱門城市</div>
+                <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] -translate-x-6">熱門城市</div>
                 <img
                     class="-z-10
                     absolute top-1/2 left-1/2 -translate-x-[45%] -translate-y-1/3
@@ -10,17 +10,17 @@
                     src="@/assets/title-bg.svg"
                 >
             </div>
-            <div class=" sm:mt-10 mx-5 sm:mx-28 select-none	">
+            <div class=" sm:mt-10 mx-5 sm:mx-16 xl:mx-20 2xl:mx-24 select-none	">
 
-                <div class="flex justify-center flex-wrap">
+                <div class="flex  justify-center sm:justify-between 2xl:justify-around flex-wrap sm:flex-nowrap">
                     <template v-for="city in props.cities">
                         <div
-                            class="m-2 cursor-pointer	"
+                            class="cursor-pointer mx-2 sm:mx-0"
                             @click="gotoLink(cityLink(`${city.city_id}`))"
                         >
 
                             <q-img
-                                class="octagon w-[18vw] sm:w-[6.3vw] md:w-[7.6vw] lg:w-[9.3vw] xl:w-[10vw] 2xl:w-[11vw]"
+                                class="octagon w-[18vw] sm:min-w-[40px] sm:w-[6vw] md:w-[7vw] lg:w-[9vw] xl:w-[10vw] 2xl:w-[11vw] max-w-[170px]"
                                 :src="city.image"
                                 :ratio="1"
                             />

@@ -20,6 +20,7 @@ import './index.css'
 // 動畫
 import 'animate.css';
 
+import QRouterLink from "@/components/QRouterLink.vue";
 
 createApp(App)
   .use(Quasar, {
@@ -28,5 +29,6 @@ createApp(App)
   })
   .use(createPinia())
   .use(router)
+  .component("QRouterLink", QRouterLink)
   .mount('#app')
 

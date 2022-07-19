@@ -59,14 +59,15 @@
         <div class="absolute top-[20%] sm:top-[28%] md:top-1/3  left-1/2 -translate-x-1/2 ">
             <!-- logo -->
             <div>
-                <a href="">
+                <q-router-link>
                     <img
                         class="mx-auto w-[30.4vw] min-w-[114px] sm:w-[16.77vw] max-w-[322px]"
                         src="@/assets/logo-letter.png"
                         alt=""
                     >
+                </q-router-link>
 
-                </a>
+
             </div>
             <!-- 連結區 -->
             <div
@@ -75,7 +76,7 @@
                 <ul
                     class="order-1 mt-4 flex flex-nowrap text-xs whitespace-nowrap text-white sm:flex-col sm:text-base sm:mt-8">
                     <li class="sm:pb-2 sm:border-[#DB5F1D] sm:border-b-2">
-                        <a href="">關於我們</a>
+                        <q-router-link to="/home#about">關於我們</q-router-link>
                     </li>
                     <li class="pl-2 ml-2 border-l-2 border-[#DC492A] sm:ml-0 sm:border-0 sm:pl-0 sm:mt-3">
                         <a href="">合作夥伴</a>
@@ -230,7 +231,7 @@
                     </q-fab-action>
 
                     <q-fab-action
-                        :to="route"
+                        :to="{ ...route, hash: '' }"
                         flat
                         padding="0"
                     >

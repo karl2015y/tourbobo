@@ -1,5 +1,5 @@
 <template>
-    <div class=" w-full mt-20 sm:mt-10">
+    <div class="max-w-[1920px] mx-auto w-full mt-20 sm:mt-10">
         <div class="relative text-center">
             <div class="relative flex justify-center items-center">
                 <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">優惠活動資訊</div>
@@ -23,19 +23,24 @@
                         id="activitySwiper"
                         loop
                         navigation
-                        :freeMode="$q.screen.lt.sm"
-                        :modules="[Navigation, FreeMode]"
+                        :modules="[Navigation]"
                         :slides-per-view="$q.screen.lt.sm ? 1.2 : 3"
                         :space-between="$q.screen.lt.sm ? 13 : 30"
                     >
                         <template v-for="item in activityList">
                             <swiper-slide>
-                                <a :href="item.link">
-                                    <q-img
-                                        :src="item.image"
-                                        :ratio="545 / 210"
-                                    />
-                                </a>
+                                <div class="rounded-xl border sm:border-0 sm:rounded-none">
+                                    <q-router-link :to="item.link">
+                                        <q-img
+                                            class="rounded-t-xl sm:rounded-none"
+                                            :src="item.image"
+                                            :ratio="545 / 210"
+                                        />
+                                        <div  class="sm:hidden mt-1">{{ item.name }}</div>
+                                    </q-router-link>
+
+                                </div>
+
                             </swiper-slide>
                         </template>
 
@@ -60,10 +65,9 @@
 </template>
 
 <script setup lang="ts">
-import { Navigation, FreeMode } from 'swiper';
+import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-import 'swiper/css/free-mode';
 import { ref } from 'vue';
 
 const swiperNext = (id: string) => {
@@ -75,16 +79,21 @@ const swiperPrev = (id: string) => {
 
 const activityList = ref([
     {
-       image:'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
-       link:'/hotel-category?category=%E6%82%A0%E9%81%8A%E5%9C%8B%E6%97%85' 
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
+        link: '/hotel-category?category=%E6%82%A0%E9%81%8A%E5%9C%8B%E6%97%85',
+        name: '國旅專區：最高現折1300元'
     },
-     {
-       image:'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=487e6587-5a35-4426-b9ea-94536b03ec36',
-       link:'' 
-     },
-      {
-       image:'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner3_1.png?alt=media&token=6b90b0db-c48f-471b-beab-ad0b3b46d7cd',
-       link:'/hotel-category?category=人氣民宿' 
+    {
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=487e6587-5a35-4426-b9ea-94536b03ec36',
+        link: '',
+        name: '國旅專區：最高現折1300元'
+
+    },
+    {
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner3_1.png?alt=media&token=6b90b0db-c48f-471b-beab-ad0b3b46d7cd',
+        link: '/hotel-category?category=人氣民宿',
+        name: '國旅專區：最高現折1300元'
+
     },
 ])
 

@@ -1,27 +1,29 @@
 <template>
     <div class="relative z-10 w-full sm:-translate-y-[9vw] 2xl:-translate-y-36">
         <div
-            class="relative py-5 sm:pt-10 sm:pb-14 px-12 bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px] shadow-2xl"
-            style="box-shadow: 2px 2px 8px rgba(45, 55, 64, 0.25);"
+            class="
+            shadow-[0px_0px_8px_rgba(0,0,0,0.25)]
+            relative px-7 py-10 sm:pt-10 sm:pb-14 sm:px-12 bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px]"
+            
         >
             <!-- 城市選擇 -->
             <div
                 ref="cityElement"
-                class="sm:hover:shadow-md relative w-full h-16 sm:bg-white rounded-md  flex justify-start items-center"
+                class="sm:hover:shadow-md relative w-full  sm:h-16 sm:bg-white rounded-md  flex justify-start items-center"
                 :class="{ 'z-10': cityElementIsHovered }"
                 @click="cityElementIsHovered = true"
             >
                 <div
-                    class=" flex gap-4 justify-start items-center  w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-b-0 pb-3 sm:pb-0">
+                    class=" flex justify-start items-center  w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-b-0 pb-1 sm:pb-0">
                     <q-icon
-                        class="ml-5 sm:ml-5 text-[#F4AA00] sm:text-black"
+                        class=" sm:ml-5 text-[#F4AA00] sm:text-black"
                         name="search"
                         size="sm"
                     />
-                    <div>
+                    <div class="ml-4">
                         {{ cityModel.city_name }}
                     </div>
-                    <Transition
+                    <!-- <Transition
                         mode="out-in"
                         enter-active-class="animate__animated animate__rotateIn [--animate-duration:300ms]"
                         leave-active-class="animate__animated animate__fadeOut [--animate-duration:100ms]"
@@ -41,7 +43,7 @@
                             size="sm"
                         />
 
-                    </Transition>
+                    </Transition> -->
 
 
 
@@ -87,12 +89,12 @@
                 <!-- 日期選擇 -->
                 <div
                     ref="dateRangeElement"
-                    class="sm:hover:shadow-md w-full sm:w-1/2 h-16 sm:bg-white rounded-md flex relative"
+                    class="sm:hover:shadow-md w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md flex relative"
                     :class="{ 'z-10': dateRangeElementIsHovered }"
                     @click="dateRangeElementIsHovered = true"
                 >
                     <div
-                        class="w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-r sm:border-b-0  sm:w-1/2 pl-5 gap-4 flex justify-start items-center flex-nowrap  h-[75%] my-auto">
+                        class="w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-r sm:border-b-0  sm:w-1/2 sm:pl-5 pb-1 sm:pb-0 flex justify-start items-center flex-nowrap  h-[75%] my-auto">
                         <q-icon
                             class="text-[#F4AA00] sm:text-black"
                             name="today"
@@ -100,7 +102,7 @@
                         />
                         <div
                             v-if="dateModel"
-                            class="sm:text-base"
+                            class="ml-4 sm:text-base"
                         >
                             <span class="hidden sm:!block">{{ dateModel?.from }}</span>
                             <div class="sm:hidden">
@@ -109,7 +111,7 @@
                         </div>
                         <div
                             v-else
-                            class="text-gray-500"
+                            class="ml-4 text-gray-500"
                         >
                             <span class="hidden sm:!block">選擇入住時間</span>
                             <span class="sm:hidden">選擇入住與退房時間</span>
@@ -168,19 +170,19 @@
                 <!-- 房間選擇 -->
                 <div
                     ref="roomElement"
-                    class="sm:hover:shadow-md relative w-full sm:w-1/2 h-16 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
+                    class="sm:hover:shadow-md relative w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
                     :class="{ 'z-10': roomElementIsHovered }"
                     @click="roomElementIsHovered = true"
                 >
                     <div
-                        class="flex gap-4 justify-start items-center  w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-b-0 pb-3 sm:pb-0">
+                        class="flex justify-start items-center  w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-b-0 pb-1 sm:pb-0">
                         <q-icon
-                            class="ml-5 sm:ml-5 text-[#F4AA00] sm:text-black"
+                            class=" sm:ml-5 text-[#F4AA00] sm:text-black"
                             name="perm_identity"
                             size="sm"
                         />
-                        <div>
-                            <div class="text-base">
+                        <div class="ml-4">
+                            <div class="">
                                 <span>{{ roomModel.aduitCount }} 位大人</span>
                                 <span v-if="roomModel.childCount > 0">，{{ roomModel.childCount }} 位兒童</span>
                                 <span
@@ -299,13 +301,13 @@
                 @click="gotoLink(searchLink)"
                 label="搜尋"
                 color="primary"
-                class="tracking-[0.8em]	sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-10 w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
+                class="mt-4 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-16 sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
             />
             <q-btn
                 v-else
                 label="搜尋"
                 color="primary"
-                class="tracking-[0.8em]	sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-10 w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
+                class="mt-4 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-16 sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
             />
         </div>
     </div>

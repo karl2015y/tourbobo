@@ -69,7 +69,7 @@
                     v-if="currentPost"
                     class="px-5 sm:px-0"
                 >
-                    <router-link
+                    <q-router-link
                         class="sm:hidden"
                         :to="cacheHistoryRoutePath ? cacheHistoryRoutePath : '/post'"
                     >
@@ -81,7 +81,7 @@
                             </span>
                         </div>
 
-                    </router-link>
+                    </q-router-link>
                     <div class="text-4xl font-bold text-[#005A72]">
                         {{ currentPost.title }}
 
@@ -163,14 +163,14 @@
                         >
                             <template v-for="post in showPostArray">
                                 <swiper-slide>
-                                    <router-link :to="{ ...route, query: { 'post_id': post.post_id } }">
+                                    <q-router-link :to="{ ...route, query: { 'post_id': post.post_id } }">
                                         <q-img
                                             @click="cacheHistoryRoutePath = route.fullPath"
                                             class="rounded-xl"
                                             :ratio="333 / 130"
                                             :src="post.Image"
                                         />
-                                    </router-link>
+                                    </q-router-link>
 
                                 </swiper-slide>
                             </template>
@@ -213,7 +213,7 @@
                         class="mt-3 flex justify-center sm:hidden w-full"
                     >
                         <template v-for="post in showPostArray">
-                            <router-link :to="{ ...route, query: { 'post_id': post.post_id } }">
+                            <q-router-link :to="{ ...route, query: { 'post_id': post.post_id } }">
 
                                 <div
                                     @click="cacheHistoryRoutePath = route.fullPath"
@@ -232,7 +232,7 @@
                                         name="navigate_next"
                                     />
                                 </div>
-                            </router-link>
+                            </q-router-link>
                             <!-- <div class="mx-[8.3vw]  h-20 w-full shadow-[0px_0px_8px_rgba(0, 0,0,0.25)]">
 
                     </div> -->
@@ -285,7 +285,16 @@ const clickQueryLinkByObject = (queryObj: { [queryKey: string]: string }) => {
 
 
 const postArray = ref([
-   
+    {
+        post_id: '123',
+        category: '最新消息',
+        title: '1國旅補助最高折助最高折抵1300！',
+        subTitle: '優惠活動開跑啦！暑假就訂tourbobo一起出去玩！',
+        createDate: '2022/07/15',
+        content: '很多內容',
+        Image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
+        note: '＊所有活動皆為限時限量活動，如取消後恕不保留資格＊tourbobo 主辦單位保有最終修改、變更、活動解釋及取消本活動之權利，如有任何變更內容或詳細注意事項將公布於本活動辦法中，恕不另行通知。＊優惠活動（學生個人專屬方案、台新、防疫計程車千元補助、KKBOX滿額贈等）請擇一使用，恕無法併行！'
+    },
     {
         post_id: 'asd',
         category: '優惠資訊',
