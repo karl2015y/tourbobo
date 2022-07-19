@@ -46,7 +46,6 @@ import { ref } from 'vue';
 
 interface Props {
     hotelCategories?: Array<{
-        category_id: number,
         name: string,
         image: string,
         hoverImage: string,
@@ -55,28 +54,29 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
     hotelCategories: () => ([
         {
-            category_id: 1,
-            name: '寵物友善',
+            name: '悠遊國旅',
+            image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344',
+            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E5%9C%8B%E6%97%85.png?alt=media&token=3209ea29-f78a-4547-98d2-6158a3f8f918'
+        },
+        {
+            name: '品牌連鎖',
+            image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967',
+            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E9%80%A3%E9%8E%96.png?alt=media&token=4b67f75d-207f-4ea8-aeb3-cbeb2ae13c58'
+        },
+        {
+            name: '人氣民宿',
+            image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E4%BA%BA%E6%B0%A3.jpg?alt=media&token=0c18d4db-9e42-4948-af50-9fec9d41b023',
+            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E4%BA%BA%E6%B0%A3%E6%B0%91%E5%AE%BF.png?alt=media&token=0874ade2-5fcb-4855-9e48-ee87d0f2cb1b'
+        },
+        {
+            name: '寵物友善', 
             image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%AF%B5%E7%89%A9%E5%8F%8B%E5%96%84.jpg?alt=media&token=91a9a615-928d-4460-b787-f78c73cc804e',
-            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E5%9C%96%E5%B1%A4%202.png?alt=media&token=73bada2f-1328-45d2-8d17-ee9b85c6c430'
+            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E5%AF%B5%E7%89%A9.png?alt=media&token=05d07107-2e40-4688-a26c-f2f578526a34'
         },
         {
-            category_id: 2,
-            name: '露營專區',
-            image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E9%9C%B2%E7%87%9F%E5%B0%88%E5%8D%80.jpg?alt=media&token=1c086786-5959-4c50-8e28-5f99c9418bb9',
-            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E5%9C%96%E5%B1%A4%202-1.png?alt=media&token=5d28d0c3-f70a-464c-9462-e44c2efbf588'
-        },
-        {
-            category_id: 3,
-            name: '親子友善',
-            image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E8%A6%AA%E5%AD%90%E5%8F%8B%E5%96%84.jpg?alt=media&token=fee46498-ea47-4ec4-9f09-98728a25ec3e',
-            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E5%9C%96%E5%B1%A4%202-3.png?alt=media&token=2e367a42-73dc-4738-bf05-84b4e48b352c'
-        },
-        {
-            category_id: 4,
-            name: '包棟民宿',
-            image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E6%B0%91%E5%AE%BF.jpg?alt=media&token=82df409e-e1ad-4223-948b-cf258d832b24',
-            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E5%9C%96%E5%B1%A4%202-2.png?alt=media&token=f93da37a-1042-41f5-87e5-b2a75b1a93db'
+            name: '熱銷首選', 
+            image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef',
+            hoverImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2Ficon%2F%E7%86%B1%E9%8A%B7.png?alt=media&token=da0de750-3e18-45c5-9734-5b3b114a8172'
         },
 
     ])
