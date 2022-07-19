@@ -162,7 +162,7 @@ const gotoLink = (link: string) => {
 const areaArray = ref([
     {
         name: '北部',
-        hotes_id: ['426', '437', '448', '314'],
+        hotes_id: ['426', '353', '448', '314'],
     },
     {
         name: '中部',
@@ -170,7 +170,7 @@ const areaArray = ref([
     },
     {
         name: '南部',
-        hotes_id: ['465', '502', '505', '538'],
+        hotes_id: ['465', '536', '505', '538'],
     },
     {
         name: '東部',
