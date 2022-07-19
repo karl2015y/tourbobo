@@ -76,7 +76,7 @@ const hotelCategoryData = ref([
                 name: '摩登城市',
                 description: '喜歡都市的繁華嗎？我們提供你最摩登的選擇，如果你是標準都市人，入住這些準沒錯。',
                 discountDescription: '優惠100分啦',
-                hotel_ids: ['160', '533', '507', '426', '94', '344', '520', '540', '512', '567', '485']
+                hotel_ids: ['160', '533', '507', '426', '94','545', '344', '520', '540', '512', '567', '485']
             },
             {
                 order: '2',
@@ -90,7 +90,7 @@ const hotelCategoryData = ref([
                 name: '度假風情',
                 description: '出國不了很鬱卒嗎？台灣本島也是可以好好渡假的！提供比出國更享受的體驗。',
                 discountDescription: '',
-                hotel_ids: ['65', '536', '552']
+                hotel_ids: ['65', '536', '552','183']
             },
             {
                 order: '4',
@@ -223,7 +223,7 @@ const hotelCategoryData = ref([
                 name: '星級奢華專區',
                 description: '星級享受在這裡！假日就該好好來一場星級飯店的快樂。',
                 discountDescription: '優惠99分啦',
-                hotel_ids: ['557', '502', '465', '558']
+                hotel_ids: ['557', '465', '558']
             },
             {
                 order: '2',
