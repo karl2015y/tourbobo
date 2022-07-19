@@ -40,7 +40,7 @@
                         <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
@@ -170,7 +170,7 @@
                         <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
@@ -280,7 +280,7 @@
                         <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
@@ -403,7 +403,7 @@
                         <div class="mt-3 flex flex-nowrap">
                             <template v-for="item in 4">
                                 <div
-                                    class="text-sm mr-2.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
+                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
                                     新上架
                                 </div>
                             </template>
