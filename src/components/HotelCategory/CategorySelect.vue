@@ -218,8 +218,6 @@ const clickHotelFocusCategoryTag = (id: string, index: number,) => {
 
 }
 onMounted(() => {
-    console.log('onMounted', hotelFocusCategory.value as string);
-
     const index = findIndex(hotelCategoryArray.value, (o) => (o.name == hotelFocusCategory.value))
     clickHotelFocusCategoryTag('CategorySelectSwiper', index)
 })
