@@ -299,13 +299,11 @@ onMounted(() => {
 
 watch(() => route.fullPath, () => {
     getCurrentHotelDetail()
-
 })
 
-
-watch(() => loading.value, () => {
-    if (loading.value === false && currentHotelDetailList.value.length > 0) {
-        mainStore.footer.styleType = (currentHotelDetailList.value.length + 1) % 2 == 1 ? '1' : '3'
+watchEffect(() => {
+    if (loading.value === false && showHotelDetailList.value.length > 0) {
+        mainStore.footer.styleType = (showHotelDetailList.value.length + 1) % 2 == 1 ? '1' : '3'
         mainStore.footer.zIndex = 10
     } else {
         mainStore.footer.styleType = '2'
@@ -313,6 +311,7 @@ watch(() => loading.value, () => {
 
     }
 })
+
 
 
 const getStyleType = (index: number, length: number) => {

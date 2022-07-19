@@ -199,8 +199,6 @@ const swiperPrev = (id: string) => {
 }
 
 const slideChange = (_hotelFocusCategory: string) => {
-    console.log('slideChange', _hotelFocusCategory, slideJustChange.value, hotelFocusCategory.value);
-
     if (slideJustChange.value) {
         clickQueryLink('category', _hotelFocusCategory)
         slideJustChange.value = false

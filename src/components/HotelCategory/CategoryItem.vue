@@ -491,7 +491,7 @@
         >
         </q-responsive>
         <q-responsive
-            :ratio="showMoreHotel ? 375 / 110 : 375 / 40"
+            :ratio="375 / 110"
             class=" md:hidden"
             :class="{ 'bg-[#F7EBD3]': props.styleType == '5' }"
         >
