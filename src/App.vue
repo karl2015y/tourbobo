@@ -7,7 +7,8 @@ import { useMainStore } from './stores/main.store';
 
 const store = useMainStore();
 
-document.title += ` v${import.meta.env.PACKAGE_VERSION}`
+// document.title += ` v${import.meta.env.PACKAGE_VERSION}`
+document.title = "tourbobo"
 </script>
 
 <style lang="sass">
