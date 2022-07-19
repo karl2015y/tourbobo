@@ -76,19 +76,15 @@ const swiperPrev = (id: string) => {
 const activityList = ref([
     {
        image:'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
-       link:'1' 
+       link:'/hotel-category?category=%E6%82%A0%E9%81%8A%E5%9C%8B%E6%97%85' 
     },
      {
        image:'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=487e6587-5a35-4426-b9ea-94536b03ec36',
-       link:'2' 
+       link:'' 
      },
       {
        image:'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner3_1.png?alt=media&token=6b90b0db-c48f-471b-beab-ad0b3b46d7cd',
-       link:'3' 
-    },
-     {
-       image:'https://upload.cc/i1/2022/07/12/HGFcif.png',
-       link:'4' 
+       link:'/hotel-category?category=人氣民宿' 
     },
 ])
 

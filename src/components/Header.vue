@@ -321,7 +321,7 @@ const props = withDefaults(defineProps<Props>(), {
     },
     {
       text: "加盟合作",
-      link: "https://events.tourbobo.com/business/"
+      link: "https://docs.google.com/forms/d/e/1FAIpQLSfcGzKlc8o7SE4ZLS9oSYQz2ylQeAYgD4xJ3a3r3bCCLqlhSw/viewform"
     },
 
   ],

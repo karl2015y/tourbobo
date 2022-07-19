@@ -100,7 +100,7 @@
                     <li>
                         <ul class="mt-4 flex justify-center flex-nowrap">
                             <li>
-                                <a href="fb">
+                                <a :href="link.facebook">
                                     <img
                                         class="w-6 h-6 sm:w-9 sm:h-9 mr-6"
                                         src="@/assets/icon-facebook-white.svg"
@@ -108,7 +108,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="line">
+                                <a :href="link.line">
                                     <img
                                         class="w-6 h-6 sm:w-9 sm:h-9 mr-6"
                                         src="@/assets/icon-line-white.svg"
@@ -116,7 +116,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="ig">
+                                <a :href="link.instagram">
 
                                     <img
                                         class="w-6 h-6 sm:w-9 sm:h-9"
@@ -186,7 +186,7 @@
                 >
 
                     <q-fab-action
-                        @click="gotoLink('https://www.facebook.com/msg/103521468250543')"
+                        @click="gotoLink(link.message)"
                         text-color="white"
                         flat
                         padding="0"
@@ -201,7 +201,7 @@
 
 
                     <q-fab-action
-                        @click="gotoLink('https://line.me/ti/p/@643ibjqd')"
+                        @click="gotoLink(link.line)"
                         text-color="white"
                         flat
                         padding="0"
@@ -216,7 +216,7 @@
 
                     </q-fab-action>
                     <q-fab-action
-                        @click="gotoLink('tel:0424512081')"
+                        @click="gotoLink(link.phone)"
                         text-color="white"
                         flat
                         padding="0"
@@ -267,6 +267,14 @@ import { useMainStore } from '../stores/main.store';
 // const props = withDefaults(defineProps<Props>(), {
 //     styleType: '2',
 // });
+
+const link = ref({
+    line:'https://lin.ee/iof46Tp',
+    facebook:' https://www.facebook.com/Tourbobo.tw/',
+    message:'https://www.facebook.com/messages/t/104130671957209',
+    instagram:' https://www.instagram.com/tourbobo.official/',
+    phone:'tel:0424522370'
+})
 
 const mainStore = useMainStore()
 
