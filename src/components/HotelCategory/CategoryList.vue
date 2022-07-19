@@ -252,10 +252,10 @@ const addDays = function (date: Date, days: number) {
 const hotelsLink = (hotel_ids: Array<string>) => {
     const todayDate = new Date()
     const after30day = addDays(todayDate, 30);
-    const after38day = addDays(todayDate, 38);
+    const after31day = addDays(todayDate, 31);
     const after30dayString = after30day.toISOString().split('T')[0]
-    const after38dayString = after38day.toISOString().split('T')[0]
-    let baseUrl = `https://ota-api.tourbobo.com/ota/hotels?per_page=${hotel_ids?.length}&adults=1&children=0&check_in=${after30dayString}&check_out=${after38dayString}&business_type=1`
+    const after31dayString = after31day.toISOString().split('T')[0]
+    let baseUrl = `https://ota-api.tourbobo.com/ota/hotels?per_page=${hotel_ids?.length}&adults=1&children=0&check_in=${after30dayString}&check_out=${after31dayString}&business_type=1`
     hotel_ids.forEach(hotel_id => {
         baseUrl += `&hotel_id[]=${hotel_id}`
     })

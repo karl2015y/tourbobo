@@ -207,10 +207,10 @@ const addDays = function (date: Date, days: number) {
 const hotelLink = (hotel_id: string) => {
     const todayDate = new Date()
     const after30day = addDays(todayDate, 30);
-    const after38day = addDays(todayDate, 38);
+    const after31day = addDays(todayDate, 31);
     const after30dayString = after30day.toISOString().split('T')[0]
-    const after38dayString = after38day.toISOString().split('T')[0]
-    return `https://www.tourbobo.com/hotel/${hotel_id}?check_in=${after30dayString}&check_out=${after38dayString}&adults=1&children=0&sorting=recommend&business_type=1`
+    const after31dayString = after31day.toISOString().split('T')[0]
+    return `https://www.tourbobo.com/hotel/${hotel_id}?check_in=${after30dayString}&check_out=${after31dayString}&adults=1&children=0&sorting=recommend&business_type=1`
 }
 
 </script>

@@ -141,15 +141,15 @@ const hotelsLink = (hotel_ids: Array<string>) => {
     const todayDate = new Date()
     console.log('todayDate', todayDate.toLocaleString());
     const after30day = addDays(todayDate, 30);
-    const after38day = addDays(todayDate, 38);
+    const after31day = addDays(todayDate, 31);
     // console.log('todayDate', todayDate.toLocaleString());
     // console.log('after30day', after30day.toLocaleString(), after30day.toISOString().split('T')[0]);
-    // console.log('after38day', after38day.toLocaleString(), after38day.toISOString().split('T')[0]);
+    // console.log('after31day', after31day.toLocaleString(), after31day.toISOString().split('T')[0]);
     const after30dayString = after30day.toISOString().split('T')[0]
-    const after38dayString = after38day.toISOString().split('T')[0]
+    const after31dayString = after31day.toISOString().split('T')[0]
     // console.log('after30dayString',after30dayString);
-    // console.log('after38dayString',after38dayString);
-    let baseUrl = `https://ota-api.tourbobo.com/ota/hotels?per_page=${hotel_ids?.length}&adults=1&children=0&check_in=${after30dayString}&check_out=${after38dayString}&business_type=1`
+    // console.log('after31dayString',after31dayString);
+    let baseUrl = `https://ota-api.tourbobo.com/ota/hotels?per_page=${hotel_ids?.length}&adults=1&children=0&check_in=${after30dayString}&check_out=${after31dayString}&business_type=1`
     hotel_ids.forEach(hotel_id => {
         baseUrl += `&hotel_id[]=${hotel_id}`
     })

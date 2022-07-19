@@ -112,16 +112,16 @@ const cityLink = (city_id: string) => {
     const todayDate = new Date()
     console.log('todayDate', todayDate.toLocaleString());
     const after30day = addDays(todayDate, 30);
-    const after38day = addDays(todayDate, 38);
+    const after31day = addDays(todayDate, 31);
     // console.log('todayDate', todayDate.toLocaleString());
     // console.log('after30day', after30day.toLocaleString(), after30day.toISOString().split('T')[0]);
-    // console.log('after38day', after38day.toLocaleString(), after38day.toISOString().split('T')[0]);
+    // console.log('after31day', after31day.toLocaleString(), after31day.toISOString().split('T')[0]);
     const after30dayString = after30day.toISOString().split('T')[0]
-    const after38dayString = after38day.toISOString().split('T')[0]
+    const after31dayString = after31day.toISOString().split('T')[0]
     // console.log('after30dayString',after30dayString);
-    // console.log('after38dayString',after38dayString);
+    // console.log('after31dayString',after31dayString);
 
-    return `https://www.tourbobo.com/hotels?check_in=${after30dayString}&check_out=${after38dayString}&city=${city_id}&adults=1&children=0&sorting=recommend&business_type=1`
+    return `https://www.tourbobo.com/hotels?check_in=${after30dayString}&check_out=${after31dayString}&city=${city_id}&adults=1&children=0&sorting=recommend&business_type=1`
 }
 const gotoLink = (link: string) => {
     window.location.href = link
