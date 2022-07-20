@@ -156,7 +156,6 @@ const hotelCategoryData = ref([
                 name: '度假風情',
                 description: '出國不了很鬱卒嗎？台灣本島也是可以好好渡假的！提供比出國更享受的體驗。',
                 discountDescription: '',
-                // hotel_ids: ['65', '536', '552', '183'],
                 hotels: [
                     {
                         hotel_id: '65',
@@ -181,7 +180,6 @@ const hotelCategoryData = ref([
                 name: '創意風格',
                 description: '這些跳耀的顏色與吸睛的風格旅館絕對是身為創意人的你不可錯過的入住選擇！',
                 discountDescription: '',
-                // hotel_ids: ['342', '546', '543'],
                 hotels: [
                     {
                         hotel_id: '342',
@@ -203,7 +201,6 @@ const hotelCategoryData = ref([
                 name: '部落風情',
                 description: '一起來體驗看看原民風的生活吧！娜路彎系列絕對是你的好選擇，喜歡原民文化的你千萬別錯過。',
                 discountDescription: '',
-                // hotel_ids: ['479', '478', '476', '477', '475'],
                 hotels: [
                     {
                         hotel_id: '479',
@@ -311,7 +308,6 @@ const hotelCategoryData = ref([
                 name: '鐵花系列',
                 description: '以「旅人驛站」為題，象徵面對長途的旅程，這裡就是你途中的驛站，隨時準備好讓你擁有舒適的休息體驗。',
                 discountDescription: '',
-                hotel_ids: ['498', '492', '497', '491', '490'],
                 hotels: [
                     {
                         hotel_id: '498',
@@ -385,10 +381,6 @@ const hotelCategoryData = ref([
                 hotels: [
                     {
                         hotel_id: '240',
-                        tags: []
-                    },
-                    {
-                        hotel_id: '527',
                         tags: []
                     },
                     {
