@@ -1,4 +1,7 @@
 <template>
+    <category-select
+        :hotelCategoryArray="map(hotelCategoryData, (o) => omit(o, ['subCategoryData']))"
+    />
 
 
     <q-responsive
@@ -57,9 +60,11 @@
 </template>
 
 <script setup lang="ts">
+import CategorySelect from '@/components/HotelCategory/CategorySelect.vue';
+
 import CategoryItem from '@/components/HotelCategory/CategoryItem.vue';
 import { computedAsync } from '@vueuse/core';
-import { find, findIndex, keyBy, keys, map, merge, pick, sortBy, uniq, values } from 'lodash';
+import { find, findIndex, keyBy, keys, map, merge, pick, omit, uniq, values } from 'lodash';
 import { useQuasar } from 'quasar';
 import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
@@ -70,6 +75,10 @@ const mainStore = useMainStore()
 const hotelCategoryData = ref([
     {
         name: '悠遊國旅',
+        title: '悠遊國旅開心FUN暑假',
+        subTitle: '全台灣最划算的國旅補助飯店底家啦！',
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344',
+        smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344',
         subCategoryData: [
             {
                 order: '1',
@@ -229,6 +238,10 @@ const hotelCategoryData = ref([
     },
     {
         name: '品牌連鎖',
+        title: '高品質飯店品牌大集合',
+        subTitle: '連鎖品牌掛保證，讓你住得安心又快樂',
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967',
+        smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967',
         subCategoryData: [
             {
                 order: '1',
@@ -372,6 +385,10 @@ const hotelCategoryData = ref([
     },
     {
         name: '人氣民宿',
+        title: '最高人氣民宿大推薦',
+        subTitle: ' 出門在外誰說就不能住的像家裡一樣舒適？',
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E4%BA%BA%E6%B0%A3.jpg?alt=media&token=0c18d4db-9e42-4948-af50-9fec9d41b023',
+        smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E4%BA%BA%E6%B0%A3.jpg?alt=media&token=0c18d4db-9e42-4948-af50-9fec9d41b023',
         subCategoryData: [
             {
                 order: '1',
@@ -471,6 +488,10 @@ const hotelCategoryData = ref([
     },
     {
         name: '寵物友善',
+        title: '你家毛小孩的最愛旅宿',
+        subTitle: '就是愛帶毛小孩環遊全台趴趴走',
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%AF%B5%E7%89%A9%E5%8F%8B%E5%96%84.jpg?alt=media&token=91a9a615-928d-4460-b787-f78c73cc804e',
+        smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%AF%B5%E7%89%A9%E5%8F%8B%E5%96%84.jpg?alt=media&token=91a9a615-928d-4460-b787-f78c73cc804e',
         subCategoryData: [
 
             {
@@ -543,6 +564,10 @@ const hotelCategoryData = ref([
     },
     {
         name: '熱銷首選',
+        title: '高CP值的搶手飯店',
+        subTitle: '要訂要快，再猶豫一秒就被搶走啦',
+        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef',
+        smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef',
         subCategoryData: [
 
             {

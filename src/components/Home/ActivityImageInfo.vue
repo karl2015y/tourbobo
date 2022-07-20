@@ -7,7 +7,7 @@
                 rounded-full flex items-center px-3
                 w-[353px] h-[245px]
                 sm:w-[706px] sm:h-[490px]
-                 border border-[#F4AA00] shadow-[1.8vw_1.1vw_rgba(244,170,0,1)]">
+                 border border-[#F4AA00] shadow-[18px_10px_rgba(244,170,0,1)] sm:shadow-[1.8vw_1.1vw_rgba(244,170,0,1)]">
                 <div class="w-[60%] relative h-full flex flex-col ">
                     <img
                         class="absolute 

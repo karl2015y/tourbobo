@@ -1,6 +1,7 @@
 <template>
     <div class="w-full relative z-10">
         <div
+            class="relative"
             ref="selectEl"
             v-if="hotelFocusCategoryObj"
         >
@@ -13,9 +14,19 @@
             <!-- 手機版 -->
             <q-img
                 class="sm:hidden"
-                :src="hotelFocusCategoryObj.smallImage"
+                :src="hotelFocusCategoryObj.smallImage ?? hotelFocusCategoryObj.image"
                 :ratio="375 / 196"
             />
+
+            <!-- 遮罩 -->
+            <div class="absolute w-full h-full top-0 left-0 
+            bg-gradient-to-b sm:bg-gradient-to-r from-[#000000c2] 
+            text-white text-xl font-semibold sm:text-4xl
+            px-6 pt-10 sm:px-44 sm:pt-32
+            ">
+                <div>{{ hotelFocusCategoryObj.title }}</div>
+                <div class="mt-3">{{ hotelFocusCategoryObj.subTitle }}</div>
+            </div>
         </div>
 
         <!-- 手機版 -->
@@ -151,14 +162,22 @@ const clickQueryLink = (queryKey: string, queryValue: string) => {
     router.push({ ...route, query: { ...route.query, [queryKey]: queryValue } })
 }
 
+interface Props {
+    hotelCategoryArray: Array<{
+        image: string
+        name: string
+        smallImage?: string
+        subTitle: string
+        title: string
+    }>
+}
+const props = defineProps<Props>()
 
-const hotelCategoryArray = ref([
-    { name: '悠遊國旅', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%9C%8B%E6%97%85.jpg?alt=media&token=81f13065-a52c-4726-9b85-b0d5ee718344' },
-    { name: '品牌連鎖', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%93%81%E7%89%8C%E9%80%A3%E9%8E%96.jpeg?alt=media&token=4384a19e-f40c-4bd3-8330-f98b387a7967' },
-    { name: '人氣民宿', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E4%BA%BA%E6%B0%A3.jpg?alt=media&token=0c18d4db-9e42-4948-af50-9fec9d41b023', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E4%BA%BA%E6%B0%A3.jpg?alt=media&token=0c18d4db-9e42-4948-af50-9fec9d41b023' },
-    { name: '寵物友善', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%AF%B5%E7%89%A9%E5%8F%8B%E5%96%84.jpg?alt=media&token=91a9a615-928d-4460-b787-f78c73cc804e', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E5%AF%B5%E7%89%A9%E5%8F%8B%E5%96%84.jpg?alt=media&token=91a9a615-928d-4460-b787-f78c73cc804e' },
-    { name: '熱銷首選', image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef', smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhotelCategory%2F%E7%86%B1%E9%8A%B7.jpg?alt=media&token=92c761d9-fd37-4b09-aa57-facef693eeef' },
-])
+
+
+const hotelCategoryArray = computed(() => props.hotelCategoryArray)
+console.log(hotelCategoryArray.value);
+
 
 const hotelFocusCategory = computed(() => route.query['category'] as string ?? hotelCategoryArray.value[0].name)
 

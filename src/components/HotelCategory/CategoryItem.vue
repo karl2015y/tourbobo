@@ -45,7 +45,7 @@
                                 <div
                                     @click="toggleFilterTag(item)"
                                     :class="{
-                                        '!bg-[#00586E] text-white border-white shadow': item === filterTag
+                                        '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
                                     text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
@@ -53,6 +53,14 @@
                                     "
                                 >
                                     {{ item }}
+                                    <q-tooltip
+                                        :delay="500"
+                                        anchor="top middle"
+                                        self="bottom middle"
+                                        transition-show="flip-right"
+                                        transition-hide="flip-left"
+                                        :class="item === filterTag ? 'opacity-100' : 'opacity-0'"
+                                    >再點一下可以關閉</q-tooltip>
                                 </div>
                             </template>
                         </div>
@@ -661,16 +669,19 @@ const showNextButton = ref(true)
 const showPrevButton = ref(false)
 
 const checkNextPrevButtonVisable = () => {
-    if ((hotelSwiperElement.value.$el.querySelector(`.swiper-button-next.swiper-button-disabled`))) {
-        showNextButton.value = false
-    } else {
-        showNextButton.value = true
+    if (hotelSwiperElement.value && hotelSwiperElement.value.$el) {
+        if ((hotelSwiperElement.value.$el.querySelector(`.swiper-button-next.swiper-button-disabled`))) {
+            showNextButton.value = false
+        } else {
+            showNextButton.value = true
+        }
+        if ((hotelSwiperElement.value.$el.querySelector(`.swiper-button-prev.swiper-button-disabled`))) {
+            showPrevButton.value = false
+        } else {
+            showPrevButton.value = true
+        }
     }
-    if ((hotelSwiperElement.value.$el.querySelector(`.swiper-button-prev.swiper-button-disabled`))) {
-        showPrevButton.value = false
-    } else {
-        showPrevButton.value = true
-    }
+
 }
 const swiperNext = () => {
     (hotelSwiperElement.value.$el.querySelector(`.swiper-button-next`) as HTMLElement)?.click()
