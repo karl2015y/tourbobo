@@ -121,8 +121,8 @@
 
 
                 <li
-                    @click="hotelFocusCategory = category.name"
-                    class="text-2xl  text-center font-bold w-72 py-3"
+                    @click="clickQueryLink('category', category.name)"
+                    class="cursor-pointer text-2xl  text-center font-bold w-72 py-3"
                     :class="{ 'bg-[#F6EAD4]': category.name == hotelFocusCategory }"
                 >
                     <div class="animate__animated">

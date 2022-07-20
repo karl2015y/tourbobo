@@ -36,12 +36,23 @@
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                    <q-scroll-area class="h-12 md:h-14 w-full">
+                    <q-scroll-area
+                        class="h-12 md:h-14 w-full"
+                        v-if="props.hotelSubCategoryData.hotel_tags && props.hotelSubCategoryData.hotel_tags.length > 0"
+                    >
                         <div class="mt-3 flex flex-nowrap">
-                            <template v-for="item in 4">
+                            <template v-for="item in props.hotelSubCategoryData.hotel_tags">
                                 <div
-                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
-                                    新上架
+                                    @click="toggleFilterTag(item)"
+                                    :class="{
+                                        '!bg-[#00586E] text-white border-white shadow': item === filterTag
+                                    }"
+                                    class=" cursor-pointer
+                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                    bg-white text-[#00586E] border-[#00586E]
+                                    "
+                                >
+                                    {{ item }}
                                 </div>
                             </template>
                         </div>
@@ -49,14 +60,14 @@
 
                     <!-- 手機版 -->
                     <div class="-mt-5  md:hidden">
-                        <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
+                        <template v-for="hotel in hotelSubCategoryDataByFilter.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
                                 class="mt-8"
                             />
                         </template>
 
-                        <template v-if="props.hotelSubCategoryData.hotels.length > 4">
+                        <template v-if="hotelSubCategoryDataByFilter.length > 4">
                             <div
                                 v-if="!showMoreHotel"
                                 class="w-full text-center mt-12"
@@ -66,7 +77,7 @@
                                     class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
@@ -81,28 +92,32 @@
                     <!-- 電腦版 -->
                     <div class="relative mt-3 hidden md:!block">
 
+                        <q-btn
+                            v-if="showPrevButton"
+                            class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                            flat
+                            round
+                            icon="west"
+                            @click="swiperPrev()"
+                        />
                         <swiper
                             ref="hotelSwiperElement"
                             navigation
                             :modules="[Navigation]"
                             :space-between="38"
-                            loop
                             :slides-per-view="$q.screen.gt.md ? 3 : $q.screen.gt.sm ? 2 : 1"
                         >
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter">
                                 <swiper-slide>
                                     <hotel-card
                                         class="my-4"
                                         :hotel="hotel"
                                     />
                                 </swiper-slide>
-
-
                             </template>
-
-
                         </swiper>
                         <q-btn
+                            v-if="showNextButton"
                             class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                             flat
                             round
@@ -166,12 +181,23 @@
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                    <q-scroll-area class="h-12 md:h-14 w-full">
+                    <q-scroll-area
+                        class="h-12 md:h-14 w-full"
+                        v-if="props.hotelSubCategoryData.hotel_tags && props.hotelSubCategoryData.hotel_tags.length > 0"
+                    >
                         <div class="mt-3 flex flex-nowrap">
-                            <template v-for="item in 4">
+                            <template v-for="item in props.hotelSubCategoryData.hotel_tags">
                                 <div
-                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
-                                    新上架
+                                    @click="toggleFilterTag(item)"
+                                    :class="{
+                                        '!bg-[#00586E] text-white border-white shadow': item === filterTag
+                                    }"
+                                    class=" cursor-pointer
+                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                    bg-white text-[#00586E] border-[#00586E]
+                                    "
+                                >
+                                    {{ item }}
                                 </div>
                             </template>
                         </div>
@@ -179,13 +205,13 @@
 
                     <!-- 手機版 -->
                     <div class="-mt-5  md:hidden">
-                        <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
+                        <template v-for="hotel in hotelSubCategoryDataByFilter.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
                                 class="mt-8"
                             />
                         </template>
-                        <template v-if="props.hotelSubCategoryData.hotels.length > 4">
+                        <template v-if="hotelSubCategoryDataByFilter.length > 4">
                             <div
                                 v-if="!showMoreHotel"
                                 class="w-full text-center mt-12"
@@ -195,7 +221,7 @@
                                     class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
@@ -209,28 +235,32 @@
                     <!-- 電腦版 -->
                     <div class="relative mt-3 hidden md:!block">
 
+                        <q-btn
+                            v-if="showPrevButton"
+                            class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                            flat
+                            round
+                            icon="west"
+                            @click="swiperPrev()"
+                        />
                         <swiper
                             ref="hotelSwiperElement"
                             navigation
                             :modules="[Navigation]"
                             :space-between="38"
-                            loop
                             :slides-per-view="$q.screen.gt.md ? 3 : $q.screen.gt.sm ? 2 : 1"
                         >
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter">
                                 <swiper-slide>
                                     <hotel-card
                                         class="my-4"
                                         :hotel="hotel"
                                     />
                                 </swiper-slide>
-
-
                             </template>
-
-
                         </swiper>
                         <q-btn
+                            v-if="showNextButton"
                             class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                             flat
                             round
@@ -276,12 +306,23 @@
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                    <q-scroll-area class="h-12 md:h-14 w-full">
+                    <q-scroll-area
+                        class="h-12 md:h-14 w-full"
+                        v-if="props.hotelSubCategoryData.hotel_tags && props.hotelSubCategoryData.hotel_tags.length > 0"
+                    >
                         <div class="mt-3 flex flex-nowrap">
-                            <template v-for="item in 4">
+                            <template v-for="item in props.hotelSubCategoryData.hotel_tags">
                                 <div
-                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
-                                    新上架
+                                    @click="toggleFilterTag(item)"
+                                    :class="{
+                                        '!bg-[#00586E] text-white border-white shadow': item === filterTag
+                                    }"
+                                    class=" cursor-pointer
+                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                    bg-white text-[#00586E] border-[#00586E]
+                                    "
+                                >
+                                    {{ item }}
                                 </div>
                             </template>
                         </div>
@@ -289,13 +330,13 @@
 
                     <!-- 手機版 -->
                     <div class="-mt-5  md:hidden">
-                        <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
+                        <template v-for="hotel in hotelSubCategoryDataByFilter.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
                                 class="mt-8"
                             />
                         </template>
-                        <template v-if="props.hotelSubCategoryData.hotels.length > 4">
+                        <template v-if="hotelSubCategoryDataByFilter.length > 4">
                             <div
                                 v-if="!showMoreHotel"
                                 class="w-full text-center mt-12"
@@ -305,7 +346,7 @@
                                     class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
@@ -319,28 +360,32 @@
                     <!-- 電腦版 -->
                     <div class="relative mt-3 hidden md:!block">
 
+                        <q-btn
+                            v-if="showPrevButton"
+                            class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                            flat
+                            round
+                            icon="west"
+                            @click="swiperPrev()"
+                        />
                         <swiper
                             ref="hotelSwiperElement"
                             navigation
                             :modules="[Navigation]"
                             :space-between="38"
-                            loop
                             :slides-per-view="$q.screen.gt.md ? 3 : $q.screen.gt.sm ? 2 : 1"
                         >
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter">
                                 <swiper-slide>
                                     <hotel-card
                                         class="my-4"
                                         :hotel="hotel"
                                     />
                                 </swiper-slide>
-
-
                             </template>
-
-
                         </swiper>
                         <q-btn
+                            v-if="showNextButton"
                             class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                             flat
                             round
@@ -399,12 +444,23 @@
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                    <q-scroll-area class="h-12 md:h-14 w-full">
+                    <q-scroll-area
+                        class="h-12 md:h-14 w-full"
+                        v-if="props.hotelSubCategoryData.hotel_tags && props.hotelSubCategoryData.hotel_tags.length > 0"
+                    >
                         <div class="mt-3 flex flex-nowrap">
-                            <template v-for="item in 4">
+                            <template v-for="item in props.hotelSubCategoryData.hotel_tags">
                                 <div
-                                    class="text-sm mr-2 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg bg-white flex justify-center items-center rounded-3xl border text-[#00586E] border-[#00586E]">
-                                    新上架
+                                    @click="toggleFilterTag(item)"
+                                    :class="{
+                                        '!bg-[#00586E] text-white border-white shadow': item === filterTag
+                                    }"
+                                    class=" cursor-pointer
+                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                    bg-white text-[#00586E] border-[#00586E]
+                                    "
+                                >
+                                    {{ item }}
                                 </div>
                             </template>
                         </div>
@@ -412,13 +468,13 @@
 
                     <!-- 手機版 -->
                     <div class="-mt-5  md:hidden">
-                        <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(0, 4)">
+                        <template v-for="hotel in hotelSubCategoryDataByFilter.slice(0, 4)">
                             <hotel-card
                                 :hotel="hotel"
                                 class="mt-8"
                             />
                         </template>
-                        <template v-if="props.hotelSubCategoryData.hotels.length > 4">
+                        <template v-if="hotelSubCategoryDataByFilter.length > 4">
                             <div
                                 v-if="!showMoreHotel"
                                 class="w-full text-center mt-12"
@@ -428,7 +484,7 @@
                                     class="text-lg shadow-[4px_4px_0px_0px_rgba(0,88,110,1)]  bg-white rounded px-2 py-1 border-2 border-[#00586E]"
                                 >查看更多</button>
                             </div>
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels.slice(4)">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter.slice(4)">
                                 <hotel-card
                                     v-show="showMoreHotel"
                                     :hotel="hotel"
@@ -440,30 +496,35 @@
                         </template>
                     </div>
                     <!-- 電腦版 -->
+
                     <div class="relative mt-3 hidden md:!block">
 
+                        <q-btn
+                            v-if="showPrevButton"
+                            class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
+                            flat
+                            round
+                            icon="west"
+                            @click="swiperPrev()"
+                        />
                         <swiper
                             ref="hotelSwiperElement"
                             navigation
                             :modules="[Navigation]"
                             :space-between="38"
-                            loop
                             :slides-per-view="$q.screen.gt.md ? 3 : $q.screen.gt.sm ? 2 : 1"
                         >
-                            <template v-for="hotel in props.hotelSubCategoryData.hotels">
+                            <template v-for="hotel in hotelSubCategoryDataByFilter">
                                 <swiper-slide>
                                     <hotel-card
                                         class="my-4"
                                         :hotel="hotel"
                                     />
                                 </swiper-slide>
-
-
                             </template>
-
-
                         </swiper>
                         <q-btn
+                            v-if="showNextButton"
                             class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                             flat
                             round
@@ -505,7 +566,8 @@ import HotelCard from '@/components/HotelCard.vue';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { filter } from 'lodash';
 
 interface Props {
     styleType?: string;
@@ -529,8 +591,10 @@ interface Props {
                 "lang_key": string,
                 "class": string,
             }>,
+            tags?: Array<string>,
 
-        }>
+        }>,
+        hotel_tags?: Array<string>
 
     }
     isLast?: boolean
@@ -593,11 +657,50 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const hotelSwiperElement = ref()
+const showNextButton = ref(true)
+const showPrevButton = ref(false)
+
+const checkNextPrevButtonVisable = () => {
+    if ((hotelSwiperElement.value.$el.querySelector(`.swiper-button-next.swiper-button-disabled`))) {
+        showNextButton.value = false
+    } else {
+        showNextButton.value = true
+    }
+    if ((hotelSwiperElement.value.$el.querySelector(`.swiper-button-prev.swiper-button-disabled`))) {
+        showPrevButton.value = false
+    } else {
+        showPrevButton.value = true
+    }
+}
 const swiperNext = () => {
     (hotelSwiperElement.value.$el.querySelector(`.swiper-button-next`) as HTMLElement)?.click()
+    checkNextPrevButtonVisable()
+}
+const swiperPrev = () => {
+    (hotelSwiperElement.value.$el.querySelector(`.swiper-button-prev`) as HTMLElement)?.click()
+    checkNextPrevButtonVisable()
 }
 
 const showMoreHotel = ref(false)
+
+const filterTag = ref('')
+const toggleFilterTag = (tag: string) => {
+    if (filterTag.value == tag) {
+        filterTag.value = ''
+    } else {
+        filterTag.value = tag
+    }
+}
+const hotelSubCategoryDataByFilter = computed(() => {
+    setTimeout(() => {
+        checkNextPrevButtonVisable()
+    }, 10);
+    if (filterTag.value.length == 0) {
+        return props.hotelSubCategoryData.hotels
+    } else {
+        return props.hotelSubCategoryData.hotels.filter(hotel => hotel.tags && hotel.tags.indexOf(filterTag.value) > -1)
+    }
+})
 
 
 

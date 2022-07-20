@@ -198,7 +198,7 @@ const props = withDefaults(defineProps<Props>(), {
 });
 
 const priceFormat = (price: number) => {
-    return `${price.toLocaleString()}`
+    return price ? `${price.toLocaleString()}` : '無資料'
 }
 
 const addDays = function (date: Date, days: number) {

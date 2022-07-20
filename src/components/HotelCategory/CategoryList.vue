@@ -59,7 +59,7 @@
 <script setup lang="ts">
 import CategoryItem from '@/components/HotelCategory/CategoryItem.vue';
 import { computedAsync } from '@vueuse/core';
-import { find, sortBy, values } from 'lodash';
+import { find, findIndex, keyBy, keys, map, merge, pick, sortBy, uniq, values } from 'lodash';
 import { useQuasar } from 'quasar';
 import { computed, onMounted, ref, watch, watchEffect } from 'vue';
 import { useRoute } from 'vue-router';
@@ -76,35 +76,156 @@ const hotelCategoryData = ref([
                 name: '摩登城市',
                 description: '喜歡都市的繁華嗎？我們提供你最摩登的選擇，如果你是標準都市人，入住這些準沒錯。',
                 discountDescription: '優惠100分啦',
-                hotel_ids: ['160', '533', '507', '426', '94', '545', '344', '520', '540', '512', '567', '485']
+                hotels: [
+                    {
+                        hotel_id: '160',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '533',
+                        tags: ['特色2', '特色3']
+                    },
+                    {
+                        hotel_id: '507',
+                        tags: ['特色3', '特色4']
+                    },
+                    {
+                        hotel_id: '426',
+                        tags: ['特色4', '特色5']
+                    },
+                    {
+                        hotel_id: '94',
+                        tags: ['特色5', '特色6']
+                    },
+                    {
+                        hotel_id: '545',
+                        tags: ['特色6', '特色7']
+                    },
+                    {
+                        hotel_id: '344',
+                        tags: ['特色7', '特色8']
+                    },
+                    {
+                        hotel_id: '520',
+                        tags: ['特色8', '特色9']
+                    },
+                    {
+                        hotel_id: '540',
+                        tags: ['特色9', '特色10']
+                    },
+                    {
+                        hotel_id: '512',
+                        tags: ['特色10', '特色11']
+                    },
+                    {
+                        hotel_id: '567',
+                        tags: ['特色11', '特色12']
+                    },
+                    {
+                        hotel_id: '485',
+                        tags: ['特色12', '特色13']
+                    },
+                ]
             },
             {
                 order: '2',
                 name: '文藝氣息',
                 description: '文青少年少女的最愛，假日想逛市集又想住漂亮的旅館嗎？這些旅館絕對能滿足你的文青魂。',
                 discountDescription: '優惠99分啦',
-                hotel_ids: ['294', '295', '18', '573']
+                hotels: [
+                    {
+                        hotel_id: '294',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '295',
+                        tags: ['特色2', '特色3']
+                    },
+                    {
+                        hotel_id: '18',
+                        tags: ['特色3', '特色4']
+                    },
+                    {
+                        hotel_id: '573',
+                        tags: ['特色4', '特色5']
+                    },
+                ]
             },
             {
                 order: '3',
                 name: '度假風情',
                 description: '出國不了很鬱卒嗎？台灣本島也是可以好好渡假的！提供比出國更享受的體驗。',
                 discountDescription: '',
-                hotel_ids: ['65', '536', '552', '183']
+                // hotel_ids: ['65', '536', '552', '183'],
+                hotels: [
+                    {
+                        hotel_id: '65',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '536',
+                        tags: ['特色2', '特色3']
+                    },
+                    {
+                        hotel_id: '552',
+                        tags: ['特色3', '特色4']
+                    },
+                    {
+                        hotel_id: '183',
+                        tags: ['特色4', '特色2']
+                    },
+                ]
             },
             {
                 order: '4',
                 name: '創意風格',
                 description: '這些跳耀的顏色與吸睛的風格旅館絕對是身為創意人的你不可錯過的入住選擇！',
                 discountDescription: '',
-                hotel_ids: ['342', '546', '543']
+                // hotel_ids: ['342', '546', '543'],
+                hotels: [
+                    {
+                        hotel_id: '342',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '546',
+                        tags: ['特色2', '特色3']
+                    },
+                    {
+                        hotel_id: '543',
+                        tags: ['特色3', '特色4']
+                    },
+
+                ]
             },
             {
                 order: '5',
                 name: '部落風情',
                 description: '一起來體驗看看原民風的生活吧！娜路彎系列絕對是你的好選擇，喜歡原民文化的你千萬別錯過。',
                 discountDescription: '',
-                hotel_ids: ['479', '478', '476', '477', '475']
+                // hotel_ids: ['479', '478', '476', '477', '475'],
+                hotels: [
+                    {
+                        hotel_id: '479',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '478',
+                        tags: ['特色2', '特色3']
+                    },
+                    {
+                        hotel_id: '476',
+                        tags: ['特色3', '特色4']
+                    },
+                    {
+                        hotel_id: '477',
+                        tags: ['特色4', '特色2']
+                    },
+                    {
+                        hotel_id: '475',
+                        tags: ['特色5', '特色6']
+                    },
+                ]
             },
 
         ]
@@ -117,35 +238,138 @@ const hotelCategoryData = ref([
                 name: '雀客系列',
                 description: '用溫柔與品味迎接每一位遠道而來的旅客蒞臨，雀客系列是你最好的旅行夥伴。',
                 discountDescription: '優惠100分啦',
-                hotel_ids: ['342', '160', '295']
+                hotels: [
+                    {
+                        hotel_id: '342',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '160',
+                        tags: ['特色2', '特色3']
+                    },
+                    {
+                        hotel_id: '295',
+                        tags: ['特色3', '特色4']
+                    },
+
+                ]
             },
             {
                 order: '2',
                 name: '娜路彎系列',
                 description: '最讓人身歷其境的原民風格，體驗最真實的原民文化，如果你也喜歡原住民帶來的溫暖，一定要來體驗看看。',
                 discountDescription: '優惠99分啦',
-                hotel_ids: ['479', '478', '476', '477', '475']
+                hotels: [
+                    {
+                        hotel_id: '479',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '478',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '476',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '477',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '475',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '3',
                 name: '奇異果系列',
                 description: '最年輕、舒活的清新風格，打造出全新優質的平價旅館體驗！跳脫傳統旅店的框架，給你最有活力的享受。',
                 discountDescription: '',
-                hotel_ids: ['183', '466', '468', '500']
+                hotels: [
+                    {
+                        hotel_id: '183',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '466',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '468',
+                        tags: ['特色3', '特色4']
+                    },
+                    {
+                        hotel_id: '500',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '4',
                 name: '鐵花系列',
                 description: '以「旅人驛站」為題，象徵面對長途的旅程，這裡就是你途中的驛站，隨時準備好讓你擁有舒適的休息體驗。',
                 discountDescription: '',
-                hotel_ids: ['498', '492', '497', '491', '490']
+                hotel_ids: ['498', '492', '497', '491', '490'],
+                hotels: [
+                    {
+                        hotel_id: '498',
+                        tags: ['特色1', '特色2']
+                    },
+                    {
+                        hotel_id: '492',
+                        tags: ['特色2', '特色3']
+                    },
+                    {
+                        hotel_id: '497',
+                        tags: ['特色3', '特色4']
+                    },
+                    {
+                        hotel_id: '491',
+                        tags: ['特色4', '特色2']
+                    },
+                    {
+                        hotel_id: '490',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '5',
                 name: '美系列',
                 description: '「美」是一種生活，也是一種態度，你的旅途之美由你自己決定。',
                 discountDescription: '',
-                hotel_ids: ['344', '324', '521', '522', '530', '535', '582']
+                hotels: [
+                    {
+                        hotel_id: '344',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '324',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '521',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '522',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '530',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '535',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '582',
+                        tags: []
+                    },
+                ]
             },
 
         ]
@@ -158,28 +382,96 @@ const hotelCategoryData = ref([
                 name: '包棟',
                 description: '朋友出遊好難找飯店？別擔心，這裡有超適合你們的包棟民宿，再多人，也不怕。',
                 discountDescription: '優惠100分啦',
-                hotel_ids: ['240', '527', '580', '569', '424']
+                hotels: [
+                    {
+                        hotel_id: '240',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '527',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '580',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '569',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '424',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '2',
                 name: '北部',
                 description: '北部旅遊超人氣的推薦民宿，漫遊台北住這些，品味提升在無意間。',
                 discountDescription: '優惠99分啦',
-                hotel_ids: ['572', '488', '570', '571']
+                hotels: [
+                    {
+                        hotel_id: '572',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '488',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '570',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '571',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '3',
                 name: '南部',
                 description: '南部的熱情澆熄不了我們旅遊的心，這些民宿比天氣更熱，讓你體驗全方位的南部味。',
                 discountDescription: '',
-                hotel_ids: ['552', '239', '463']
+                hotels: [
+                    {
+                        hotel_id: '552',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '239',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '463',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '4',
                 name: '東部',
                 description: '好山好水好空氣，來到怡人的東部天堂旅遊必住這些。',
                 discountDescription: '',
-                hotel_ids: ['548', '498', '549', '424']
+                hotels: [
+                    {
+                        hotel_id: '548',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '498',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '549',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '424',
+                        tags: []
+                    },
+                ]
             },
 
 
@@ -194,21 +486,64 @@ const hotelCategoryData = ref([
                 name: '北部',
                 description: '好想帶毛小孩一起北上出去玩嗎？快來看這些北部旅遊的寵物天堂吧！',
                 discountDescription: '優惠99分啦',
-                hotel_ids: ['545', '553', '487', '563']
+                hotels: [
+                    {
+                        hotel_id: '545',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '553',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '487',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '563',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '2',
                 name: '南部',
                 description: '我要跟我的毛寶貝一起去南部曬太陽！這些南部旅館提供你絕無僅有的寵物旅遊超讚體驗。',
                 discountDescription: '',
-                hotel_ids: ['546', '465', '183']
+                hotels: [
+                    {
+                        hotel_id: '546',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '465',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '183',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '3',
                 name: '東部',
                 description: '東部毛孩好去處，快來去東部與毛孩快樂住一晚。',
                 discountDescription: '',
-                hotel_ids: ['549', '548', '439']
+                hotels: [
+                    {
+                        hotel_id: '549',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '548',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '439',
+                        tags: []
+                    },
+                ]
             },
 
 
@@ -223,21 +558,65 @@ const hotelCategoryData = ref([
                 name: '星級奢華專區',
                 description: '星級享受在這裡！假日就該好好來一場星級飯店的快樂。',
                 discountDescription: '優惠99分啦',
-                hotel_ids: ['557', '465', '558']
+                hotels: [
+                    {
+                        hotel_id: '557',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '465',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '558',
+                        tags: []
+                    },
+
+                ]
             },
             {
                 order: '2',
                 name: '熱銷首選專區',
                 description: 'tourbobo最熱銷的旅館在這裡，高CP值、高質感享受，不知道住哪裡就從這裡選。',
                 discountDescription: '',
-                hotel_ids: ['555', '489', '564']
+                hotels: [
+                    {
+                        hotel_id: '555',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '489',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '564',
+                        tags: []
+                    },
+                ]
             },
             {
                 order: '3',
                 name: '快樂小資專區',
                 description: '小資族福星tourbobo摘給你，我們要快樂出遊，荷包也開心。',
                 discountDescription: '',
-                hotel_ids: ['525', '524', '448', '539']
+                hotels: [
+                    {
+                        hotel_id: '525',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '524',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '448',
+                        tags: []
+                    },
+                    {
+                        hotel_id: '539',
+                        tags: []
+                    },
+                ]
             },
 
 
@@ -271,16 +650,27 @@ const getCurrentHotelDetail = () => {
     currentHotelList.value?.subCategoryData.forEach(async item => {
         const myHeaders = new Headers();
         myHeaders.append("Accept-Language", "zh_TW");
-        const response = await fetch(hotelsLink(item.hotel_ids as Array<string>), {
+        const hotel_ids = map(item.hotels, (o) => o.hotel_id)
+        const hotel_tags: string[] = []
+        item.hotels.forEach(item => {
+            hotel_tags.push(...item.tags)
+        })
+        const response = await fetch(hotelsLink(hotel_ids as Array<string>), {
             method: 'GET',
             headers: myHeaders,
         });
         const result = await response.text()
+
+        const serverHotelDetail = keyBy((JSON.parse(result) as any)['data'], 'hotel_id')
+        const keyOfServerHotelDetails = keys(serverHotelDetail)
+        const localHotelDetail = pick(keyBy(item.hotels, 'hotel_id'), keyOfServerHotelDetails)
+        const hotels = values(merge(serverHotelDetail, localHotelDetail)).sort((a, b) => findIndex(item.hotels, ['hotel_id', a.hotel_id]) - findIndex(item.hotels, ['hotel_id', b.hotel_id]))
         currentHotelDetailList.value[item.order] = {
             name: item.name,
             description: item.description,
             discountDescription: item.discountDescription,
-            hotels: (JSON.parse(result) as any)['data']
+            hotels: hotels,
+            hotel_tags: uniq(hotel_tags)
         }
         loading.value = false
     });
