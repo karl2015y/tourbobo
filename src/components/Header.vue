@@ -7,11 +7,11 @@
       class="header fixed z-20 bg-white w-full top-0 left-0 "
     >
 
-      <q-responsive :ratio="$q.screen.lt.sm ? 375 / 60 : $q.screen.lt.md ? 1920 / 150 : 1920 / 80">
+      <q-responsive :ratio="$q.screen.lt.sm ? 375 / 60 : 1920 / 80">
         <div class="max-w-[1920px] mx-auto px-4 h-full sm:px-14 flex flex-nowrap justify-between items-center gap-8">
           <q-router-link to="/home">
             <q-img
-              class="min-w-[152px] w-[40.5vw] sm:w-[12vw] max-w-[230px]"
+              class="min-w-[100px] w-[40.5vw] sm:w-[12vw] max-w-[230px]"
               src="@/assets/logo-big.png"
               :ratio="230 / 47"
             />
@@ -20,7 +20,7 @@
           <div>
             <ul class="hidden sm:!flex ">
               <template v-for="link in props.menuLinks">
-                <li class="sm:pl-3 md:pl-12 relative">
+                <li class="sm:pl-3 md:pl-12 relative text-lg">
 
                   <q-router-link :to="link.link">
                     {{ link.text }}
@@ -159,29 +159,34 @@
               size="1.5rem"
               class="-mt-1 mr-2"
             />
-            <a
-              href=""
+
+            <q-router-link
+              to=""
               class="text-lg"
-            >登入</a>
+            >登入</q-router-link>
+
             <span class="block mx-1">/</span>
-            <a
-              href=""
+
+            <q-router-link
+              to=""
               class="text-lg"
-            >註冊</a>
+            >註冊</q-router-link>
+
           </div>
 
           <div class="mt-4 bg-[#F6AC00] hover:bg-[#f9b10b]  rounded-3xl w-[318px] mx-auto text-white text-center">
-            <a
+
+            <q-router-link
+              to=""
               class="p-1.5 font-bold block tracking-[.2em]"
-              href=""
             >
               登入tourbobo訂房即可領取專屬優惠！
-            </a>
+            </q-router-link>
           </div>
 
           <div class="mt-4 mb-8 mx-auto flex  justify-center items-center">
-            <a
-              :href="link.facebook"
+            <q-router-link
+              :to="link.facebook"
               class="mr-6"
             >
               <svg
@@ -197,10 +202,11 @@
                 />
               </svg>
 
-            </a>
-            <a
-              :href="link.line"
+            </q-router-link>
+
+            <q-router-link
               class="mr-6"
+              :to="link.line"
             >
               <svg
                 width="23"
@@ -231,8 +237,9 @@
                 />
               </svg>
 
-            </a>
-            <a :href="link.instagram">
+            </q-router-link>
+
+            <q-router-link :to="link.instagram">
               <svg
                 width="23"
                 height="23"
@@ -253,8 +260,8 @@
                   fill="black"
                 />
               </svg>
+            </q-router-link>
 
-            </a>
           </div>
         </div>
 

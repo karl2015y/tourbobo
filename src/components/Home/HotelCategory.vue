@@ -1,10 +1,10 @@
 <template>
-    <div class="max-w-[1920px] mx-auto w-full sm:mt-24">
+    <div class="max-w-[1540px] sm:mx-auto w-full sm:mt-24">
         <div class="relative text-center z-10">
 
             <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">特色飯店分類</div>
 
-            <div class=" sm:mt-5 mx-5 sm:mx-28 select-none	flex justify-center sm:flex-nowrap">
+            <div class=" sm:mt-5 mx-5  select-none	flex justify-center sm:flex-nowrap">
 
                 <template v-for="category in props.hotelCategories">
 
@@ -13,7 +13,7 @@
                         <q-router-link :to="`/hotel-category?category=${category.name}`">
 
                             <q-responsive
-                                class="w-[32vw] min-w-[120px] sm:w-[13.85vw] max-w-[266] relative"
+                                class="w-[32vw] min-w-[120px] sm:w-[13.85vw] max-w-[266px] relative"
                                 :ratio="1"
                             >
                                 <img

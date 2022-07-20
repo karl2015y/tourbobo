@@ -1,7 +1,7 @@
 <template>
     <div
         id="about"
-        class="max-w-[1920px] mx-auto mt-20 sm:flex relative z-10"
+        class="max-w-[1460px] mx-auto mt-20 sm:flex relative z-10"
     >
         <div class="mx-8 sm:w-1/2 sm:ml-44 sm:mt-28">
             <div class="text-2xl sm:text-3xl 2xl:text-4xl font-bold text-[#2B4162] text-center sm:text-left">

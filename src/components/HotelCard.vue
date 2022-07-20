@@ -59,14 +59,15 @@
         </div>
         <div class="mt-2 px-4 sm:flex justify-between gap-4">
             <div>
-                <div class="text-xl font-bold mt-4 mb-2 text-left sm:text-base">
-                    <a :href="hotelLink(`${props.hotel.hotel_id}`)">
+                <div class="text-xl font-bold mt-4 mb-2 text-left sm:text-base sm:h-14">
+
+                    <q-router-link :to="hotelLink(`${props.hotel.hotel_id}`)">
                         {{ props.hotel.name }}
-                    </a>
+                    </q-router-link>
                 </div>
-                <ul class="flex sm:hidden gap-1.5">
+                <ul class="flex sm:h-14">
                     <template v-for=" tag in props.hotel.facility_tags">
-                        <li>
+                        <li class="mr-1.5">
                             <q-icon
                                 name="check"
                                 class="-mt-1 text-white bg-[#6DCD01] rounded-full p-0.5 font-black"
@@ -83,41 +84,20 @@
                     <div class="text-[#DC492A] text-2xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}</div>
                 </div>
             </div>
-            <div class="hidden sm:!flex items-center  ">
-                <ul class="flex flex-col gap-1.5 ">
-                    <template v-for=" tag in props.hotel.facility_tags">
-                        <li class="text-left whitespace-nowrap sm:w-24 sm:truncate">
-                            <q-icon
-                                name="check"
-                                class=" text-white bg-[#6DCD01] rounded-full p-0.5 font-black"
-                            />
-                            {{ tag.name }}
-                            <q-tooltip
-                                v-if="tag.name.length > 4"
-                                transition-show="flip-up"
-                                transition-hide="flip-down"
-                                anchor="center middle"
-                                self="center middle"
-                                class="bg-white text-black"
-                            >{{ tag.name }}</q-tooltip>
-                        </li>
-                    </template>
-                </ul>
-            </div>
 
             <!-- 立即下單 -->
 
         </div>
         <div class="mt-5 sm:mt-4 relative rounded-b-xl w-full bg-[#00586E] h-3 sm:h-4">
-            <a
-                :href="hotelLink(`${props.hotel.hotel_id}`)"
+            <q-router-link
+                :to="hotelLink(`${props.hotel.hotel_id}`)"
                 class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-1/2 "
             >
                 <div
                     class="text-center sm:text-xl font-medium  bg-[#00586E] text-white border-2 border-white rounded-3xl py-1">
                     立即下訂
                 </div>
-            </a>
+            </q-router-link>
         </div>
     </div>
 </template>

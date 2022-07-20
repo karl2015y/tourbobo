@@ -1,13 +1,13 @@
 <template>
-    <div class="relative w-full z-10">
+    <div class="relative w-full z-10 ">
         <q-img
-            class="hidden sm:!block absolute -z-10 top-5 lef-0 w-full"
+            class="top-bg-img hidden sm:!block absolute -z-10 top-0 lef-0 w-full max-h-[777px] object-cover"
             :ratio="1920 / 777"
             src="@/assets/post/bg-post.svg"
         />
         <!-- 
         /> -->
-        <div class="sm:flex justify-between mt-0 sm:mt-14 sm:mx-14">
+        <div class="sm:flex justify-between mt-0 sm:mt-14 sm:mx-14 max-w-[1920px] ">
             <div class="hidden sm:!block w-full sm:w-[30%]  ">
                 <template v-for="category in postCategory">
                     <div
@@ -82,11 +82,11 @@
                         </div>
 
                     </q-router-link>
-                    <div class="text-4xl font-bold text-[#005A72]">
+                    <div class="text-4xl font-bold text-[#005A72] hidden sm:!block">
                         {{ currentPost.title }}
 
                     </div>
-                    <div class="text-lg mt-3">
+                    <div class="text-lg mt-3  hidden sm:!block">
                         {{ currentPost.subTitle }}
 
                     </div>
@@ -101,7 +101,7 @@
                     </div>
 
                     <div
-                        class="mt-4"
+                        class="mt-5 sm:mt-20 min-h-[50vh] text-base "
                         v-html="currentPost.content"
                     >
 
@@ -260,7 +260,12 @@
 
         </div>
 
+        <q-img
+            class="hidden sm:!block"
+            src="@/assets/post/footer-post.png"
+        />
     </div>
+
 
 </template>
 
@@ -270,9 +275,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper";
 import { RouteRecord, useRoute, useRouter } from "vue-router";
-import { computed, ref } from "vue";
+import { computed, ref, watchEffect } from "vue";
 import { unionBy, orderBy, map, partialRight, pick, filter, find } from "lodash";
 import { useWindowSize } from '@vueuse/core'
+import { useMainStore } from "../../stores/main.store";
+import { useQuasar } from "quasar";
 const windowSize = useWindowSize()
 const route = useRoute()
 const router = useRouter()
@@ -282,6 +289,7 @@ const clickQueryLink = (queryKey: string, queryValue: string) => {
 const clickQueryLinkByObject = (queryObj: { [queryKey: string]: string }) => {
     router.push({ ...route, query: queryObj })
 }
+
 
 
 const postArray = ref([
@@ -362,9 +370,22 @@ const currentPost = computed(() => {
     return null
 })
 //注意事項
-const noteVisible = ref(false)
+const noteVisible = ref(true)
 // 返回上一頁的緩存
 const cacheHistoryRoutePath = ref('')
+
+
+const mainStore = useMainStore()
+
+watchEffect(() => {
+    if (windowSize.width.value < 640) {
+        mainStore.footer.styleType = "1"
+        mainStore.footer.zIndex = 0
+    } else {
+        mainStore.footer.styleType = "3"
+        mainStore.footer.zIndex = 10
+    }
+})
 
 </script>
 
@@ -382,5 +403,15 @@ const cacheHistoryRoutePath = ref('')
 .post-card {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
     @apply my-[2.5vw] w-[83.46vw] min-w-[313px] min-h-[122px] relative pt-6 pb-3 px-3 bg-[#FFFEFF] rounded-xl
+}
+
+@media (min-width: 1940px) {
+    .top-bg-img {
+        clip-path: polygon(100% 1%, 100% 100%, 82% 90%, 57% 81%, 34% 82%, 13% 90%, 0 100%, 0 0);
+    }
+
+    .max-w-\[1920px\] {
+        @apply mx-auto
+    }
 }
 </style>

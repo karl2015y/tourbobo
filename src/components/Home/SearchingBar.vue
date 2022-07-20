@@ -85,7 +85,7 @@
                 </Transition>
 
             </div>
-            <div class="mt-4 flex gap-4 flex-nowrap flex-col sm:flex-row">
+            <div class="mt-4 flex flex-nowrap flex-col sm:flex-row">
                 <!-- 日期選擇 -->
                 <div
                     ref="dateRangeElement"
@@ -170,7 +170,7 @@
                 <!-- 房間選擇 -->
                 <div
                     ref="roomElement"
-                    class="sm:hover:shadow-md relative w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
+                    class="mt-4 sm:hover:shadow-md relative w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
                     :class="{ 'z-10': roomElementIsHovered }"
                     @click="roomElementIsHovered = true"
                 >
@@ -301,13 +301,13 @@
                 @click="gotoLink(searchLink)"
                 label="搜尋"
                 color="primary"
-                class="mt-4 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-16 sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
+                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-12 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
             />
             <q-btn
                 v-else
                 label="搜尋"
                 color="primary"
-                class="mt-4 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-16 sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
+                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-16 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
             />
         </div>
     </div>

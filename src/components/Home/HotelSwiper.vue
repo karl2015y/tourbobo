@@ -1,9 +1,9 @@
 <template>
-    <div class="max-w-[1920px] mx-auto w-full mt-20 sm:mt-24">
+    <div class=" w-full mt-20 sm:mt-24">
         <div class="relative text-center z-10">
             <img
                 src="@/assets/bg-hotelSwiper.svg"
-                class="absolute -top-12 left-0 -z-10"
+                class="absolute -top-12 left-0 -z-10 w-full"
             >
             <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] ">精選推薦飯店</div>
 
@@ -39,9 +39,9 @@
 
                 </q-tabs>
                 <template v-if="currentHotelList?.length > 0">
-                    <div class="relative mt-3 hidden sm:!block">
+                    <div class="relative mt-3 hidden sm:!block max-w-[1660px] mx-auto">
                         <q-btn
-                        v-if="currentHotelList.length>4"
+                            v-if="currentHotelList.length > 4"
                             class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white  hidden sm:!flex absolute -left-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                             flat
                             round
@@ -54,9 +54,7 @@
                             :modules="[Navigation]"
                             :slides-per-view="$q.screen.lt.md ? 3 : 4"
                             :space-between="30"
-                            :loop="currentHotelList.length>4"
-                            
-
+                            :loop="currentHotelList.length > 4"
                         >
                             <template v-for="hotel in currentHotelList">
                                 <swiper-slide class="pb-4">
@@ -65,7 +63,7 @@
                             </template>
                         </swiper>
                         <q-btn
-                        v-if="currentHotelList.length>4"
+                            v-if="currentHotelList.length > 4"
                             class="hover:bg-[#DB5F1D] hover:border-0 hover:text-white hidden sm:!flex absolute -right-14 top-1/2 -translate-y-1/2 border-solid border-2 border-gray-400 text-gray-400"
                             flat
                             round

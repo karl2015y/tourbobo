@@ -566,7 +566,7 @@ import HotelCard from '@/components/HotelCard.vue';
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { filter } from 'lodash';
 
 interface Props {
@@ -701,6 +701,8 @@ const hotelSubCategoryDataByFilter = computed(() => {
         return props.hotelSubCategoryData.hotels.filter(hotel => hotel.tags && hotel.tags.indexOf(filterTag.value) > -1)
     }
 })
+
+onMounted(checkNextPrevButtonVisable)
 
 
 

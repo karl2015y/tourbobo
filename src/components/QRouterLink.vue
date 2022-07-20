@@ -2,6 +2,7 @@
     <a
         v-if="isOutSideLink"
         :href="props.to"
+        target="_blank"
     >
         <slot></slot>
     </a>

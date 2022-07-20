@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-[1920px] mx-auto w-full mt-20 sm:mt-10">
+    <div class="max-w-[1800px] mx-auto w-full mt-20 sm:mt-10">
         <div class="relative text-center">
             <div class="relative flex justify-center items-center">
                 <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">優惠活動資訊</div>

@@ -18,15 +18,15 @@
                             :src="item.smallImage"
                         >
                         <!-- <div class="absolute top-0 left-0 w-full h-full bg-[#00000070]"></div> -->
-                        <a
-                            :href="item.link"
+                        <q-router-link
+                            :to="item.link"
                             class="absolute bottom-5 sm:bottom-1/3 left-1/2 -translate-x-1/2"
                         >
                             <div
                                 class="flex justify-center items-center min-w-[85px] w-[10vw] max-w-[180px] sm:h-[3.645vw] max-h-[70px] sm:text-[1.4vw] 2xl:text-[27px] rounded-full border-2 border-white bg-[#00586E] text-white ">
                                 查看更多
                             </div>
-                        </a>
+                        </q-router-link>
                     </div>
 
 

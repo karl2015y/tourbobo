@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-[1920px] mx-auto w-full mt-20 sm:mt-24">
+    <div class="max-w-[1540px] mx-auto w-full mt-20 sm:mt-24">
         <div class="relative text-center z-10">
             <div class="relative flex justify-center items-center">
                 <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] -translate-x-6">熱門城市</div>
@@ -10,9 +10,9 @@
                     src="@/assets/title-bg.svg"
                 >
             </div>
-            <div class=" sm:mt-10 mx-5 sm:mx-16 xl:mx-20 2xl:mx-24 select-none	">
+            <div class="sm:mt-10 mx-5 sm:mx-16 md:mx-20 xl:mx-24 2xl:mx-0 select-none	">
 
-                <div class="flex  justify-center sm:justify-between 2xl:justify-around flex-wrap sm:flex-nowrap">
+                <div class="flex  justify-center sm:justify-around flex-wrap ">
                     <template v-for="city in props.cities">
                         <div
                             class="cursor-pointer mx-2 sm:mx-0"
@@ -20,7 +20,7 @@
                         >
 
                             <q-img
-                                class="octagon w-[18vw] sm:min-w-[40px] sm:w-[6vw] md:w-[7vw] lg:w-[9vw] xl:w-[10vw] 2xl:w-[11vw] max-w-[170px]"
+                                class="octagon w-[18vw] sm:min-w-[40px] sm:w-[10vw] max-w-[200px]"
                                 :src="city.image"
                                 :ratio="1"
                             />
@@ -69,7 +69,7 @@ const props = withDefaults(defineProps<Props>(), {
             "city_en_name": "new-taipei-city",
             "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E6%96%B0%E5%8C%97.jpg?alt=media&token=d3eb4b48-c809-4457-a231-aafa68191e23"
         },
-          {
+        {
             "city_id": 5,
             "city_name": "桃園",
             "city_en_name": "taoyuan",
@@ -93,8 +93,8 @@ const props = withDefaults(defineProps<Props>(), {
             "city_en_name": "tainan",
             "image": "https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Fcityies%2F%E5%8F%B0%E5%8D%97.jpg?alt=media&token=4625df90-9806-4453-b24b-b33b536f4721"
         },
-        
-      
+
+
         {
             "city_id": 16,
             "city_name": "高雄",
