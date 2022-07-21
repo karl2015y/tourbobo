@@ -2,7 +2,7 @@
     <div class="max-w-[1540px] mx-auto w-full mt-20 sm:mt-24">
         <div class="relative text-center z-10">
             <div class="relative flex justify-center items-center">
-                <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] -translate-x-6">熱門城市</div>
+                <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] sm:-translate-x-6 ">熱門城市</div>
                 <img
                     class="-z-10
                     absolute top-1/2 left-1/2 -translate-x-[45%] -translate-y-1/3
@@ -10,7 +10,7 @@
                     src="@/assets/title-bg.svg"
                 >
             </div>
-            <div class="sm:mt-10 mx-5 sm:mx-16 md:mx-20 xl:mx-24 2xl:mx-0 select-none	">
+            <div class="mt-5 sm:mt-10 mx-5 sm:mx-16 md:mx-20 xl:mx-24 2xl:mx-0 select-none	">
 
                 <div class="flex  justify-center sm:justify-around flex-wrap ">
                     <template v-for="city in props.cities">

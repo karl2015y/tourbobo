@@ -84,8 +84,11 @@
         <div>
           <q-responsive :ratio="375 / 75">
             <div class="px-3.5 w-full h-full bg-[#00586E] relative flex items-center">
-              <button @click="showPhoneMenu = false">
-                <img src="@/assets/arrow-left.svg">
+              <button @click="showPhoneMenu = false" class="rotate-0">
+                <img
+                  class="animate__rotateIn animate__animated 	"
+                  src="@/assets/arrow-left.svg"
+                >
               </button>
               <q-router-link
                 to="/"
