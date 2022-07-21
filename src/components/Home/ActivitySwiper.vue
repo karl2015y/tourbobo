@@ -36,10 +36,12 @@
                                             :src="item.image"
                                             :ratio="545 / 210"
                                         />
-                                        <div  class="sm:hidden mt-1">{{ item.name }}</div>
+                                        <div class="sm:hidden mt-1">{{ item.name }}</div>
                                     </q-router-link>
 
+                                    <q-tooltip>{{ item.name }}</q-tooltip>
                                 </div>
+
 
                             </swiper-slide>
                         </template>
@@ -68,7 +70,8 @@
 import { Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
+import { ActivityType } from '../../types/home.type';
 
 const swiperNext = (id: string) => {
     (document.querySelector(`#${id} .swiper-button-next`) as HTMLElement)?.click()
@@ -77,25 +80,13 @@ const swiperPrev = (id: string) => {
     (document.querySelector(`#${id} .swiper-button-prev`) as HTMLElement)?.click()
 }
 
-const activityList = ref([
-    {
-        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
-        link: '/hotel-category?category=%E6%82%A0%E9%81%8A%E5%9C%8B%E6%97%85',
-        name: '國旅專區：最高現折1300元'
-    },
-    {
-        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=487e6587-5a35-4426-b9ea-94536b03ec36',
-        link: '',
-        name: '國旅專區：最高現折1300元'
 
-    },
-    {
-        image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0714%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner3_1.png?alt=media&token=6b90b0db-c48f-471b-beab-ad0b3b46d7cd',
-        link: '/hotel-category?category=人氣民宿',
-        name: '國旅專區：最高現折1300元'
+interface Props {
+    activityList: ActivityType[];
+}
+const props = defineProps<Props>()
+const activityList = computed(() => props.activityList)
 
-    },
-])
 
 </script>
 

@@ -113,7 +113,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import HotelCard from '@/components/HotelCard.vue';
 import { Navigation, FreeMode } from 'swiper';
@@ -122,6 +122,7 @@ import 'swiper/css';
 import 'swiper/css/free-mode';
 import { computedAsync } from '@vueuse/core';
 import { find } from 'lodash';
+import { AreaType } from '../../types/home.type';
 
 const swiperNext = (id: string) => {
     (document.querySelector(`#${id} .swiper-button-next`) as HTMLElement)?.click()
@@ -157,25 +158,13 @@ const gotoLink = (link: string) => {
     window.location.href = link
 }
 
-const areaArray = ref([
-    {
-        name: '北部',
-        hotes_id: ['426', '353', '448', '562'],
-    },
-    {
-        name: '中部',
-        hotes_id: ['474', '583', '466', '468'],
-    },
-    {
-        name: '南部',
-        hotes_id: ['465', '536', '505', '538'],
-    },
-    {
-        name: '東部',
-        hotes_id: ['556', '479', '558', '488'],
-    },
 
-])
+
+interface Props {
+    areaArray: AreaType[];
+}
+const props = defineProps<Props>()
+const areaArray = computed(() => props.areaArray)
 const areaTab = ref(areaArray.value[0].name)
 const loading = ref(false)
 const currentHotelList = computedAsync(

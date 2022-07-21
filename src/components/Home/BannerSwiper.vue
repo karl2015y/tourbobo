@@ -15,7 +15,7 @@
                         <!-- 手機版 -->
                         <img
                             class="sm:hidden  w-full h-full object-cover"
-                            :src="item.smallImage"
+                            :src="item.smallImage ? item.smallImage : item.image"
                         >
                         <!-- <div class="absolute top-0 left-0 w-full h-full bg-[#00000070]"></div> -->
                         <q-router-link
@@ -43,16 +43,15 @@
 <script setup lang="ts">
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
-import { ref } from 'vue';
-import { min } from 'lodash';
+import { computed, ref } from 'vue';
+import { BannerListType } from '../../types/home.type'
 
-const bannerList = ref([{
-    image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhomeBanner%2Ftbb%20home%20banner%20(1).png?alt=media&token=c58efc29-f66b-4944-b8bc-6e5e6a617bfe',
-    smallImage: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2FhomeBanner%2Ftbb%20home%20banner%20(1).png?alt=media&token=c58efc29-f66b-4944-b8bc-6e5e6a617bfe',
-    link: '1'
-},
 
-])
+interface Props {
+    bannerList: BannerListType[];
+}
+const props = defineProps<Props>()
+const bannerList = computed(() => props.bannerList)
 </script>
 
 <style scoped>
