@@ -277,12 +277,19 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper";
-import { RouteRecord, useRoute, useRouter } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import { computed, ref, watchEffect } from "vue";
-import { unionBy, orderBy, map, partialRight, pick, filter, find } from "lodash";
+import { filter, find, map } from "lodash";
 import { useWindowSize } from '@vueuse/core'
 import { useMainStore } from "../../stores/main.store";
-import { useQuasar } from "quasar";
+import { PostCategoryType, PostType } from "../../types/post.type";
+
+interface Props {
+    postCategory: PostCategoryType[];
+    postArray: PostType[];
+}
+const props = defineProps<Props>()
+
 const windowSize = useWindowSize()
 const route = useRoute()
 const router = useRouter()
@@ -293,43 +300,9 @@ const clickQueryLinkByObject = (queryObj: { [queryKey: string]: string }) => {
     router.push({ ...route, query: queryObj })
 }
 
-
-
-const postArray = ref([
-    {
-        post_id: '123',
-        category: '最新消息',
-        title: '1國旅補助最高折助最高折抵1300！',
-        subTitle: '優惠活動開跑啦！暑假就訂tourbobo一起出去玩！',
-        createDate: '2022/07/15',
-        content: '很多內容',
-        Image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
-        note: '＊所有活動皆為限時限量活動，如取消後恕不保留資格＊tourbobo 主辦單位保有最終修改、變更、活動解釋及取消本活動之權利，如有任何變更內容或詳細注意事項將公布於本活動辦法中，恕不另行通知。＊優惠活動（學生個人專屬方案、台新、防疫計程車千元補助、KKBOX滿額贈等）請擇一使用，恕無法併行！'
-    },
-    {
-        post_id: 'asd',
-        category: '優惠資訊',
-        title: '2國旅補助最高折助最高折抵1300！',
-        subTitle: '優惠活動開跑啦！暑假就訂tourbobo一起出去玩！',
-        createDate: '2022/07/15',
-        content: '很多內容',
-        Image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
-        note: '＊所有活動皆為限時限量活動，如取消後恕不保留資格＊tourbobo 主辦單位保有最終修改、變更、活動解釋及取消本活動之權利，如有任何變更內容或詳細注意事項將公布於本活動辦法中，恕不另行通知。＊優惠活動（學生個人專屬方案、台新、防疫計程車千元補助、KKBOX滿額贈等）請擇一使用，恕無法併行！'
-    },
-    {
-        post_id: 'qwe',
-        category: '優惠資訊',
-        title: '3國旅補助最高折助最高折抵1300！',
-        subTitle: '優惠活動開跑啦！暑假就訂tourbobo一起出去玩！',
-        createDate: '2022/07/15',
-        content: '很多內容',
-        Image: 'https://firebasestorage.googleapis.com/v0/b/outsource-1c28f.appspot.com/o/tbb%2Factivity%2F0712%20tbb_%E4%B8%80%E8%88%AC%E8%A8%82%E6%88%BF%E6%B4%BB%E5%8B%95banner.png?alt=media&token=0ae70681-7ce4-4791-a93c-f15f2c9e34c3',
-        note: '＊所有活動皆為限時限量活動，如取消後恕不保留資格＊tourbobo 主辦單位保有最終修改、變更、活動解釋及取消本活動之權利，如有任何變更內容或詳細注意事項將公布於本活動辦法中，恕不另行通知。＊優惠活動（學生個人專屬方案、台新、防疫計程車千元補助、KKBOX滿額贈等）請擇一使用，恕無法併行！'
-    },
-])
-// const postCategory = computed(() =>(map(unionBy(postArray.value, 'category'), (item) => item.category)))
+const postArray = computed(() => map(props.postArray, (o) => ({ ...o, category: find(props.postCategory, ['postCategory_id', o.category_id])?.postCategory_name })))
 // 文章分類
-const postCategory = ref(['最新消息', '優惠資訊'])
+const postCategory = computed(() => map(props.postCategory, (o) => o.postCategory_name))
 const currentPostCategory = computed(() => {
     const routeCategory = route.query['category']
     const firstCategory = postCategory.value[0]
