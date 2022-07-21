@@ -170,7 +170,7 @@
                 <!-- 房間選擇 -->
                 <div
                     ref="roomElement"
-                    class="mt-4 sm:hover:shadow-md relative w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
+                    class="mt-4 sm:mt-0 sm:ml-4 sm:hover:shadow-md relative w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
                     :class="{ 'z-10': roomElementIsHovered }"
                     @click="roomElementIsHovered = true"
                 >
