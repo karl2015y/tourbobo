@@ -184,13 +184,16 @@ const currentHotelList = computedAsync(
         return new Promise<Array<any>>((resolve, reject) => {
             const myHeaders = new Headers();
             myHeaders.append("Accept-Language", "zh_TW");
-            fetch(hotelsLink(find(areaArray.value, ['name', areaTab.value])?.hotes_id as Array<string>), {
+            const hotel_ids = find(areaArray.value, ['name', areaTab.value])?.hotes_id as Array<string>
+            fetch(hotelsLink(hotel_ids), {
                 method: 'GET',
                 headers: myHeaders,
             })
                 .then(response => response.text())
                 .then(result => {
-                    resolve((JSON.parse(result) as any)['data'])
+                    const serverHotelDetail = (JSON.parse(result) as any)['data']
+                    const hotels = serverHotelDetail.sort((a: { hotel_id: any | string; }, b: { hotel_id: any | string; }) => hotel_ids.indexOf(`${a.hotel_id}`) - hotel_ids.indexOf(`${b.hotel_id}`))
+                    resolve(hotels)
                 })
                 .catch(error => reject(error));
         })
