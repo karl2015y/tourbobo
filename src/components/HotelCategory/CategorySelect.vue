@@ -156,6 +156,7 @@ import { useRoute, useRouter } from 'vue-router';
 import { Navigation, } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
+import { HotelCategoryType, } from '../../types/hotel.type';
 const route = useRoute()
 const router = useRouter()
 const clickQueryLink = (queryKey: string, queryValue: string) => {
@@ -163,13 +164,7 @@ const clickQueryLink = (queryKey: string, queryValue: string) => {
 }
 
 interface Props {
-    hotelCategoryArray: Array<{
-        image: string
-        name: string
-        smallImage?: string
-        subTitle: string
-        title: string
-    }>
+    hotelCategoryArray: HotelCategoryType[]
 }
 const props = defineProps<Props>()
 

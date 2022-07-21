@@ -607,7 +607,7 @@ import { filter } from 'lodash';
 
 interface Props {
     styleType?: string;
-    hotelSubCategoryData?: {
+    hotelSubCategoryData: {
         name: string,
         description: string,
         discountDescription: string,
@@ -637,58 +637,6 @@ interface Props {
 }
 const props = withDefaults(defineProps<Props>(), {
     styleType: '1',
-    hotelSubCategoryData: () => ({
-        name: '精選飯店｜台北',
-        description: '全數皆符合【14天前免費取消】政策，三千元內無痛入住飯店！',
-        discountDescription: '結帳輸入TBBVIP，即可享...',
-        hotels: [
-            {
-                "hotel_id": 122,
-                "name": "雀客旅館台北站前",
-                "county": "台北市",
-                "area": "中正區",
-                "intro": "雀客旅館台北站前位於台北市中心，絕佳的觀光中心點，將旅行的便利最大化。<br />\r\n推開旅館大門，映入眼簾的花磚地板是旅客們最佳打卡位置，房內設計更是我們對於細節的要求，全館採用木質地板讓房內更明亮整潔，豪華房型的陽台更是旅人透透氣的秘密基地。<br />\r\n景觀房的景色更是許多人的首選，大片落地窗，將城市街景盡收眼底，清楚看見台灣博物館的大圓屋頂、土銀展示館的年代建築，讓住宿體驗除了舒適之外，更添增了一抹文化氣息。<br />\r\n我們相信，最好的旅行過程是能讓你更加了解一座城市。位於台北重要地段的雀客旅館台北站前，能夠帶給你的體驗絕對超乎想像。",
-                "original_price": 3600,
-                "lowest_price": 1680,
-                "images": [
-                    "https://ota-image.tourbobo.com/image/hotel/122N8yj5plEQXEp5OgwQ3LJ.jpeg?p=ota_hotel_large",
-                    "https://ota-image.tourbobo.com/image/hotel/122aNEXVXGgqqP7X0DdnxMf.jpeg?p=ota_hotel_large",
-                    "https://ota-image.tourbobo.com/image/hotel/1221wVEgPnWFe5RY9dryzas.jpeg?p=ota_hotel_large",
-                    "https://ota-image.tourbobo.com/image/hotel/122qFsvn5rOUOBiQpJv3Z6S.jpeg?p=ota_hotel_large",
-                    "https://ota-image.tourbobo.com/image/hotel/122nZ3Ng3XGimC5xfxV8k8F.jpg?p=ota_hotel_large"
-                ],
-
-                "small_images": [
-                    "https://ota-image.tourbobo.com/image/hotel/122N8yj5plEQXEp5OgwQ3LJ.jpeg?p=ota_hotel",
-                    "https://ota-image.tourbobo.com/image/hotel/122aNEXVXGgqqP7X0DdnxMf.jpeg?p=ota_hotel",
-                    "https://ota-image.tourbobo.com/image/hotel/1221wVEgPnWFe5RY9dryzas.jpeg?p=ota_hotel",
-                    "https://ota-image.tourbobo.com/image/hotel/122qFsvn5rOUOBiQpJv3Z6S.jpeg?p=ota_hotel",
-                    "https://ota-image.tourbobo.com/image/hotel/122nZ3Ng3XGimC5xfxV8k8F.jpg?p=ota_hotel"
-                ],
-
-                "image": "https://ota-image.tourbobo.com/image/hotel/122N8yj5plEQXEp5OgwQ3LJ.jpeg?p=ota_hotel",
-                "facility_tags": [
-                    {
-                        "name": "有陽台",
-                        "lang_key": "facility.balcony",
-                        "class": "icon-balcony"
-                    },
-                    {
-                        "name": "可開窗",
-                        "lang_key": "facility.window",
-                        "class": "icon-window"
-                    },
-                    {
-                        "name": "禁菸飯店",
-                        "lang_key": "facility.non-smokinghotel",
-                        "class": "icon-non-smokinghotel"
-                    }
-                ],
-
-            },
-
-        ]
-    }),
     isLast: false
 });
 
