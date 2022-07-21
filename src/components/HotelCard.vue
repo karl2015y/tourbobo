@@ -57,9 +57,9 @@
 
 
         </div>
-        <div class="mt-2 px-4 sm:flex justify-between gap-4">
+        <div class="mt-2 px-4 ">
             <div>
-                <div class="text-xl font-bold mt-4 mb-2 text-left sm:text-base sm:h-14">
+                <div class="text-xl sm:text-2xl font-bold mt-4 mb-2 text-left sm:h-14">
 
                     <q-router-link :to="hotelLink(`${props.hotel.hotel_id}`)">
                         {{ props.hotel.name }}
@@ -72,29 +72,37 @@
                                 name="check"
                                 class="-mt-1 text-white bg-[#6DCD01] rounded-full p-0.5 font-black"
                             />
-                            {{ tag.name }}
+                            <span class="ml-1 text-lg">{{ tag.name }}</span>
                         </li>
                     </template>
                 </ul>
-                <div class="sm:hidden line-through text-[#979797] text-right text-lg leading-6">
+                <div
+                    class="line-through text-[#979797] text-right text-lg leading-6 opacity-0"
+                    :class="{
+                        '!opacity-100': props.hotel.original_price && props.hotel.original_price != props.hotel.lowest_price
+                    }"
+                >
                     TWD {{ priceFormat(props.hotel.original_price) }}
                 </div>
-                <div class=" flex justify-between items-center gap-3">
-                    <div class="font-semibold text-lg leading-6 sm:text-sm">每晚最低</div>
-                    <div class="text-[#DC492A] text-2xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}</div>
+                <div class=" flex justify-between items-center">
+                    <div class="font-semibold text-lg leading-6 ">每晚最低</div>
+                    <div class="ml-3 text-[#DC492A] text-2xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}
+                    </div>
                 </div>
             </div>
 
-            <!-- 立即下單 -->
 
         </div>
+        <!-- 立即下單 -->
         <div class="mt-5 sm:mt-4 relative rounded-b-xl w-full bg-[#00586E] h-3 sm:h-4">
             <q-router-link
                 :to="hotelLink(`${props.hotel.hotel_id}`)"
                 class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-1/2 "
             >
-                <div
-                    class="text-center sm:text-xl font-medium  bg-[#00586E] text-white border-2 border-white rounded-3xl py-1">
+                <div class="text-center sm:text-xl font-medium 
+                     bg-[#00586E] text-white border-2 border-white 
+                     hover:bg-white hover:!text-[#00586E] hover:border-[#00586E] hover:shadow-[2px_2px_rgba(0,88,110,1)]
+                     rounded-3xl py-1">
                     立即下訂
                 </div>
             </q-router-link>

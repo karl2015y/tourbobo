@@ -158,8 +158,11 @@
                             :pagination="{
                                 clickable: true,
                             }"
-                            :modules="[Pagination]"
+                            :modules="[Pagination, Autoplay]"
                             loop
+                            :autoplay="{
+                                delay: 2000,
+                            }"
                         >
                             <template v-for="post in showPostArray">
                                 <swiper-slide>
@@ -273,7 +276,7 @@
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/pagination";
-import { Pagination } from "swiper";
+import { Pagination, Autoplay } from "swiper";
 import { RouteRecord, useRoute, useRouter } from "vue-router";
 import { computed, ref, watchEffect } from "vue";
 import { unionBy, orderBy, map, partialRight, pick, filter, find } from "lodash";

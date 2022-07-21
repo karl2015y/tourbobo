@@ -2,12 +2,14 @@
     <div class="w-full max-w-[1460px] mx-auto my-10 relative z-10">
         <div>
             <div class="
+            -translate-x-1.5
+            sm:translate-x-0
             bg-white
                 mx-auto
                 rounded-full flex items-center px-3
                 w-[353px] h-[245px]
                 sm:w-[706px] sm:h-[490px]
-                 border border-[#F4AA00] shadow-[18px_10px_rgba(244,170,0,1)] sm:shadow-[1.8vw_1.1vw_rgba(244,170,0,1)]">
+                 border-4 border-[#F4AA00] shadow-[18px_10px_rgba(244,170,0,1)] sm:shadow-[1.8vw_1.1vw_rgba(244,170,0,1)]">
                 <div class="w-[60%] relative h-full flex flex-col ">
                     <img
                         class="absolute 
