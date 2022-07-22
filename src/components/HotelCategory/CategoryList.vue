@@ -1,7 +1,5 @@
 <template>
-    <category-select
-        :hotelCategoryArray="map(hotelCategoryData, (o) => omit(o, ['subCategoryData']))"
-    />
+    <category-select :hotelCategoryArray="hotelCategoryData" />
 
 
     <q-responsive
@@ -74,13 +72,13 @@ import { HotelCategoryType } from '../../types/hotel.type';
 
 
 interface Props {
-  hotelCategoryData: HotelCategoryType[];
+    hotelCategoryData: HotelCategoryType[];
 }
 const props = defineProps<Props>();
 
 const route = useRoute()
 const mainStore = useMainStore()
-const hotelCategoryData = computed(()=>props.hotelCategoryData)
+const hotelCategoryData = computed(() => props.hotelCategoryData)
 const currentHotelCategory = computed(() => route.query['category'] ?? hotelCategoryData.value[0].name)
 const addDays = function (date: Date, days: number) {
     return new Date(new Date().setDate(date.getDate() + days));
@@ -102,6 +100,8 @@ const currentHotelList = computed(() => find(hotelCategoryData.value, ['name', c
 const currentHotelDetailList = ref<{ [key: string]: any }>({})
 const showHotelDetailList = computed(() => values(currentHotelDetailList.value))
 const getCurrentHotelDetail = () => {
+    console.log('getCurrentHotelDetail', hotelCategoryData.value);
+
     loading.value = true
     currentHotelDetailList.value = {}
     currentHotelList.value?.subCategoryData.forEach(async item => {
@@ -139,14 +139,18 @@ const getCurrentHotelDetail = () => {
     // }
 }
 
-
-onMounted(() => {
+watchEffect(()=>{
+    if(hotelCategoryData.value){
     getCurrentHotelDetail()
+
+    }
 })
+
 
 watch(() => route.fullPath, () => {
     getCurrentHotelDetail()
 })
+
 
 watchEffect(() => {
     if (loading.value === false && showHotelDetailList.value.length > 0) {

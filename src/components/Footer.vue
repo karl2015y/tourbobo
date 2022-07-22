@@ -131,7 +131,7 @@
                         <ul class=" mt-4 flex gap-1 justify-center flex-nowrap">
                             <li>
 
-                                <q-router-link to="">
+                                <q-router-link :to="link.appStore">
                                     <img
                                         class="w-14 h-5 sm:w-24 sm:h-8"
                                         src="@/assets/icon-appstore-white.svg"
@@ -140,7 +140,7 @@
 
                             </li>
                             <li>
-                                <q-router-link to="">
+                                <q-router-link :to="link.googlePlay">
                                     <img
                                         class="w-14 h-5 sm:w-24 sm:h-8"
                                         src="@/assets/icon-googleplay-white.svg"
@@ -166,10 +166,7 @@
             position="bottom-right"
             :offset="$q.screen.lt.sm ? [18, 18] : [26, 26]"
         >
-
-
             <div class="relative w-16 h-16 sm:w-20 sm:h-20">
-
                 <div class="bg-[#DA492A] w-full h-full octagon">
                     <img
                         class="absolute w-1/2 h-1/2 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
@@ -221,7 +218,7 @@
 
                     </q-fab-action>
                     <q-fab-action
-                        @click="gotoLink(link.phone)"
+                        @click="gotoLink(`tel:${link.phone}`)"
                         text-color="white"
                         flat
                         padding="0"
@@ -261,6 +258,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePageContactFormStore } from '@/stores/page-contactForm.store';
 import { useElementBounding, useElementSize, useWindowSize } from '@vueuse/core'
 import { useQuasar } from 'quasar';
 import { computed, ref } from 'vue';
@@ -277,13 +275,8 @@ const route = useRoute()
 //     styleType: '2',
 // });
 
-const link = ref({
-    line: 'https://lin.ee/iof46Tp',
-    facebook: ' https://www.facebook.com/Tourbobo.tw/',
-    message: 'https://www.facebook.com/messages/t/104130671957209',
-    instagram: ' https://www.instagram.com/tourbobo.official/',
-    phone: 'tel:0424522370'
-})
+const pageContactStore = usePageContactFormStore()
+const link = computed(() => pageContactStore.contactForm)
 
 const mainStore = useMainStore()
 

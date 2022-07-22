@@ -1,4 +1,6 @@
 export type PostType = {
+    available:boolean;
+    showOnBoard: boolean;
     post_id: string;
     category_id: string;
     category?: string;
@@ -6,7 +8,7 @@ export type PostType = {
     subTitle: string;
     createDate: string;
     content: string;
-    Image: string;
+    image: string;
     note: string;
 }
 

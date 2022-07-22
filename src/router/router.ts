@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import AdminRouter from './admin';
 
 export interface RouteMeta {
   name: string;
@@ -27,6 +28,17 @@ const routes: Array<RouteRecordRaw> = [
     name: 'post',
     component: () => import('@/views/Post.vue')
   },
+
+  {
+    name: 'Login',
+    path: '/Login',
+    meta: {
+      title: '登入',
+    },
+    component: () => import('@/views/admin/Login.vue'),
+  },
+  AdminRouter.routes,
+
   {
     path: '/:pathMatch(.*)*',
     redirect: '/'

@@ -93,7 +93,7 @@
                     <q-img
                         class="rounded-xl sm:mt-3"
                         :ratio="333 / 130"
-                        :src="currentPost.Image"
+                        :src="currentPost.image"
                     />
 
                     <div class="sm:hidden w-full bg-[#00586E] text-[#F7EBD3] mt-5 p-3 text-center font-bold text-xl">
@@ -106,30 +106,32 @@
                     >
 
                     </div>
-
-                    <div
-                        @click="noteVisible = !noteVisible"
-                        class="mb-3 pb-2 text-sm w-full flex justify-center items-center border-b-2 border-[#005A72]"
-                    >
-                        注意事項
-                        <q-icon
-                            v-if="noteVisible"
-                            name="remove_circle_outline"
-                            class="ml-2 text-[#005A72]"
-                        />
-                        <q-icon
-                            v-else
-                            name="add_circle_outline"
-                            class="ml-2 text-[#005A72]"
-                        />
-                    </div>
-
-                    <q-slide-transition>
+                    <template v-if="currentPost.note">
                         <div
-                            v-show="noteVisible"
-                            v-html="currentPost.note"
-                        ></div>
-                    </q-slide-transition>
+                            @click="noteVisible = !noteVisible"
+                            class="mb-3 pb-2 text-sm w-full flex justify-center items-center border-b-2 border-[#005A72]"
+                        >
+                            注意事項
+                            <q-icon
+                                v-if="noteVisible"
+                                name="remove_circle_outline"
+                                class="ml-2 text-[#005A72]"
+                            />
+                            <q-icon
+                                v-else
+                                name="add_circle_outline"
+                                class="ml-2 text-[#005A72]"
+                            />
+                        </div>
+
+                        <q-slide-transition>
+                            <div
+                                v-show="noteVisible"
+                                v-html="currentPost.note"
+                            ></div>
+                        </q-slide-transition>
+                    </template>
+
                     <div class="w-full h-20"></div>
                     <!-- 文章內容 -->
 
@@ -140,7 +142,7 @@
                 >
                     <!-- 手機版-輪撥 -->
                     <q-responsive
-                        v-if="showPostArray.length > 0"
+                        v-if="showPostArray.filter(post => post.showOnBoard).length > 0"
                         class="sm:hidden w-full
                 bg-contain bg-no-repeat 
                 bg-[url(@/assets/post/bg-post-phone.svg)]"
@@ -159,19 +161,19 @@
                                 clickable: true,
                             }"
                             :modules="[Pagination, Autoplay]"
-                            loop
+                            :loop="showPostArray.filter(post => post.showOnBoard).length > 1"
                             :autoplay="{
                                 delay: 2000,
                             }"
                         >
-                            <template v-for="post in showPostArray">
+                            <template v-for="post in showPostArray.filter(post => post.showOnBoard)">
                                 <swiper-slide>
                                     <q-router-link :to="{ ...route, query: { 'post_id': post.post_id } }">
                                         <q-img
                                             @click="cacheHistoryRoutePath = route.fullPath"
                                             class="rounded-xl"
                                             :ratio="333 / 130"
-                                            :src="post.Image"
+                                            :src="post.image"
                                         />
                                     </q-router-link>
 

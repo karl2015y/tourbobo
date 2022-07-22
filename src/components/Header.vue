@@ -1,7 +1,8 @@
 <template>
+  <PageContactFormDB />
+  <PageHotelCategoryDB />
+  <PostDB />
   <div class="max-w-[1920px] min-w-[375px] mx-auto ">
-
-
     <section
       ref="header"
       class="header fixed z-20 bg-white w-full top-0 left-0 "
@@ -19,7 +20,7 @@
 
           <div>
             <ul class="hidden sm:!flex ">
-              <template v-for="link in props.menuLinks">
+              <template v-for="link in menuLinks">
                 <li class="sm:pl-3 md:pl-12 relative text-lg">
 
                   <q-router-link :to="link.link">
@@ -84,7 +85,10 @@
         <div>
           <q-responsive :ratio="375 / 75">
             <div class="px-3.5 w-full h-full bg-[#00586E] relative flex items-center">
-              <button @click="showPhoneMenu = false" class="rotate-0">
+              <button
+                @click="showPhoneMenu = false"
+                class="rotate-0"
+              >
                 <img
                   class="animate__rotateIn animate__animated 	"
                   src="@/assets/arrow-left.svg"
@@ -104,7 +108,7 @@
 
           <div class="select-none	">
             <ul>
-              <template v-for="(link, index) in props.menuLinks">
+              <template v-for="(link, index) in menuLinks">
                 <li class="mt-8 mb-8 text-center">
 
                   <template v-if="link.childrenMenuLinks">
@@ -274,81 +278,71 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import PageContactFormDB from './firestore/PageContactFormDB.vue';
+
+import PageHotelCategoryDB from '@/components/firestore/PageHotelCategoryDB.vue';
+import PostDB from './firestore/PostDB.vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 import { useElementSize } from '@vueuse/core'
 import { useQuasar } from 'quasar';
 import { useRoute } from 'vue-router';
+import { usePageHotelCategoryStore } from '@/stores/page-hotelCategory.store';
+import { map } from 'lodash';
+import { usePostStore } from '@/stores/post.store';
+import { usePageContactFormStore } from '@/stores/page-contactForm.store';
 const route = useRoute()
 const $q = useQuasar()
 
-
+const pageHotelCategoryStore = usePageHotelCategoryStore()
+const postStore = usePostStore()
 
 type MenuLinkType = {
   text: string,
   link: string,
   childrenMenuLinks?: Array<MenuLinkType>
 }
-interface Props {
-  menuLinks?: Array<MenuLinkType>;
-}
-const props = withDefaults(defineProps<Props>(), {
-  menuLinks: () => [
-    {
-      text: "線上訂房",
-      link: "/"
-    },
-    {
-      text: "最新資訊",
-      link: "/post",
-      childrenMenuLinks: [
-        {
-          text: '最新消息',
-          link: '/post?category=最新消息'
-        },
-        {
-          text: '優惠資訊',
-          link: '/post?category=優惠資訊'
-        }
-      ]
-    },
-    {
-      text: "精選分類",
-      link: "/hotel-category",
-      childrenMenuLinks: [
-        {
-          text: '悠遊國旅',
-          link: '/hotel-category?category=悠遊國旅'
-        },
-        {
-          text: '品牌連鎖',
-          link: '/hotel-category?category=品牌連鎖'
-        },
-        {
-          text: '人氣民宿',
-          link: '/hotel-category?category=人氣民宿'
-        },
-        {
-          text: '寵物友善',
-          link: '/hotel-category?category=寵物友善'
-        },
-        {
-          text: '熱銷首選',
-          link: '/hotel-category?category=熱銷首選'
-        },
-      ]
-    },
+const menuLinks = ref<MenuLinkType[]>([])
+watchEffect(() => {
+  if (pageHotelCategoryStore.hotelCategoryData && postStore.postArray) {
+    menuLinks.value = [
+      {
+        text: "線上訂房",
+        link: "/"
+      },
+      {
+        text: "最新資訊",
+        link: "/post",
+        childrenMenuLinks: map(postStore.postCategoryArray, (o) => ({
+          text: o.postCategory_name,
+          link: `/post?category=${o.postCategory_name}`
+        }))
 
-    {
-      text: "加盟合作",
-      link: "https://docs.google.com/forms/d/e/1FAIpQLSfcGzKlc8o7SE4ZLS9oSYQz2ylQeAYgD4xJ3a3r3bCCLqlhSw/viewform"
-    },
+      },
+      {
+        text: "精選分類",
+        link: "/hotel-category",
+        childrenMenuLinks: map(pageHotelCategoryStore.hotelCategoryData, (o) => ({
+          text: o.name,
+          link: `/hotel-category?category=${o.name}`
+        }))
 
-  ],
-});
 
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: string): void;
-}>();
+
+      },
+
+      {
+        text: "加盟合作",
+        link: "https://docs.google.com/forms/d/e/1FAIpQLSfcGzKlc8o7SE4ZLS9oSYQz2ylQeAYgD4xJ3a3r3bCCLqlhSw/viewform"
+      },
+
+    ]
+  }
+})
+
+
+
+
+
 
 const header = ref(null)
 const headerSize = useElementSize(header)
@@ -362,13 +356,8 @@ const clickPhoneSubMenu = (_clickPhoneSubMenu: string) => {
   }
 }
 
-const link = ref({
-  line: 'https://lin.ee/iof46Tp',
-  facebook: ' https://www.facebook.com/Tourbobo.tw/',
-  message: 'https://www.facebook.com/messages/t/104130671957209',
-  instagram: ' https://www.instagram.com/tourbobo.official/',
-  phone: 'tel:0424522370'
-})
+const pageContactStore = usePageContactFormStore()
+const link = computed(() => pageContactStore.contactForm)
 
 watch(() => route.fullPath, () => {
   showPhoneMenu.value = false
