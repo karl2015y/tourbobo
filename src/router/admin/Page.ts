@@ -32,7 +32,7 @@ const routes: RouteRecordRaw =
             path: 'sethotelcategory',
             meta: {
                 title: '旅館分類設定',
-                icon: 'home',
+                icon: 'bed',
                 showInMenu: true
             },
             component: () => import('@/views/admin/page/HotelCategorySet.vue'),

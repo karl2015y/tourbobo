@@ -17,7 +17,7 @@
                 />
 
                 <q-toolbar-title>
-                    14Holidays
+                    Tourbobo 管理後台
                 </q-toolbar-title>
                 <div>
                     <span> Hi，{{ adminStore.userName }} 工作加油！ </span>
@@ -127,6 +127,7 @@
 
 
 
+
 export default {
     name: 'AdminLayoutWithMenu',
 }
@@ -142,6 +143,7 @@ import { useNotify } from '@/composables/notify';
 import { useAdminStore } from '@/stores/admin.store';
 import { useAuth } from '@vueuse/firebase';
 import PostDB from '../../components/firestore/PostDB.vue'
+import { setCssVar } from 'quasar';
 const { user } = useAuth(auth)
 
 const adminStore = useAdminStore()
@@ -188,6 +190,8 @@ const leftDrawerOpen = ref(false);
 const toggleLeftDrawer = () => {
     leftDrawerOpen.value = !leftDrawerOpen.value;
 };
+
+setCssVar('primary', '#00586E')
 
 </script>
 
