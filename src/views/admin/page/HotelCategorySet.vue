@@ -45,7 +45,7 @@
             </div>
             <template v-else>
                 <div class="p-3 w-full overflow-y-auto">
-                    <q-scroll-area class="h-[30rem] max-w-[100vw]">
+                    <q-scroll-area class="h-[70rem] max-w-[100vw]">
                         <draggable
                             class="flex gap-3 ml-3 flex-nowrap"
                             v-model="hotelCategoryData"
@@ -241,7 +241,7 @@
                                             </div>
                                             <template v-else>
                                                 <div class="p-3 w-full overflow-y-auto">
-                                                    <q-scroll-area class="h-[30rem] max-w-[100vw]">
+                                                    <q-scroll-area class="h-[15rem] max-w-[100vw]">
                                                         <draggable
                                                             class="flex gap-3 ml-3 flex-nowrap"
                                                             v-model="subCategory.hotels"

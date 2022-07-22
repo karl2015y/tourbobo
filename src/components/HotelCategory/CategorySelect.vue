@@ -14,7 +14,7 @@
             <!-- 手機版 -->
             <q-img
                 class="sm:hidden"
-                :src="hotelFocusCategoryObj.smallImage ?? hotelFocusCategoryObj.image"
+                :src="hotelFocusCategoryObj.smallImage ? hotelFocusCategoryObj.smallImage : hotelFocusCategoryObj.image"
                 :ratio="375 / 196"
             />
 
