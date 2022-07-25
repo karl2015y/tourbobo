@@ -1,7 +1,6 @@
 <template>
     <div class="flex">
         <div class="font-bold text-lg mt-6 text-gray-600">{{ props.name }}</div>
-
         <q-toggle
             class="mt-4"
             :model-value="mvalue !== ''"
@@ -18,7 +17,9 @@
         :toolbar="toolbar"
         :fonts="fonts"
     />
-    <br>
+
+
+
     <input
         @change="uploadIt"
         class="hidden"
@@ -109,18 +110,29 @@
 export default {
     name: 'EditorQEditor',
 }
-import { computed, nextTick, onMounted, ref, watch } from 'vue';
+import { computed, nextTick, onMounted, ref, watch, watchEffect } from 'vue';
 import { QEditor, QEditorProps, QInputProps, useQuasar } from 'quasar'
 import { useNotify } from '@/composables/notify';
 import { nanoid } from 'nanoid'
 import { useDialog } from '@/composables/dialog';
 import { uploadStorage } from '@/common/firebase';
+import { useTextSelection } from '@vueuse/core';
+import { keys } from 'lodash';
+import { ElementNode } from '@vue/compiler-core';
 
 
 </script>
 
 
 <script setup lang="ts">
+const textSelection = useTextSelection()
+const selectedText = ref('')
+watchEffect(() => {
+    if (textSelection.text.value.length > 0) {
+        selectedText.value = textSelection.text.value
+    }
+})
+
 const editorRef = ref<QEditor | null>(null)
 const $q = useQuasar()
 const Notify = useNotify()
@@ -264,6 +276,293 @@ const colorEditText = ref('')
 const setEditorTextColor = () => {
     showColorEditDialog.value = false
 }
+
+const handelLineHeight = {
+    lightHeight10: {
+        tip: '行距1',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "1"
+            }
+
+        }
+    },
+    lightHeight15: {
+        tip: '行距1.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "1.5"
+            }
+        }
+    },
+    lightHeight20: {
+        tip: '行距2',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "2"
+            }
+        }
+    },
+    lightHeight25: {
+        tip: '行距2.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "2.5"
+            }
+        }
+    },
+    lightHeight30: {
+        tip: '行距3',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "3"
+            }
+        }
+    },
+    lightHeight35: {
+        tip: '行距3.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "3.5"
+            }
+        }
+    },
+    lightHeight40: {
+        tip: '行距4',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "4"
+            }
+        }
+    },
+    lightHeight45: {
+        tip: '行距4.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "4.5"
+            }
+        }
+    },
+    lightHeight50: {
+        tip: '行距5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "5"
+            }
+        }
+    },
+    lightHeight55: {
+        tip: '行距5.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "5.5"
+            }
+        }
+    },
+    lightHeight60: {
+        tip: '行距6',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "6"
+            }
+        }
+    },
+    lightHeight65: {
+        tip: '行距6.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "6.5"
+            }
+        }
+    },
+    lightHeight70: {
+        tip: '行距7',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "7"
+            }
+        }
+    },
+    lightHeight75: {
+        tip: '行距7.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "7.5"
+            }
+        }
+    },
+    lightHeight80: {
+        tip: '行距8',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "8"
+            }
+        }
+    },
+    lightHeight85: {
+        tip: '行距8.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "8.5"
+            }
+        }
+    },
+    lightHeight90: {
+        tip: '行距9',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "9"
+            }
+        }
+    },
+    lightHeight95: {
+        tip: '行距9.5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "9.5"
+            }
+        }
+    },
+    lightHeight100: {
+        tip: '行距10',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.lineHeight = "10"
+            }
+        }
+    },
+}
+const handelFontWeight = {
+    fontWeight100: {
+        tip: '字體粗細 1',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "100"
+            }
+        }
+    },
+    fontWeight200: {
+        tip: '字體粗細 2',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "200"
+            }
+        }
+    },
+    fontWeight300: {
+        tip: '字體粗細 3',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "300"
+            }
+        }
+    },
+    fontWeight400: {
+        tip: '字體粗細 4',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "400"
+            }
+        }
+    },
+    fontWeight500: {
+        tip: '字體粗細 5',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "500"
+            }
+        }
+    },
+    fontWeight600: {
+        tip: '字體粗細 6',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "600"
+            }
+        }
+    },
+    fontWeight700: {
+        tip: '字體粗細 7',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "700"
+            }
+        }
+    },
+    fontWeight800: {
+        tip: '字體粗細 8',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "800"
+            }
+        }
+    },
+    fontWeight900: {
+        tip: '字體粗細 9',
+        handler: () => {
+            // editorRef.value?.runCmd('formatblock', 'p')
+            const element = window.getSelection()?.focusNode?.parentElement
+            if (element) {
+                element.style.fontWeight = "900"
+            }
+        }
+    },
+}
+
 const definitions = ref<any>({
     upload: {
         tip: '上傳圖片',
@@ -302,7 +601,10 @@ const definitions = ref<any>({
             editorRef.value?.runCmd('backColor', colorEditText.value)
 
         }
-    }
+    },
+    ...handelLineHeight,
+    ...handelFontWeight
+
 
 })
 const toolbar = ref([
@@ -352,12 +654,25 @@ const toolbar = ref([
             ]
         },
         {
+            label: '行距',
+            icon: 'height',
+            options: keys(handelLineHeight)
+        },
+        {
+            label: '字體粗細',
+            icon: 'format_bold',
+            options: keys(handelFontWeight)
+        },
+
+        {
             label: $q.lang.editor.defaultFont,
             icon: $q.iconSet.editor.font,
             fixedIcon: true,
             list: 'no-icons',
             options: [
                 'default_font',
+                'noto_serif_tc',
+                'noto_sans_tc',
                 'arial',
                 'arial_black',
                 'comic_sans',
@@ -379,6 +694,8 @@ const toolbar = ref([
 ])
 
 const fonts = ref({
+    noto_sans_tc: 'Noto Sans TC',
+    noto_serif_tc: 'Noto Serif TC',
     arial: 'Arial',
     arial_black: 'Arial Black',
     comic_sans: 'Comic Sans MS',
@@ -396,6 +713,7 @@ onMounted(() => {
     handleImgMenu()
 })
 
+
 </script>
 
 <style scoped >
@@ -407,6 +725,7 @@ onMounted(() => {
     padding: revert;
     @apply list-disc
 }
+
 :deep() .q-editor__content ul li {
     @apply list-disc
 }
@@ -415,6 +734,7 @@ onMounted(() => {
     list-style-type: decimal;
     padding: revert;
 }
+
 :deep() .q-editor__content ol li {
     list-style-type: decimal;
 }

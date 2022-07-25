@@ -101,7 +101,8 @@
                     </div>
 
                     <div
-                        class="articleTextArea mt-5 sm:mt-20 min-h-[50vh] text-base "
+                        ref="articleTextAreaRef"
+                        class="articleTextArea mt-5 sm:mt-20 min-h-[50vh]"
                         v-html="currentPost.content"
                     >
 
@@ -280,9 +281,9 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination, Autoplay } from "swiper";
 import { useRoute, useRouter } from "vue-router";
-import { computed, ref, watchEffect } from "vue";
+import { computed, ref, watch, watchEffect } from "vue";
 import { filter, find, map } from "lodash";
-import { useWindowSize } from '@vueuse/core'
+import { useElementSize, useWindowSize } from '@vueuse/core'
 import { useMainStore } from "../../stores/main.store";
 import { PostCategoryType, PostType } from "../../types/post.type";
 
@@ -352,6 +353,15 @@ const noteVisible = ref(true)
 // 返回上一頁的緩存
 const cacheHistoryRoutePath = ref('')
 
+const articleTextAreaRef = ref()
+const articleTextAreaSize = useElementSize(articleTextAreaRef)
+watch(() => articleTextAreaSize.height.value, () => {    
+    articleTextAreaRef.value.querySelectorAll('a').forEach((aTag: any) => {
+        if (aTag && aTag.target == "") {
+            aTag.target = "_blank"
+        }
+    })
+})
 
 const mainStore = useMainStore()
 

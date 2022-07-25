@@ -11,6 +11,7 @@ const store = useMainStore();
 document.title = "tourbobo"
 </script>
 
-<style lang="sass">
+<style >
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&family=Noto+Serif+TC:wght@200;300;400;500;600;700;900&display=swap');
 
 </style>

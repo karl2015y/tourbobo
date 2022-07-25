@@ -24,4 +24,7 @@ const postArray = computed(() => postStore.postArray)
 </script>
 
 <style scoped>
+*{
+  font-family: 'Noto Sans TC';
+}
 </style>
