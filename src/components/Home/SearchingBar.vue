@@ -1,15 +1,17 @@
 <template>
-    <div class="relative z-10 w-full sm:-translate-y-[9vw] 2xl:-translate-y-36">
+    <div class="relative z-10 w-full sm:-translate-y-[5vw] 2xl:-translate-y-24">
         <div
             class="
             shadow-[0px_0px_8px_rgba(0,0,0,0.25)]
-            relative px-7 py-10 sm:pt-10 sm:pb-14 sm:px-12 bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px]"
+            relative 
+            px-7 py-10 sm:py-6 sm:px-10
+            bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px]"
             
         >
             <!-- 城市選擇 -->
             <div
                 ref="cityElement"
-                class="sm:hover:shadow-md relative w-full  sm:h-16 sm:bg-white rounded-md  flex justify-start items-center"
+                class="sm:hover:shadow-md relative w-full  sm:h-14 sm:bg-white rounded-md  flex justify-start items-center"
                 :class="{ 'z-10': cityElementIsHovered }"
                 @click="cityElementIsHovered = true"
             >
@@ -89,7 +91,7 @@
                 <!-- 日期選擇 -->
                 <div
                     ref="dateRangeElement"
-                    class="sm:hover:shadow-md w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md flex relative"
+                    class="sm:hover:shadow-md w-full sm:w-1/2 sm:h-14 sm:bg-white rounded-md flex relative"
                     :class="{ 'z-10': dateRangeElementIsHovered }"
                     @click="dateRangeElementIsHovered = true"
                 >
@@ -170,7 +172,7 @@
                 <!-- 房間選擇 -->
                 <div
                     ref="roomElement"
-                    class="mt-4 sm:mt-0 sm:ml-4 sm:hover:shadow-md relative w-full sm:w-1/2 sm:h-16 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
+                    class="mt-4 sm:mt-0 sm:ml-4 sm:hover:shadow-md relative w-full sm:w-1/2 sm:h-14 sm:bg-white rounded-md sm:pl-5 flex justify-start items-center"
                     :class="{ 'z-10': roomElementIsHovered }"
                     @click="roomElementIsHovered = true"
                 >
@@ -301,13 +303,13 @@
                 @click="gotoLink(searchLink)"
                 label="搜尋"
                 color="primary"
-                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-12 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
+                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-14 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-3/4"
             />
             <q-btn
                 v-else
                 label="搜尋"
                 color="primary"
-                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-16 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-1/2"
+                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-14 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-3/4"
             />
         </div>
     </div>

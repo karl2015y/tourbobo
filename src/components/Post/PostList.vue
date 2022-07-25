@@ -101,7 +101,7 @@
                     </div>
 
                     <div
-                        class="mt-5 sm:mt-20 min-h-[50vh] text-base "
+                        class="articleTextArea mt-5 sm:mt-20 min-h-[50vh] text-base "
                         v-html="currentPost.content"
                     >
 
@@ -391,5 +391,87 @@ watchEffect(() => {
     .max-w-\[1920px\] {
         @apply mx-auto
     }
+}
+</style>
+
+<style scoped >
+:deep() .articleTextArea a {
+    @apply text-[#00A29A] cursor-pointer hover:text-[#06b8b0]
+}
+
+:deep() .articleTextArea ul {
+    padding: revert;
+    @apply list-disc
+}
+
+:deep() .articleTextArea ul li {
+    @apply list-disc
+}
+
+:deep() .articleTextArea ol {
+    list-style-type: decimal;
+    padding: revert;
+}
+
+:deep() .articleTextArea ol li {
+    list-style-type: decimal;
+}
+
+:deep() .articleTextArea blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+}
+
+:deep() .articleTextArea blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+
+:deep() .articleTextArea h1 {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+
+:deep() .articleTextArea h2 {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+
+}
+
+:deep() .articleTextArea h3 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+}
+
+:deep() .articleTextArea h4 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+}
+
+:deep() .articleTextArea h5 {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+:deep() .articleTextArea h6 {
+    font-size: 0.75rem;
+    line-height: 1rem;
+}
+
+:deep() .articleTextArea pre {
+    overflow: auto;
+}
+
+:deep() .articleTextArea pre>code {
+    display: block;
+    padding: 1rem;
+    word-wrap: normal;
 }
 </style>
