@@ -21,11 +21,13 @@
             <!-- 遮罩 -->
             <div class="absolute w-full h-full top-0 left-0 
             bg-gradient-to-b sm:bg-gradient-to-r from-[#000000c2] 
-            text-white text-xl font-semibold sm:text-4xl
-            px-6 pt-10 sm:px-44 sm:pt-32
+            text-white
             ">
-                <div>{{ hotelFocusCategoryObj.title }}</div>
-                <div class="mt-3">{{ hotelFocusCategoryObj.subTitle }}</div>
+                <div class="absolute left-[8%] top-[30%] sm:top-[25%] sm:left-[10%]">
+                    <span class="text-[22px] sm:text-5xl font-bold block leading-4">{{ hotelFocusCategoryObj.title }}</span>
+                    <span class=" text-xl sm:text-[40px] font-semibold mt-3 sm:mt-8 block leading-4">{{ hotelFocusCategoryObj.subTitle }}</span>
+                </div>
+
             </div>
         </div>
 
@@ -56,7 +58,7 @@
                                 style="clip-path:polygon(5% 0, 94% 80%, 100% 100%, 0 100%, 0 0)"
                                 class="bg-[#F6EAD4] rounded-t-lg rounded-r-lg absolute -top-[0.4rem] h-2 w-full"
                             > </div>
-                            <div class="text-base font-black whitespace-nowrap bg-[#F6EAD4]  py-1 rounded-tr-md ">
+                            <div class="text-xl font-semibold whitespace-nowrap bg-[#F6EAD4]  py-1 rounded-tr-md ">
                                 {{ category.name }}
                             </div>
                         </div>
@@ -65,7 +67,7 @@
 
                     <div
                         v-else
-                        class=" text-center  font-bold !h-16 flex flex-col justify-end text-xs"
+                        class=" text-center  font-medium !h-16 flex flex-col justify-end text-sm"
                     >
                         <div class="bg-[#F4A900] py-1 pr-0.5 -ml-0.5 rounded-t-lg">
 

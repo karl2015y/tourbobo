@@ -31,13 +31,20 @@
                             :to="item.link"
                             class="absolute bottom-5 sm:bottom-1/3 left-1/2 -translate-x-1/2"
                         >
-                            <div
-                                class="flex justify-center items-center 
-                                min-w-[100px] w-[8.177vw] max-w-[157px] 
-                                sm:h-[2.135vw] min-h-[26px] max-h-[41px] 
-                                sm:text-[1.2vw] 2xl:text-[27px] rounded-full border-2 border-white bg-[#00586E] text-white ">
-                                查看更多
-                            </div>
+                            <q-responsive
+                                :ratio="$q.screen.lt.sm ? 72 / 24 : 157 / 41"
+                                class="
+                                max-w-[157px] max-h-[41px]
+                                min-w-[72px] min-h-[24px] 
+                               w-[19.2vw] sm:[8.177vw]
+                                font-normal sm:font-medium
+                               text-[12px] sm:text-[26px] whitespace-nowrap text-white
+                                 rounded-full border-2 border-white bg-[#00586E]  "
+                            >
+
+                                <div class="w-full h-full flex justify-center items-center">查看更多</div>
+                            </q-responsive>
+
                         </q-router-link>
                     </div>
 
@@ -68,9 +75,13 @@ const bannerList = computed(() => props.bannerList)
 </script>
 
 <style scoped>
-:deep().swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction{
+:deep().swiper-horizontal>.swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
     bottom: 0;
 }
+
 :deep().swiper-pagination-bullet-active {
     width: 24px;
     border-radius: 5px;

@@ -19,9 +19,9 @@
                     />
                     <div class="absolute top-1/3  pl-6
                     sm:left-1/2 sm:-translate-x-1/2  sm:h-[175px] sm:flex flex-col justify-between">
-                        <div class="sm:text-3xl font-bold text-[#2B4162]">登入即享專屬優惠</div>
-                        <div class="mt-3 sm:text-lg font-normal whitespace-nowrap scale-[0.75] -translate-x-[13%] sm:scale-100 sm:translate-x-0">登入tourbobo訂房即可領取專屬優惠</div>
-                        <div class="mt-3 flex">
+                        <div class="text-xl font-bold sm:text-4xl  text-[#2B4162]">登入即享專屬優惠</div>
+                        <div class="mt-2.5 text-xs sm:text-xl font-normal whitespace-nowrap scale-[0.75] -translate-x-[13%] sm:scale-100 sm:translate-x-0">登入tourbobo訂房即可領取專屬優惠</div>
+                        <div class="mt-2.5 flex">
                             <q-router-link to="">
                                 <div class="bg-[#2B4162] text-white 
                                 sm:px-10 sm:py-2 

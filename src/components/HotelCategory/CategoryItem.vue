@@ -30,9 +30,13 @@
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-lg text-xs">{{ props.hotelSubCategoryData.description }}
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.description
+                    }}
                     </div>
-                    <div class="mt-3 text-[#FF5F00] md:text-base">{{ props.hotelSubCategoryData.discountDescription }}
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.discountDescription
+                    }}
                     </div>
                 </div>
                 <div class="md:w-2/3">
@@ -48,7 +52,7 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                    text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-1 md:py-1.5  flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
                                      hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "
@@ -180,17 +184,21 @@
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
-                            class="bg-[#F7EBD3] md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-4xl font-bold"
+                            class="bg-[#F7EBD3] md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
                         >
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-lg">{{ props.hotelSubCategoryData.description }}</div>
-                    <div class="mt-3 text-[#FF5F00] md:text-base">{{ props.hotelSubCategoryData.discountDescription }}
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.description
+                    }}</div>
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.discountDescription
+                    }}
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                   <q-scroll-area
+                    <q-scroll-area
                         class="h-14 md:h-16 w-full"
                         v-if="props.hotelSubCategoryData.hotel_tags && props.hotelSubCategoryData.hotel_tags.length > 0"
                     >
@@ -202,7 +210,7 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                   text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5  flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
                                      hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "
@@ -314,17 +322,21 @@
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
-                            class="bg-white md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-4xl font-bold"
+                            class="bg-white md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
                         >
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-lg">{{ props.hotelSubCategoryData.description }}</div>
-                    <div class="mt-3 text-[#FF5F00] md:text-base">{{ props.hotelSubCategoryData.discountDescription }}
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.description
+                    }}</div>
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.discountDescription
+                    }}
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                   <q-scroll-area
+                    <q-scroll-area
                         class="h-14 md:h-16 w-full"
                         v-if="props.hotelSubCategoryData.hotel_tags && props.hotelSubCategoryData.hotel_tags.length > 0"
                     >
@@ -336,7 +348,7 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                   text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5  flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
                                      hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "
@@ -461,17 +473,21 @@
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
-                            class="bg-[#F7EBD3] md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-4xl font-bold"
+                            class="bg-[#F7EBD3] md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
                         >
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-lg">{{ props.hotelSubCategoryData.description }}</div>
-                    <div class="mt-3 text-[#FF5F00] md:text-base">{{ props.hotelSubCategoryData.discountDescription }}
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.description
+                    }}</div>
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                            props.hotelSubCategoryData.discountDescription
+                    }}
                     </div>
                 </div>
                 <div class="md:w-2/3">
-                <q-scroll-area
+                    <q-scroll-area
                         class="h-14 md:h-16 w-full"
                         v-if="props.hotelSubCategoryData.hotel_tags && props.hotelSubCategoryData.hotel_tags.length > 0"
                     >
@@ -483,7 +499,7 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                    text-sm mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5 md:text-lg  flex justify-center items-center rounded-3xl border 
+                                    text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5   flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
                                      hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "

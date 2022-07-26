@@ -2,7 +2,7 @@
     <div class=" border shadow-md  rounded-xl bg-white ">
         <div class="relative">
             <span
-                class=" flex items-center gap-2 bg-[#DC492A] rounded-3xl px-2 py-1 absolute left-3 top-3 z-10 text-sm text-[#F9EDD5]"
+                class=" flex items-center gap-2 bg-[#DC492A] rounded-3xl px-2 py-1 absolute left-3 top-3 z-10 text-xs font-medium text-[#F9EDD5]"
             >
                 <svg
                     class="inline"
@@ -72,21 +72,21 @@
                                 name="check"
                                 class="-mt-1 text-white bg-[#6DCD01] rounded-full p-0.5 font-black"
                             />
-                            <span class="ml-1 text-lg">{{ tag.name }}</span>
+                            <span class="ml-1 text-xs sm:text-lg">{{ tag.name }}</span>
                         </li>
                     </template>
                 </ul>
                 <div
-                    class="line-through text-[#979797] text-right text-lg leading-6 opacity-0"
+                    class="mt-3 sm:mt-1 line-through text-[#979797] text-right text-base sm:text-lg font-medium leading-6 opacity-0"
                     :class="{
                         '!opacity-100': props.hotel.original_price && props.hotel.original_price != props.hotel.lowest_price
                     }"
                 >
                     TWD {{ priceFormat(props.hotel.original_price) }}
                 </div>
-                <div class=" flex justify-between items-center">
-                    <div class="font-semibold text-lg leading-6 ">每晚最低</div>
-                    <div class="ml-3 text-[#DC492A] text-2xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}
+                <div class="-mt-1 flex justify-between items-center">
+                    <div class="text-base font-medium sm:font-semibold sm:text-lg leading-6 ">每晚最低</div>
+                    <div class="ml-3 text-[#DC492A] text-2xl sm:text-3xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 :to="hotelLink(`${props.hotel.hotel_id}`)"
                 class="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-1/2 "
             >
-                <div class="text-center sm:text-xl font-medium 
+                <div class="text-center text-lg sm:text-2xl font-bold
                      bg-[#00586E] text-white border-2 border-white 
                      hover:bg-white hover:!text-[#00586E] hover:border-[#00586E] hover:shadow-[2px_2px_rgba(0,88,110,1)]
                      rounded-3xl py-1">

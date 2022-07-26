@@ -2,7 +2,7 @@
     <div class="max-w-[1540px] sm:mx-auto w-full sm:mt-24">
         <div class="relative text-center z-10">
 
-            <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">特色飯店分類</div>
+            <div class="text-xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">特色飯店分類</div>
 
             <div class=" sm:mt-5 mx-5  select-none	flex justify-center sm:flex-nowrap">
 
@@ -28,7 +28,7 @@
 
                             </q-responsive>
 
-                            <div class="text-[#DC492A] text-lg sm:text-xl mt-3 sm:mt-4
+                            <div class="text-[#DC492A] text-lg sm:text-[28px] mt-3 sm:mt-7
                         ">{{ category.name }}</div>
                         </q-router-link>
                     </div>

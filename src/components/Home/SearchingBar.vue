@@ -1,13 +1,10 @@
 <template>
     <div class="relative z-10 w-full sm:-translate-y-[5vw] 2xl:-translate-y-24">
-        <div
-            class="
+        <div class="
             shadow-[0px_0px_8px_rgba(0,0,0,0.25)]
             relative 
             px-7 py-10 sm:py-6 sm:px-10
-            bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px]"
-            
-        >
+            bg-white sm:!bg-[#F9EDD5] mx-5 mt-3 sm:mx-auto sm:mt-0  rounded-2xl sm:w-[75vw] max-w-[1440px]">
             <!-- 城市選擇 -->
             <div
                 ref="cityElement"
@@ -16,7 +13,7 @@
                 @click="cityElementIsHovered = true"
             >
                 <div
-                    class=" flex justify-start items-center  w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-b-0 pb-1 sm:pb-0">
+                    class="text-base sm:text-lg font-normal flex justify-start items-center  w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-b-0 pb-1 sm:pb-0">
                     <q-icon
                         class=" sm:ml-5 text-[#F4AA00] sm:text-black"
                         name="search"
@@ -25,39 +22,13 @@
                     <div class="ml-4">
                         {{ cityModel.city_name }}
                     </div>
-                    <!-- <Transition
-                        mode="out-in"
-                        enter-active-class="animate__animated animate__rotateIn [--animate-duration:300ms]"
-                        leave-active-class="animate__animated animate__fadeOut [--animate-duration:100ms]"
-                    >
-                        <q-icon
-                            v-if="cityElementIsHovered"
-                            @click="closeCityElement()"
-                            class="ml-auto mr-5 "
-                            name="arrow_drop_up"
-                            size="sm"
-                        />
-                        <q-icon
-                            v-else
-                            @click="cityElementIsHovered = true"
-                            class="ml-auto mr-5 "
-                            name="arrow_drop_down"
-                            size="sm"
-                        />
-
-                    </Transition> -->
-
-
-
-
-
                 </div>
 
 
                 <!-- 城市選擇 -->
                 <Transition enter-active-class="animate__animated animate__fadeIn">
                     <template v-if="cityElementIsHovered">
-                        <div class="[--animate-duration:300ms] w-[95%] lg:w-2/3 absolute sm:left-0 sm:top-14 top-8">
+                        <div class="[--animate-duration:300ms] w-[95%] lg:w-2/3 absolute sm:left-0 sm:top-12 top-4">
                             <div class="  mx-auto sm:mx-0  w-full ">
                                 <q-scroll-area class="h-60 bg-white  p-6 mt-4 rounded-md  shadow-md border">
 
@@ -96,7 +67,7 @@
                     @click="dateRangeElementIsHovered = true"
                 >
                     <div
-                        class="w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-r sm:border-b-0  sm:w-1/2 sm:pl-5 pb-1 sm:pb-0 flex justify-start items-center flex-nowrap  h-[75%] my-auto">
+                        class="text-base sm:text-lg font-normal w-full border-b border-[#BDB4A2] sm:border-gray-300 sm:border-r sm:border-b-0  sm:w-1/2 sm:pl-5 pb-1 sm:pb-0 flex justify-start items-center flex-nowrap  h-[75%] my-auto">
                         <q-icon
                             class="text-[#F4AA00] sm:text-black"
                             name="today"
@@ -104,7 +75,7 @@
                         />
                         <div
                             v-if="dateModel"
-                            class="ml-4 sm:text-base"
+                            class="ml-4 "
                         >
                             <span class="hidden sm:!block">{{ dateModel?.from }}</span>
                             <div class="sm:hidden">
@@ -113,36 +84,29 @@
                         </div>
                         <div
                             v-else
-                            class="ml-4 text-gray-500"
+                            class="ml-4"
                         >
                             <span class="hidden sm:!block">選擇入住時間</span>
                             <span class="sm:hidden">選擇入住與退房時間</span>
                         </div>
                     </div>
-                    <div class="hidden w-1/2 pl-5 gap-4 sm:!flex justify-start items-center flex-nowrap">
+                    <div
+                        class="text-base sm:text-lg font-normal hidden w-1/2 pl-5 gap-4 sm:!flex justify-start items-center flex-nowrap">
                         <q-icon
                             name="event"
                             size="sm"
                         />
-                        <div
-                            v-if="dateModel"
-                            class="text-base"
-                        >
-                            {{ dateModel?.to }}
+                        <div>
+                            {{ dateModel ? dateModel.to : '選擇退房時間' }}
                         </div>
-                        <div
-                            v-else
-                            class="text-gray-500"
-                        >
-                            選擇退房時間
-                        </div>
+
                     </div>
                     <Transition enter-active-class="animate__animated animate__fadeIn">
                         <template v-if="dateRangeElementIsHovered">
 
                             <div
                                 class="[--animate-duration:300ms] w-[95%] mx-auto sm:mx-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-[0px_0px_15px_0px_rgba(0,0,0,0.6)] 
-                                        sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 ">
+                                        sm:absolute sm:left-0 sm:top-12 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 ">
                                 <q-date
                                     today-btn
                                     subtitle="選擇入住與退房日期"
@@ -183,16 +147,16 @@
                             name="perm_identity"
                             size="sm"
                         />
-                        <div class="ml-4">
+                        <div class="ml-4 text-base  font-normal">
                             <div class="">
-                                <span>{{ roomModel.aduitCount }} 位大人</span>
-                                <span v-if="roomModel.childCount > 0">，{{ roomModel.childCount }} 位兒童</span>
+                                <span class="sm:text-lg">{{ roomModel.aduitCount }} 位大人</span>
+                                <span class="sm:text-lg" v-if="roomModel.childCount > 0">，{{ roomModel.childCount }} 位兒童</span>
                                 <span
                                     class="sm:hidden"
                                     v-if="roomModel.roomCount > 0"
                                 >，{{ roomModel.roomCount }} 間客房</span>
                             </div>
-                            <div class="hidden sm:!block text-sm text-gray-400">
+                            <div class="hidden sm:!block text-base text-[#506373]">
                                 <span>{{ roomModel.roomCount }} 間客房</span>
                             </div>
                         </div>
@@ -204,7 +168,7 @@
                         <template v-if="roomElementIsHovered">
                             <div
                                 class="[--animate-duration:300ms] fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 shadow-2xl 
-                                        sm:absolute sm:left-0 sm:top-16 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 w-full ">
+                                        sm:absolute sm:left-0 sm:top-12 sm:translate-x-0 sm:translate-y-0 sm:shadow-none sm:pt-3 w-full ">
                                 <div
                                     class="bg-white w-[95%] mx-auto sm:mx-0 border lg:w-2/3 rounded-md  px-6 py-8 shadow-md flex flex-col gap-6">
                                     <!-- 大人 -->
@@ -303,13 +267,13 @@
                 @click="gotoLink(searchLink)"
                 label="搜尋"
                 color="primary"
-                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-14 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-3/4"
+                class="font-normal mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-10 rounded-lg sm:h-14 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-3/4"
             />
             <q-btn
                 v-else
                 label="搜尋"
                 color="primary"
-                class="mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-14 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-3/4"
+                class="font-normal mt-5 tracking-[0.8em] sm:tracking-[0.4em] !bg-[#DB5F1D] sm:!bg-[#F6AC00] z-0 h-12 rounded-lg sm:h-14 text-lg sm:text-xl w-full sm:w-1/2 sm:absolute sm:left-1/2 -bottom-0 sm:-translate-x-1/2 sm:translate-y-3/4"
             />
         </div>
     </div>

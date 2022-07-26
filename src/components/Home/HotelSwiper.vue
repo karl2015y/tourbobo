@@ -1,24 +1,24 @@
 <template>
-    <div class=" w-full mt-20 sm:mt-24">
+    <div class=" w-full mt-10 sm:mt-24">
         <div class="relative text-center z-10">
             <img
                 src="@/assets/bg-hotelSwiper.svg"
                 class="absolute -top-12 left-0 -z-10 w-full"
             >
-            <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] ">精選推薦飯店</div>
+            <div class="text-xl sm:text-4xl tracking-widest font-bold text-[#2B4162] ">精選推薦飯店</div>
 
-            <div class=" sm:mt-5 mx-5 sm:mx-28 select-none	">
+            <div class=" mt-1 sm:mt-5 mx-5 sm:mx-28 select-none	">
 
                 <q-tabs
                     v-model="areaTab"
                     dense
-                    class="text-black sm:w-[31.458vw] mx-auto"
+                    class="text-black sm:w-[31.458vw] mx-auto mb-5"
                     indicator-color="secondary"
                     align="justify"
                 >
                     <template v-for="area in areaArray">
                         <q-tab
-                            class="relative !text-2xl"
+                            class="relative [--q-tab__label__size:14px] sm:[--q-tab__label__size:28px]"
                             :name="area.name"
                             :label="area.name"
                         >
@@ -220,7 +220,7 @@ const currentHotelList = computedAsync(
 
 :deep().q-tab__label {
     margin-bottom: 10px;
-    font-size: 26px;
-    font-weight: 600;
+    font-size: var(--q-tab__label__size);
+    font-weight: 400;
 }
 </style>

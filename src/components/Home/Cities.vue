@@ -1,8 +1,8 @@
 <template>
-    <div class="max-w-[1540px] mx-auto w-full mt-20 sm:mt-24">
+    <div class="max-w-[1540px] mx-auto w-full mt-14 sm:mt-24">
         <div class="relative text-center z-10">
             <div class="relative flex justify-center items-center">
-                <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162] sm:-translate-x-6 ">熱門城市</div>
+                <div class="text-xl sm:text-4xl tracking-widest font-bold text-[#2B4162] -translate-x-3 sm:-translate-x-6 ">熱門城市</div>
                 <img
                     class="-z-10
                     absolute top-1/2 left-1/2 -translate-x-[45%] -translate-y-1/3
@@ -26,7 +26,7 @@
                                 :ratio="1"
                             />
 
-                            <span class="block mt-2 text-[28px] font-normal">{{ city.city_name }}</span>
+                            <span class="block mt-0.5 sm:mt-2 text-sm font-normal sm:text-[28px]">{{ city.city_name }}</span>
 
                         </div>
 

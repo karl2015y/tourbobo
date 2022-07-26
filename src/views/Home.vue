@@ -11,7 +11,7 @@
             :areaArray="areaArray"
         />
         <hotel-category :hotelCategories="hotelCategories" />
-        <!-- <activity-image-info /> -->
+        <activity-image-info />
         <about />
         <user-footer />
 

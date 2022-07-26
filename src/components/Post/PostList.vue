@@ -15,7 +15,7 @@
                         :class="{
                             '!text-white !bg-[#00586E]': currentPostCategory == category
                         }"
-                        class="cursor-pointer text-[#005A72] bg-white w-full py-6 pl-4 mt-0.5 text-xl font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
+                        class="cursor-pointer text-[#005A72] bg-white w-full py-6 pl-4 mt-0.5 text-[34px] font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
                     >
                         {{ category }}
                     </div>
@@ -45,7 +45,7 @@
                                         }"
                                         class="bg-[#F3F3F4] h-7 px-3 flex justify-center items-center "
                                     >
-                                        <span class="w-20 truncate">
+                                        <span class="w-24 truncate text-xl">
                                             {{ post.createDate }}
                                             <q-tooltip
                                                 v-if="post.createDate.length > 10"
@@ -76,17 +76,17 @@
                         <div
                             class="mt-4 mb-3 w-[86px] h-[23px] rounded-xl bg-[#F4AA00] text-white  flex justify-center items-center">
                             <q-icon name="chevron_left" />
-                            <span class="text-sm">
+                            <span class="text-sm font-medium">
                                 返回列表
                             </span>
                         </div>
 
                     </q-router-link>
-                    <div class="text-4xl font-bold text-[#005A72] hidden sm:!block">
+                    <div class="text-5xl font-bold text-[#005A72] hidden sm:!block">
                         {{ currentPost.title }}
 
                     </div>
-                    <div class="text-lg mt-3  hidden sm:!block">
+                    <div class="text-3xl font-normal mt-4  hidden sm:!block">
                         {{ currentPost.subTitle }}
 
                     </div>

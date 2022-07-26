@@ -1,8 +1,8 @@
 <template>
-    <div class="max-w-[1800px] mx-auto w-full mt-20 sm:mt-7 ">
+    <div class="max-w-[1800px] mx-auto w-full mt-16 sm:mt-7 ">
         <div class="relative text-center">
             <div class="relative flex justify-center items-center">
-                <div class="text-2xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">優惠活動資訊</div>
+                <div class="text-xl sm:text-4xl tracking-widest font-bold text-[#2B4162]">優惠活動資訊</div>
                 <img
                     class="-z-10
                     absolute top-1/2 left-1/2 -translate-x-[45%] -translate-y-1/3
