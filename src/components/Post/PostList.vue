@@ -15,7 +15,7 @@
                         :class="{
                             '!text-white !bg-[#00586E]': currentPostCategory == category
                         }"
-                        class="cursor-pointer text-[#005A72] bg-white w-full py-2.5 pl-4 mt-0.5 text-3xl font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
+                        class="cursor-pointer text-[#005A72] bg-white w-full py-[1.065rem] pl-4 mt-0.5 text-3xl font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
                     >
                         {{ category }}
                     </div>
