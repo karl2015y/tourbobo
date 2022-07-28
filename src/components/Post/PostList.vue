@@ -2,8 +2,8 @@
     <div class="relative w-full z-10 ">
         <q-img
             class="top-bg-img hidden sm:!block absolute -z-10 top-0 lef-0 w-full max-h-[650px] object-cover"
-            :ratio="1920 / 777"
-            src="@/assets/post/bg-post.svg"
+            :ratio="1920 / 650"
+            src="@/assets/post/bg-post.png"
         />
         <!-- 
         /> -->
@@ -37,27 +37,19 @@
                                     :class="{
                                         '!bg-[#D6E5E8]': post.post_id == currentPost?.post_id
                                     }"
-                                    class=" cursor-pointer py-5 px-2.5 flex  border-l-[14px] border-[#00586E] bg-white"
+                                    class="flex flex-nowrap flex-col md:flex-row cursor-pointer py-5 px-2.5   border-l-[14px] border-[#00586E] bg-white"
                                 >
                                     <div
                                         :class="{
                                             '!bg-white': post.post_id == currentPost?.post_id
                                         }"
-                                        class="bg-[#F3F3F4] h-7 px-3 flex justify-center items-center "
+                                        class="w-36 truncate text-xl bg-[#F3F3F4] h-7 px-3 flex justify-center items-center "
                                     >
-                                        <span class="w-24 truncate text-xl">
-                                            {{ post.createDate }}
-                                            <q-tooltip
-                                                v-if="post.createDate.length > 10"
-                                                transition-show="flip-up"
-                                                transition-hide="flip-down"
-                                                anchor="center middle"
-                                                self="center middle"
-                                                class="bg-[#F3F3F4] text-black"
-                                            >{{ post.createDate }}</q-tooltip>
-                                        </span>
+
+                                        {{ post.createDate }}
+
                                     </div>
-                                    <div class="ml-2 text-lg ">{{ post.title }}</div>
+                                    <div class="w-full ml-2 text-lg ">{{ post.title }}</div>
                                 </div>
                             </template>
                         </div>
@@ -407,7 +399,7 @@ watchEffect(() => {
 
 @media (min-width: 1940px) {
     .top-bg-img {
-        clip-path: polygon(100% 1%, 100% 100%, 82% 90%, 57% 81%, 34% 82%, 13% 90%, 0 100%, 0 0);
+clip-path: polygon(100% 100%, 100% 0%, 0% 0%, 0% 100%, 9% 94%, 16% 90%, 23% 87%, 28% 85%, 35% 83%, 41% 82%, 47% 82%, 55% 82%, 60% 82%, 67% 83%, 76% 86%, 82% 89%, 88% 92%);
     }
 
     .max-w-\[1920px\] {
