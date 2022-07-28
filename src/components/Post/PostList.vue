@@ -15,7 +15,7 @@
                         :class="{
                             '!text-white !bg-[#00586E]': currentPostCategory == category
                         }"
-                        class="cursor-pointer text-[#005A72] bg-white w-full py-2.5 pl-4 mt-0.5 text-[34px] font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
+                        class="cursor-pointer text-[#005A72] bg-white w-full py-2.5 pl-4 mt-0.5 text-3xl font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
                     >
                         {{ category }}
                     </div>
@@ -51,7 +51,7 @@
 
 
                                     </div>
-                                    <div class="w-full ml-2 text-lg line-clamp-2">{{ post.title }}</div>
+                                    <div class="w-full ml-2 text-2xl line-clamp-2">{{ post.title }}</div>
                                 </div>
                             </template>
                         </div>
@@ -76,11 +76,11 @@
                         </div>
 
                     </q-router-link>
-                    <div class="text-5xl font-bold text-[#005A72] hidden sm:!block">
+                    <div class="text-[40px] font-bold text-[#005A72] hidden sm:!block">
                         {{ currentPost.title }}
 
                     </div>
-                    <div class="text-3xl font-normal mt-4  hidden sm:!block">
+                    <div class="text-[26px] font-normal mt-4  hidden sm:!block">
                         {{ currentPost.subTitle }}
 
                     </div>
