@@ -39,9 +39,9 @@
                                     }"
                                     class="flex flex-nowrap flex-col md:flex-row cursor-pointer py-5 px-2.5   border-l-[14px] border-[#00586E] bg-white"
                                 >
-                                    <div class="w-36 my-auto  text-xl  flex justify-center items-center ">
+                                    <div class="w-36 my-auto  text-lg  flex justify-center items-center ">
                                         <div
-                                            class="h-8 truncate bg-[#F3F3F4] px-3 "
+                                            class="h-8 truncate bg-[#F3F3F4] px-2 "
                                             :class="{
                                                 '!bg-white': post.post_id == currentPost?.post_id
                                             }"
