@@ -1,9 +1,8 @@
 <template>
     <div class=" border shadow-md  rounded-xl bg-white ">
         <div class="relative">
-            <span
-                class=" flex items-center gap-2 bg-[#DC492A] rounded-3xl px-2 py-1 absolute left-3 top-3 z-10 text-xs font-medium text-[#F9EDD5]"
-            >
+            <div
+                class=" flex items-center justify-center bg-[#DC492A] rounded-3xl pl-2.5 pr-3 py-1 absolute left-3 top-3 z-10 text-base font-medium text-[#F9EDD5]">
                 <svg
                     class="inline"
                     width="15"
@@ -22,10 +21,12 @@
                     />
                 </svg>
 
+                <div class="-mt-1 ml-1.5">
+                    {{ props.hotel.county }}
+                    {{ props.hotel.area }}
+                </div>
 
-                {{ props.hotel.county }}
-                {{ props.hotel.area }}
-            </span>
+            </div>
             <swiper
                 class="sm:hidden rounded-t-xl"
                 :modules="[Pagination]"
@@ -86,7 +87,9 @@
                 </div>
                 <div class="-mt-1 flex justify-between items-center">
                     <div class="text-base font-medium sm:font-semibold sm:text-lg leading-6 ">每晚最低</div>
-                    <div class="ml-3 text-[#DC492A] text-2xl sm:text-3xl font-bold">TWD {{ priceFormat(props.hotel.lowest_price) }}
+                    <div class="ml-3 text-[#DC492A] text-2xl sm:text-3xl font-bold">TWD {{
+                            priceFormat(props.hotel.lowest_price)
+                    }}
                     </div>
                 </div>
             </div>
@@ -102,7 +105,7 @@
                 <div class="text-center text-lg sm:text-2xl font-bold
                      bg-[#00586E] text-white border-2 border-white 
                      hover:bg-white hover:!text-[#00586E] hover:border-[#00586E] hover:shadow-[2px_2px_rgba(0,88,110,1)]
-                     rounded-3xl py-1">
+                     rounded-3xl pb-1.5 pt-1">
                     立即下訂
                 </div>
             </q-router-link>

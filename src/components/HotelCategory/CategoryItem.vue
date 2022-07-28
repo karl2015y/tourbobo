@@ -25,16 +25,16 @@
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
-                            class="bg-white md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
+                            class="bg-white md:!bg-inherit p-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
                         >
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-light text-sm">{{
                             props.hotelSubCategoryData.description
                     }}
                     </div>
-                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-light text-sm">{{
                             props.hotelSubCategoryData.discountDescription
                     }}
                     </div>
@@ -52,9 +52,9 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                    text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-1 md:py-1.5  flex justify-center items-center rounded-3xl border 
+                                    text-base md:text-2xl mr-1.5 select-none whitespace-nowrap min:h-5 px-4  flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
-                                     hover:shadow-[2px_2px_rgba(0,88,110,1)]
+                                     sm:hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "
                                 >
                                     {{ item }}
@@ -184,15 +184,15 @@
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
-                            class="bg-[#F7EBD3] md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
+                            class="bg-[#F7EBD3] md:!bg-inherit p-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
                         >
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-light text-sm">{{
                             props.hotelSubCategoryData.description
                     }}</div>
-                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-light text-sm">{{
                             props.hotelSubCategoryData.discountDescription
                     }}
                     </div>
@@ -210,9 +210,9 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                   text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5  flex justify-center items-center rounded-3xl border 
+                                    text-base md:text-2xl mr-1.5 select-none whitespace-nowrap min:h-5 px-4  flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
-                                     hover:shadow-[2px_2px_rgba(0,88,110,1)]
+                                     sm:hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "
                                 >
                                     {{ item }}
@@ -322,15 +322,15 @@
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
-                            class="bg-white md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
+                            class="bg-white md:!bg-inherit p-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
                         >
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-light text-sm">{{
                             props.hotelSubCategoryData.description
                     }}</div>
-                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-light text-sm">{{
                             props.hotelSubCategoryData.discountDescription
                     }}
                     </div>
@@ -348,9 +348,9 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                   text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5  flex justify-center items-center rounded-3xl border 
+                                    text-base md:text-2xl mr-1.5 select-none whitespace-nowrap min:h-5 px-4  flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
-                                     hover:shadow-[2px_2px_rgba(0,88,110,1)]
+                                     sm:hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "
                                 >
                                     {{ item }}
@@ -473,15 +473,15 @@
                 <div class="md:w-1/4">
                     <div class="mb-3">
                         <span
-                            class="bg-[#F7EBD3] md:!bg-inherit pt-3 pb-2 px-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
+                            class="bg-[#F7EBD3] md:!bg-inherit p-3 md:p-0 rounded-3xl text-xl md:text-[34px] font-bold"
                         >
                             {{ props.hotelSubCategoryData.name }}
                         </span>
                     </div>
-                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-medium text-sm">{{
+                    <div class="mt-7 md:text-[#727171] md:text-2xl md:font-light text-sm">{{
                             props.hotelSubCategoryData.description
                     }}</div>
-                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-medium text-sm">{{
+                    <div class="mt-3 text-[#FF5F00] md:text-[22px] md:font-light text-sm">{{
                             props.hotelSubCategoryData.discountDescription
                     }}
                     </div>
@@ -499,9 +499,9 @@
                                         '!bg-[#00586E] text-white border-white shadow activeTag': item === filterTag
                                     }"
                                     class=" cursor-pointer
-                                    text-base md:text-[28px] mr-1.5 select-none whitespace-nowrap min:h-6 px-4 py-0.5   flex justify-center items-center rounded-3xl border 
+                                    text-base md:text-2xl mr-1.5 select-none whitespace-nowrap min:h-5 px-4  flex justify-center items-center rounded-3xl border 
                                     bg-white text-[#00586E] border-[#00586E]
-                                     hover:shadow-[2px_2px_rgba(0,88,110,1)]
+                                     sm:hover:shadow-[2px_2px_rgba(0,88,110,1)]
                                     "
                                 >
                                     {{ item }}

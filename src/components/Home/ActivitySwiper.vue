@@ -39,7 +39,7 @@
                                         <div class="sm:hidden mt-1">{{ item.name }}</div>
                                     </q-router-link>
 
-                                    <q-tooltip>{{ item.name }}</q-tooltip>
+                                    <q-tooltip v-if="$q.screen.gt.sm">{{ item.name }}</q-tooltip>
                                 </div>
 
 

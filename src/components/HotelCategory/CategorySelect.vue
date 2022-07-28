@@ -25,7 +25,7 @@
             ">
                 <div class="absolute left-[8%] top-[30%] sm:top-[25%] sm:left-[10%]">
                     <span class="text-[22px] sm:text-5xl font-bold block leading-4">{{ hotelFocusCategoryObj.title }}</span>
-                    <span class=" text-xl sm:text-[40px] font-semibold mt-3 sm:mt-8 block leading-4">{{ hotelFocusCategoryObj.subTitle }}</span>
+                    <span class=" text-xl sm:text-[40px] font-normal mt-3 sm:mt-8 block leading-4">{{ hotelFocusCategoryObj.subTitle }}</span>
                 </div>
 
             </div>
@@ -58,7 +58,7 @@
                                 style="clip-path:polygon(5% 0, 94% 80%, 100% 100%, 0 100%, 0 0)"
                                 class="bg-[#F6EAD4] rounded-t-lg rounded-r-lg absolute -top-[0.4rem] h-2 w-full"
                             > </div>
-                            <div class="text-xl font-semibold whitespace-nowrap bg-[#F6EAD4]  py-1 rounded-tr-md ">
+                            <div class="text-xl font-bold whitespace-nowrap bg-[#F6EAD4]  py-1 rounded-tr-md ">
                                 {{ category.name }}
                             </div>
                         </div>
@@ -67,9 +67,9 @@
 
                     <div
                         v-else
-                        class=" text-center  font-medium !h-16 flex flex-col justify-end text-sm"
+                        class=" text-center  font-normal !h-16 flex flex-col justify-end text-sm"
                     >
-                        <div class="bg-[#F4A900] py-1 pr-0.5 -ml-0.5 rounded-t-lg">
+                        <div class="bg-[#F4A900] py-1 pr-0.5 -ml-0.5 rounded-t-lg ">
 
                             {{ category.name }}
                         </div>
@@ -135,7 +135,7 @@
 
                 <li
                     @click="clickQueryLink('category', category.name)"
-                    class="cursor-pointer text-2xl  text-center font-bold w-72 py-3"
+                    class="cursor-pointer text-3xl  text-center font-bold w-72 py-3"
                     :class="{ 'bg-[#F6EAD4]': category.name == hotelFocusCategory }"
                 >
                     <div class="animate__animated">

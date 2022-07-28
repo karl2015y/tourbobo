@@ -54,8 +54,8 @@ const areaArray = computed(() => pageHomeStore.areaArray)
 const hotelCategories = computed(() => pageHotelCategoryStore.hotelCategoryData)
 </script>
 
-<style scoped>
-*{
+<style>
+body{
   font-family: 'Noto Sans TC';
 }
 </style>

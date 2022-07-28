@@ -15,8 +15,8 @@ const pageHotelCategoryStore = usePageHotelCategoryStore()
 const hotelCategoryData = computed(() => pageHotelCategoryStore.hotelCategoryData)
 </script>
 
-<style scoped>
-*{
-  font-family: 'Noto Sans TC';
+<style>
+body{
+  font-family: 'Noto Sans TC'!important;
 }
 </style>

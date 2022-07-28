@@ -1,13 +1,13 @@
 <template>
     <div class="relative w-full z-10 ">
         <q-img
-            class="top-bg-img hidden sm:!block absolute -z-10 top-0 lef-0 w-full max-h-[777px] object-cover"
+            class="top-bg-img hidden sm:!block absolute -z-10 top-0 lef-0 w-full max-h-[650px] object-cover"
             :ratio="1920 / 777"
             src="@/assets/post/bg-post.svg"
         />
         <!-- 
         /> -->
-        <div class="sm:flex justify-between mt-0 sm:mt-14 sm:mx-14 max-w-[1920px] ">
+        <div class="sm:flex justify-between mt-0 sm:mt-14 sm:mx-14 2xl:mx-auto max-w-[1460px] ">
             <div class="hidden sm:!block w-full sm:w-[30%]  ">
                 <template v-for="category in postCategory">
                     <div
@@ -96,7 +96,7 @@
                         :src="currentPost.image"
                     />
 
-                    <div class="sm:hidden w-full bg-[#00586E] text-[#F7EBD3] mt-5 p-3 text-center font-bold text-xl">
+                    <div class="sm:hidden w-full bg-[#00586E] text-[#F7EBD3] mt-5 p-3  font-bold text-xl">
                         {{ currentPost.title }}
                     </div>
 
@@ -223,20 +223,26 @@
 
                                 <div
                                     @click="cacheHistoryRoutePath = route.fullPath"
-                                    class="post-card"
+                                    class="post-card flex items-center justify-between"
                                 >
-                                    <div class="font-medium text-lg leading-6 max-w-[18rem] ">
-                                        {{ post.title }}
+                                    <div class="px-5 w-[88%]">
+                                        <div class="font-medium text-lg leading-6 max-w-[18rem] ">
+                                            {{ post.title }}
+                                        </div>
+                                        <div
+                                            class="mt-5 text-sm !leading-5 font-medium text-[#979797] flex items-center">
+                                            <q-icon name="calendar_month" />
+                                            <span class="ml-1"> {{ post.createDate }}</span>
+                                        </div>
                                     </div>
-                                    <div class="mt-8 text-sm !leading-5 font-medium text-[#979797] ml-3">
-                                        <q-icon name="calendar_month" />
-                                        <span> {{ post.createDate }}</span>
+                                    <div class="w-[5%] h-full mr-4">
+                                        <q-icon
+                                            class="!text-[#00586E]"
+                                            size="sm"
+                                            name="navigate_next"
+                                        />
                                     </div>
-                                    <q-icon
-                                        class="absolute top-1/2 -translate-y-1/2 right-2"
-                                        size="sm"
-                                        name="navigate_next"
-                                    />
+
                                 </div>
                             </q-router-link>
                             <!-- <div class="mx-[8.3vw]  h-20 w-full shadow-[0px_0px_8px_rgba(0, 0,0,0.25)]">
@@ -300,6 +306,8 @@ const clickQueryLink = (queryKey: string, queryValue: string) => {
     router.push({ ...route, query: { ...route.query, [queryKey]: queryValue } })
 }
 const clickQueryLinkByObject = (queryObj: { [queryKey: string]: string }) => {
+    console.log('clickQueryLinkByObject', queryObj);
+
     router.push({ ...route, query: queryObj })
 }
 
@@ -310,7 +318,7 @@ const currentPostCategory = computed(() => {
     const routeCategory = route.query['category']
     const firstCategory = postCategory.value[0]
     if (routeCategory) {
-        if (postCategory.value.indexOf(routeCategory as string) == -1) {
+        if (postCategory.value.length > 0 && postCategory.value.indexOf(routeCategory as string) == -1) {
             clickQueryLinkByObject({ 'category': firstCategory })
         }
         return routeCategory
@@ -341,8 +349,9 @@ const currentPost = computed(() => {
         const _currentPost = find(postArray.value, ['post_id', routePostId])
         if (_currentPost) {
             return _currentPost
+        } else if (postArray.value.length > 0) {
+            return clickQueryLinkByObject({})
         }
-        return clickQueryLinkByObject({})
     } else if (windowSize.width.value >= 640) {
         return showPostArray.value[0]
     }
@@ -355,12 +364,15 @@ const cacheHistoryRoutePath = ref('')
 
 const articleTextAreaRef = ref()
 const articleTextAreaSize = useElementSize(articleTextAreaRef)
-watch(() => articleTextAreaSize.height.value, () => {    
-    articleTextAreaRef.value.querySelectorAll('a').forEach((aTag: any) => {
-        if (aTag && aTag.target == "") {
-            aTag.target = "_blank"
-        }
-    })
+watch(() => articleTextAreaSize.height.value, () => {
+    if (articleTextAreaRef.value) {
+        articleTextAreaRef.value.querySelectorAll('a').forEach((aTag: any) => {
+            if (aTag && aTag.target == "") {
+                aTag.target = "_blank"
+            }
+        })
+    }
+
 })
 
 const mainStore = useMainStore()
@@ -390,7 +402,7 @@ watchEffect(() => {
 
 .post-card {
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-    @apply my-[2.5vw] w-[83.46vw] min-w-[313px] min-h-[122px] relative pt-6 pb-3 px-3 bg-[#FFFEFF] rounded-xl
+    @apply my-[2.5vw] w-[83.46vw] min-w-[313px] min-h-[122px] relative bg-[#FFFEFF] rounded-xl
 }
 
 @media (min-width: 1940px) {

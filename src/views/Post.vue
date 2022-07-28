@@ -23,8 +23,8 @@ const postCategory = computed(() => postStore.postCategoryArray)
 const postArray = computed(() => postStore.postArray)
 </script>
 
-<style scoped>
-*{
+<style>
+body{
   font-family: 'Noto Sans TC';
 }
 </style>
