@@ -453,6 +453,7 @@ watchEffect(() => {
     line-height: 0.1em;
     margin-right: 0.25em;
     vertical-align: -0.4em;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
