@@ -15,7 +15,7 @@
                         :class="{
                             '!text-white !bg-[#00586E]': currentPostCategory == category
                         }"
-                        class="cursor-pointer text-[#005A72] bg-white w-full py-6 pl-4 mt-0.5 text-[34px] font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
+                        class="cursor-pointer text-[#005A72] bg-white w-full py-2.5 pl-4 mt-0.5 text-[34px] font-semibold rounded-lg shadow-[0px_0px_5px_rgba(0,0,0,0.25)]"
                     >
                         {{ category }}
                     </div>
@@ -39,17 +39,19 @@
                                     }"
                                     class="flex flex-nowrap flex-col md:flex-row cursor-pointer py-5 px-2.5   border-l-[14px] border-[#00586E] bg-white"
                                 >
-                                    <div
-                                        :class="{
-                                            '!bg-white': post.post_id == currentPost?.post_id
-                                        }"
-                                        class="w-36 truncate text-xl bg-[#F3F3F4] h-7 px-3 flex justify-center items-center "
-                                    >
+                                    <div class="w-36 my-auto  text-xl  flex justify-center items-center ">
+                                        <div
+                                            class="h-8 truncate bg-[#F3F3F4] px-3 "
+                                            :class="{
+                                                '!bg-white': post.post_id == currentPost?.post_id
+                                            }"
+                                        >
+                                            {{ post.createDate }}
+                                        </div>
 
-                                        {{ post.createDate }}
 
                                     </div>
-                                    <div class="w-full ml-2 text-lg ">{{ post.title }}</div>
+                                    <div class="w-full ml-2 text-lg line-clamp-2">{{ post.title }}</div>
                                 </div>
                             </template>
                         </div>
@@ -399,7 +401,7 @@ watchEffect(() => {
 
 @media (min-width: 1940px) {
     .top-bg-img {
-clip-path: polygon(100% 100%, 100% 0%, 0% 0%, 0% 100%, 9% 94%, 16% 90%, 23% 87%, 28% 85%, 35% 83%, 41% 82%, 47% 82%, 55% 82%, 60% 82%, 67% 83%, 76% 86%, 82% 89%, 88% 92%);
+        clip-path: polygon(100% 100%, 100% 0%, 0% 0%, 0% 100%, 9% 94%, 16% 90%, 23% 87%, 28% 85%, 35% 83%, 41% 82%, 47% 82%, 55% 82%, 60% 82%, 67% 83%, 76% 86%, 82% 89%, 88% 92%);
     }
 
     .max-w-\[1920px\] {
