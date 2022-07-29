@@ -12,7 +12,7 @@
         />
         <hotel-category :hotelCategories="hotelCategories" />
         <activity-image-info />
-        <about />
+        <about :aboutObj="aboutObj" />
         <user-footer />
 
 
@@ -52,10 +52,12 @@ const cities = computed(() => pageHomeStore.cities)
 const areaArray = computed(() => pageHomeStore.areaArray)
 // HotelCategory
 const hotelCategories = computed(() => pageHotelCategoryStore.hotelCategoryData)
+//about
+const aboutObj = computed(() => pageHomeStore.aboutObj)
 </script>
 
 <style>
-body{
-  font-family: 'Noto Sans TC';
+body {
+    font-family: 'Noto Sans TC';
 }
 </style>

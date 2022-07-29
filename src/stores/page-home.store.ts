@@ -7,6 +7,9 @@ export const usePageHomeStore = defineStore('PageHome', {
         activityList: <ActivityType[]>[],
         cities: <CityType[]>[],
         areaArray: <AreaType[]>[],
+        aboutObj: {
+            content: <string>''
+        }
     }),
-    
+
 })

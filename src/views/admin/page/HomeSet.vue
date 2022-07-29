@@ -426,7 +426,29 @@
 
     </div>
 
+    <!-- 關於我們 -->
+    <div class="p-3 border-b ">
+        <div class="flex items-center gap-3">
+            <div class="font-bold text-2xl">關於我們</div>
 
+        </div>
+
+        <div class="p-3 w-[63vw] max-w-[1000px]">
+            <div class="font-bold text-lg">內文</div>
+            <q-input
+                filled
+                v-model="aboutObj.content"
+                type="textarea"
+            />
+
+        </div>
+
+
+
+
+
+
+    </div>
 
 </template>
 
@@ -454,6 +476,7 @@ watchEffect(() => {
         activityList.value = PageHomeData.value.activityList
        cities.value = PageHomeData.value.cities
        areaArray.value = PageHomeData.value.areaArray
+       aboutObj.value = PageHomeData.value.aboutObj
 
     }
 })
@@ -465,6 +488,7 @@ const preSaveData = computed(() => {
             activityList: activityList.value,
             cities: cities.value,
             areaArray: areaArray.value,
+            aboutObj: aboutObj.value,
         }
     }
     return {}
@@ -605,6 +629,11 @@ const removeHotelInAreaItem = async (index: number) => {
     }
 }
 
+ 
+//  關於我們
+const aboutObj= ref({
+    content:''
+})
 
 </script>
 

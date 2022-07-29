@@ -19,7 +19,10 @@ const pageHomeData = ref<{
     bannerList: BannerListType[],
     activityList: ActivityType[],
     cities: CityType[],
-    areaArray: AreaType[]
+    areaArray: AreaType[],
+    aboutObj: {
+        content: string
+    }
 }>((useFirestore(pageHomeDB)) as any)
 watchEffect(() => {
     if (pageHomeData.value) {
@@ -27,6 +30,8 @@ watchEffect(() => {
         pageHomeStore.activityList = pageHomeData.value.activityList;
         pageHomeStore.cities = pageHomeData.value.cities;
         pageHomeStore.areaArray = pageHomeData.value.areaArray;
+        pageHomeStore.aboutObj = pageHomeData.value.aboutObj;
+
     }
 })
 
