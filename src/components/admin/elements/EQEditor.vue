@@ -693,41 +693,21 @@ onMounted(() => {
     @apply text-[#ff5f00] cursor-pointer
 }
 
+
+
 :deep() .q-editor__content ul {
     padding: revert;
-    list-style: none;
-}
-
-:deep() .q-editor__content ul>li {
-    text-indent: -1em;
-}
-
-:deep() .q-editor__content ul>li::before {
-    content: "▌";
-    color: #005864
-}
-
-
-:deep() .q-editor__content ul ul {
-    padding: revert;
     @apply list-disc
 }
 
-:deep() .q-editor__content ul ul li {
-    text-indent: 0;
+:deep() .q-editor__content ul li {
     @apply list-disc
-}
-
-:deep() .q-editor__content ul ul li::before {
-    content: "";
 }
 
 :deep() .q-editor__content ol {
     list-style-type: decimal;
     padding: revert;
 }
-
-
 
 :deep() .q-editor__content ol li {
     list-style-type: decimal;

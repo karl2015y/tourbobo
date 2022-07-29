@@ -412,9 +412,10 @@ watchEffect(() => {
 
 <style scoped >
 :deep() .articleTextArea a {
-    @apply text-[#00A29A] cursor-pointer hover:text-[#06b8b0]
+    @apply text-[#ff5f00] cursor-pointer
 }
-/* 
+
+
 :deep() .articleTextArea ul {
     padding: revert;
     @apply list-disc
@@ -422,36 +423,9 @@ watchEffect(() => {
 
 :deep() .articleTextArea ul li {
     @apply list-disc
-} */
-
-:deep() .articleTextArea ul {
-    padding: revert;
-    list-style: none;
-}
-
-:deep() .articleTextArea ul>li {
-    text-indent: -1em;
-}
-
-:deep() .articleTextArea ul>li::before {
-    content: "▌";
-    color: #005864
 }
 
 
-:deep() .articleTextArea ul ul {
-    padding: revert;
-    @apply list-disc
-}
-
-:deep() .articleTextArea ul ul li {
-    text-indent: 0;
-    @apply list-disc
-}
-
-:deep() .articleTextArea ul ul li::before {
-    content: "";
-}
 
 :deep() .articleTextArea ol {
     list-style-type: decimal;
@@ -471,11 +445,12 @@ watchEffect(() => {
 
 :deep() .articleTextArea blockquote:before {
     color: #ccc;
-    content: open-quote;
+    content: ',,';
     font-size: 4em;
     line-height: 0.1em;
     margin-right: 0.25em;
-    vertical-align: -0.4em;
+    vertical-align: 0.2em;
+    letter-spacing: -6px;
     font-family: Arial, Helvetica, sans-serif;
 }
 
