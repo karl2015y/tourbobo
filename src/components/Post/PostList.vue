@@ -414,7 +414,7 @@ watchEffect(() => {
 :deep() .articleTextArea a {
     @apply text-[#00A29A] cursor-pointer hover:text-[#06b8b0]
 }
-
+/* 
 :deep() .articleTextArea ul {
     padding: revert;
     @apply list-disc
@@ -422,6 +422,35 @@ watchEffect(() => {
 
 :deep() .articleTextArea ul li {
     @apply list-disc
+} */
+
+:deep() .articleTextArea ul {
+    padding: revert;
+    list-style: none;
+}
+
+:deep() .articleTextArea ul>li {
+    text-indent: -1em;
+}
+
+:deep() .articleTextArea ul>li::before {
+    content: "▌";
+    color: #005864
+}
+
+
+:deep() .articleTextArea ul ul {
+    padding: revert;
+    @apply list-disc
+}
+
+:deep() .articleTextArea ul ul li {
+    text-indent: 0;
+    @apply list-disc
+}
+
+:deep() .articleTextArea ul ul li::before {
+    content: "";
 }
 
 :deep() .articleTextArea ol {

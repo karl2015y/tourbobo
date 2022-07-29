@@ -16,7 +16,26 @@
         :definitions="definitions"
         :toolbar="toolbar"
         :fonts="fonts"
-    />
+    >
+        <template v-slot:fontInfo>
+            <div v-if="selectedElement && selectedElement.style">
+
+                <span v-if="selectedElement.style.lineHeight">
+                    文字高度：{{ selectedElement.style.lineHeight }}
+                </span>
+                <span v-else-if="selectedElement.parentElement && selectedElement.parentElement.style.lineHeight">
+                    文字高度：{{ selectedElement.parentElement.style.lineHeight }}
+                </span>
+                <span v-if="selectedElement.style.fontWeight">
+                    文字粗度：{{ selectedElement.style.fontWeight }}
+                </span>
+                <span v-else-if="selectedElement.parentElement && selectedElement.parentElement.style.fontWeight">
+                    文字粗度：{{ selectedElement.parentElement.style.fontWeight }}
+                </span>
+            </div>
+        </template>
+
+    </q-editor>
 
 
 
@@ -81,6 +100,12 @@
                 <div class="text-h6">顏色選擇器</div>
             </q-card-section>
 
+            <q-btn
+                label="透明色"
+                @click="colorEditText = 'initial'"
+                class="mb-2"
+            />
+
             <q-color
                 v-model="colorEditText"
                 class="w-72"
@@ -127,7 +152,9 @@ import { ElementNode } from '@vue/compiler-core';
 <script setup lang="ts">
 const textSelection = useTextSelection()
 const selectedText = ref('')
+const selectedElement = ref()
 watchEffect(() => {
+    selectedElement.value = textSelection.selection.value?.focusNode?.parentElement
     if (textSelection.text.value.length > 0) {
         selectedText.value = textSelection.text.value
     }
@@ -276,6 +303,7 @@ const colorEditText = ref('')
 const setEditorTextColor = () => {
     showColorEditDialog.value = false
 }
+
 
 const handelLineHeightFunction = (lineHeight: string) => {
     const element = window.getSelection()?.focusNode?.parentElement
@@ -435,62 +463,62 @@ const handelFontWeightFunction = (fontWeight: string) => {
 }
 const handelFontWeight = {
     fontWeight100: {
-        tip: '字體粗細 1',
+        tip: '字體粗細 100',
         handler: () => {
             handelFontWeightFunction('100')
         }
     },
     fontWeight200: {
-        tip: '字體粗細 2',
+        tip: '字體粗細 200',
         handler: () => {
             handelFontWeightFunction('200')
 
         }
     },
     fontWeight300: {
-        tip: '字體粗細 3',
+        tip: '字體粗細 300',
         handler: () => {
             handelFontWeightFunction('300')
 
         }
     },
     fontWeight400: {
-        tip: '字體粗細 4',
+        tip: '字體粗細 400',
         handler: () => {
             handelFontWeightFunction('400')
 
         }
     },
     fontWeight500: {
-        tip: '字體粗細 5',
+        tip: '字體粗細 500',
         handler: () => {
             handelFontWeightFunction('500')
 
         }
     },
     fontWeight600: {
-        tip: '字體粗細 6',
+        tip: '字體粗細 600',
         handler: () => {
             handelFontWeightFunction('600')
 
         }
     },
     fontWeight700: {
-        tip: '字體粗細 7',
+        tip: '字體粗細 700',
         handler: () => {
             handelFontWeightFunction('700')
 
         }
     },
     fontWeight800: {
-        tip: '字體粗細 8',
+        tip: '字體粗細 800',
         handler: () => {
             handelFontWeightFunction('800')
 
         }
     },
     fontWeight900: {
-        tip: '字體粗細 9',
+        tip: '字體粗細 900',
         handler: () => {
             handelFontWeightFunction('900')
 
@@ -524,7 +552,12 @@ const definitions = ref<any>({
         icon: 'brush',
         label: '字體上色',
         handler: () => {
-            editorRef.value?.runCmd('ForeColor', colorEditText.value)
+            if (colorEditText.value == 'initial') {
+                editorRef.value?.runCmd('ForeColor', '#000000')
+
+            } else {
+                editorRef.value?.runCmd('ForeColor', colorEditText.value)
+            }
 
         }
     },
@@ -599,6 +632,8 @@ const toolbar = ref([
             options: keys(handelFontWeight)
         },
 
+        'fontInfo',
+
         {
             label: $q.lang.editor.defaultFont,
             icon: $q.iconSet.editor.font,
@@ -655,22 +690,44 @@ onMounted(() => {
 </style>
 <style scoped >
 :deep() .q-editor__content a {
-    @apply text-[#00A29A] cursor-pointer hover:text-[#06b8b0]
+    @apply text-[#ff5f00] cursor-pointer
 }
 
 :deep() .q-editor__content ul {
     padding: revert;
+    list-style: none;
+}
+
+:deep() .q-editor__content ul>li {
+    text-indent: -1em;
+}
+
+:deep() .q-editor__content ul>li::before {
+    content: "▌";
+    color: #005864
+}
+
+
+:deep() .q-editor__content ul ul {
+    padding: revert;
     @apply list-disc
 }
 
-:deep() .q-editor__content ul li {
+:deep() .q-editor__content ul ul li {
+    text-indent: 0;
     @apply list-disc
+}
+
+:deep() .q-editor__content ul ul li::before {
+    content: "";
 }
 
 :deep() .q-editor__content ol {
     list-style-type: decimal;
     padding: revert;
 }
+
+
 
 :deep() .q-editor__content ol li {
     list-style-type: decimal;
@@ -685,11 +742,12 @@ onMounted(() => {
 
 :deep() .q-editor__content blockquote:before {
     color: #ccc;
-    content: open-quote;
+    content: ',,';
     font-size: 4em;
     line-height: 0.1em;
     margin-right: 0.25em;
-    vertical-align: -0.4em;
+    vertical-align: 0.2em;
+    letter-spacing: -6px;
     font-family: Arial, Helvetica, sans-serif;
 
 }
