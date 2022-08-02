@@ -25,17 +25,17 @@ const postArray = computed(() => postStore.postArray.sort((a, b) => {
   const bTime = (new Date(b.createDate).getTime())
   return bTime - aTime
 })
-.sort((a, b) => {
-  const aIsTopPost = (a.isTopPost ?? false)
-  const bIsTopPost = (b.isTopPost ?? false)
-  if (aIsTopPost) {
-    return -1
-  } else if (bIsTopPost) {
-    return 1
-  } else {
-    return 0
-  }
-})
+  .sort((a, b) => {
+    const aIsTopPost = (a.isTopPost ?? false)
+    const bIsTopPost = (b.isTopPost ?? false)
+    if (aIsTopPost && !bIsTopPost) {
+      return -1
+    } else if (!aIsTopPost && bIsTopPost) {
+      return 1
+    } else {
+      return 0
+    }
+  })
 
 )
 </script>
