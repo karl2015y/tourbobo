@@ -11,6 +11,9 @@ export function useFilter() {
   const formatDate = (current_datetime: Date) => {
     return current_datetime.toISOString().split('T')[0]
   }
+  const formatDateFromString = (current_datetime: string) => {
+    return formatDate(new Date(current_datetime)).replaceAll('-','/')
+  }
 
   const getHtmlText = (htmlCode: string) => {
     var element = document.createElement('div')
@@ -19,7 +22,7 @@ export function useFilter() {
   }
 
   const limitText = (text: string, limitCount: number) => {
-    
+
     if (limitCount <= text.length) { return text.substr(0, limitCount) + ' ...' }
     return text
   }
@@ -32,6 +35,7 @@ export function useFilter() {
     addDays,
     formatDate,
     getHtmlText,
-    limitText
+    limitText,
+    formatDateFromString
   }
 }

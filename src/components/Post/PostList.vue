@@ -41,12 +41,12 @@
                                 >
                                     <div class="w-36 my-auto  text-lg  flex justify-center items-center ">
                                         <div
-                                            class="h-8 truncate bg-[#F3F3F4] px-2 "
+                                            class="h-8 truncate bg-[#F3F3F4] px-2 min-w-[100px] text-center"
                                             :class="{
                                                 '!bg-white': post.post_id == currentPost?.post_id
                                             }"
                                         >
-                                            {{ post.createDate }}
+                                            {{ ufilter.formatDateFromString(post.createDate) }}
                                         </div>
 
 
@@ -286,7 +286,9 @@ import { filter, find, map } from "lodash";
 import { useElementSize, useWindowSize } from '@vueuse/core'
 import { useMainStore } from "../../stores/main.store";
 import { PostCategoryType, PostType } from "../../types/post.type";
+import { useFilter } from '@/composables/filters';
 
+const ufilter = useFilter()
 interface Props {
     postCategory: PostCategoryType[];
     postArray: PostType[];
@@ -350,6 +352,17 @@ const currentPost = computed(() => {
         return showPostArray.value[0]
     }
     return null
+})
+watch(() => currentPost.value, (post) => {
+    document.title = "tourbobo " + post?.title;
+    const org_content = document.querySelector('meta[name="description"]')?.getAttribute('content') ?? ''
+
+    const tmp = document.createElement("DIV");
+    tmp.innerHTML = post?.content ?? '';
+    const post_content = tmp.textContent || tmp.innerText || "";
+
+    document.querySelector('meta[name="description"]')?.setAttribute("content", post_content ? post_content : org_content);
+
 })
 //注意事項
 const noteVisible = ref(true)
