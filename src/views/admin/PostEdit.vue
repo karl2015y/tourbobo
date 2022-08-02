@@ -25,7 +25,7 @@
 
         <div class="flex ">
             <q-select
-            class="flex-1"
+                class="flex-1"
                 v-model="categoryItem"
                 :options="postStore.postCategoryArray"
                 label="文章分類"
@@ -37,6 +37,10 @@
 
         <div class="flex justify-between mt-4 mb-3">
             <div class="flex">
+                <q-toggle
+                    label="置頂"
+                    v-model="formData.isTopPost"
+                />
                 <q-toggle
                     label="在看板上顯示"
                     v-model="formData.showOnBoard"
@@ -155,6 +159,7 @@ const handleSave = () => {
 const postStore = usePostStore()
 const formDefault = {
     available: true,
+    isTopPost:false,
     showOnBoard: true,
     category_id: '',
     title: '',

@@ -1,11 +1,11 @@
 <template>
-    <PostDB />
-    <user-header />
-    <post-list
-        :postCategory="postCategory"
-        :postArray="postArray"
-    />
-    <user-footer />
+  <PostDB />
+  <user-header />
+  <post-list
+    :postCategory="postCategory"
+    :postArray="postArray"
+  />
+  <user-footer />
 
 </template>
 
@@ -20,11 +20,28 @@ const postStore = usePostStore()
 
 const postCategory = computed(() => postStore.postCategoryArray)
 
-const postArray = computed(() => postStore.postArray)
+const postArray = computed(() => postStore.postArray.sort((a, b) => {
+  const aTime = (new Date(a.createDate).getTime())
+  const bTime = (new Date(b.createDate).getTime())
+  return bTime - aTime
+})
+.sort((a, b) => {
+  const aIsTopPost = (a.isTopPost ?? false)
+  const bIsTopPost = (b.isTopPost ?? false)
+  if (aIsTopPost) {
+    return -1
+  } else if (bIsTopPost) {
+    return 1
+  } else {
+    return 0
+  }
+})
+
+)
 </script>
 
 <style>
-body{
+body {
   font-family: 'Noto Sans TC';
 }
 </style>

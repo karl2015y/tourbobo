@@ -1,5 +1,6 @@
 export type PostType = {
     available:boolean;
+    isTopPost?:boolean;
     showOnBoard: boolean;
     post_id: string;
     category_id: string;

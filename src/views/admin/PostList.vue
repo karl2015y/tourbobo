@@ -12,7 +12,8 @@
             />
 
             <router-link
-                :to="{ name: 'PostCreate', query: categoryKeyword == 'all' ? {} : { category_id: categoryKeyword } }">
+                :to="{ name: 'PostCreate', query: categoryKeyword == 'all' ? {} : { category_id: categoryKeyword } }"
+            >
                 <q-btn
                     color="primary"
                     label="新增"
@@ -84,6 +85,10 @@ const columns = ref([
     {
         name: 'category_id', label: '文章分類', field: 'category_id',
         format: (val: string) => postStore.postCategoryArray.find(pc => (pc.postCategory_id == val))?.postCategory_name,
+    },
+    {
+        name: 'isTopPost', label: '置頂', field: 'isTopPost',
+        format: (val: boolean) => `${val ? '是' : '否'}`,
     },
     {
         name: 'showOnBoard', label: '在看板顯示', field: 'showOnBoard',
