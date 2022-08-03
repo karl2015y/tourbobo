@@ -123,6 +123,46 @@
     </q-dialog>
 
 
+    <!-- 插入按鈕 -->
+    <q-dialog v-model="showBtnAddDialog">
+        <q-card class="p-5 w-64">
+            <q-card-section>
+                <div class="text-h6">插入按鈕</div>
+            </q-card-section>
+
+            <q-input
+                label="連結"
+                v-model="postBtnParam.link"
+            />
+             <q-input
+                label="文字"
+                v-model="postBtnParam.text"
+            />
+
+            <q-input
+                label="距離上面(px)"
+                v-model="postBtnParam.topMargin"
+            />
+             <q-input
+                label="距離下面(px)"
+                v-model="postBtnParam.bottomMargin"
+            />
+             <q-input
+                label="距離左邊(px)"
+                v-model="postBtnParam.leftMargin"
+            />
+            <q-card-actions align="right">
+                <q-btn
+                    @click="showBtnAddDialog=false"
+                    flat
+                    label="OK"
+                    color="primary"
+                />
+            </q-card-actions>
+        </q-card>
+    </q-dialog>
+
+
 
 
 
@@ -304,6 +344,14 @@ const setEditorTextColor = () => {
     showColorEditDialog.value = false
 }
 
+const showBtnAddDialog = ref(false);
+const postBtnParam = ref({
+    topMargin: 20,
+    bottomMargin: 20,
+    leftMargin: 55,
+    text: '按鈕文字',
+    link: 'https://'
+})
 
 const handelLineHeightFunction = (lineHeight: string) => {
     const element = window.getSelection()?.focusNode?.parentElement
@@ -570,6 +618,27 @@ const definitions = ref<any>({
 
         }
     },
+    handelPostBtn: {
+        tip: '設定按鈕',
+        label: '設定按鈕',
+        handler: () => {
+            showBtnAddDialog.value = true;
+        }
+    },
+    handelInserPostBtn: {
+        tip: '插入按鈕',
+        label: '插入按鈕',
+        handler: () => {
+            editorRef.value?.runCmd('insertHTML', `
+             <a
+            href="${postBtnParam.value.link}"
+            style="margin-top: ${postBtnParam.value.topMargin}px; margin-bottom: ${postBtnParam.value.bottomMargin}px; margin-left: ${postBtnParam.value.leftMargin}px;"
+            class="post-btn">
+            <div>${postBtnParam.value.text}</div>
+        </a> 
+            `)
+        }
+    },
     ...handelLineHeight,
     ...handelFontWeight
 
@@ -587,7 +656,7 @@ const toolbar = ref([
         }
     ],
     ['bold', 'italic', 'strike', 'underline', 'subscript', 'superscript'],
-    ['token', 'hr', 'link', 'custom_btn'],
+    ['token', 'hr', 'link', 'custom_btn', 'handelPostBtn', 'handelInserPostBtn'],
     ['print', 'fullscreen'],
     [
         {
@@ -689,6 +758,14 @@ onMounted(() => {
 <style>
 </style>
 <style scoped >
+:deep() .post-btn {
+    @apply block whitespace-nowrap hover:drop-shadow-xl;
+}
+
+:deep() .post-btn div {
+    @apply inline-block bg-[#FF5F00] text-white text-xl font-bold pl-3 pr-8 py-2 [clip-path:polygon(0%_0%,calc(100%_-_30px)_0%,calc(100%_-_10px)_50%,calc(100%_-_30px)_100%,0%_100%)]
+}
+
 :deep() .q-editor__content a {
     @apply text-[#ff5f00] cursor-pointer
 }

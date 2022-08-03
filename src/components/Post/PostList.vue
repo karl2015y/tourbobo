@@ -349,7 +349,12 @@ const currentPost = computed(() => {
             return clickQueryLinkByObject({})
         }
     } else if (windowSize.width.value >= 640) {
-        return showPostArray.value[0]
+        const post = showPostArray.value[0]
+        if (post.post_id && post.category) {
+            clickQueryLinkByObject({ category: post.category, post_id: post.post_id })
+        }
+        return post
+
     }
     return null
 })
@@ -397,6 +402,14 @@ watchEffect(() => {
 </script>
 
 <style scoped>
+
+:deep() .post-btn {
+    @apply block whitespace-nowrap hover:drop-shadow-xl;
+}
+
+:deep() .post-btn div {
+    @apply inline-block bg-[#FF5F00] text-white text-xl font-bold pl-3 pr-8 py-2 [clip-path:polygon(0%_0%,calc(100%_-_30px)_0%,calc(100%_-_10px)_50%,calc(100%_-_30px)_100%,0%_100%)]
+}
 :deep().swiper-pagination-bullet-active {
     width: 24px;
     border-radius: 5px;

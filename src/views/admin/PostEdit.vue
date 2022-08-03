@@ -1,4 +1,6 @@
 <template>
+
+
     <q-page-sticky
         @click="handleSave()"
         position="top-right"
@@ -69,6 +71,8 @@
             v-model="formData.image"
             name="文章主圖片"
         />
+
+        <!---->
 
         <e-q-editor
             v-model="formData.content"
@@ -159,7 +163,7 @@ const handleSave = () => {
 const postStore = usePostStore()
 const formDefault = {
     available: true,
-    isTopPost:false,
+    isTopPost: false,
     showOnBoard: true,
     category_id: '',
     title: '',
